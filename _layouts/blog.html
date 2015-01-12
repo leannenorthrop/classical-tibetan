@@ -1,0 +1,21 @@
+{% include header.md %}
+
+<div class="row">
+  <div class="col-sm-8  blog-main">
+      <div class="blog-post">
+        <h2 class="blog-post-title">{{page.title}}</h2>
+        <p class="blog-post-meta">{{page.date}} Categories: {{page.categories}} Tags: {{page.tags}}</p>
+        {{ content }}
+      </div>
+      <nav>
+        <ul class="pager">
+          <li><a href="{{page.previous.url}}">Previous</a></li>
+          <li><a href="{{page.next.url}}">Next</a></li>
+        </ul>
+      </nav>
+  </div>
+  <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+    {% include blog_sidebar.md %}
+  </div>
+</div>
+{% include footer.md %}
