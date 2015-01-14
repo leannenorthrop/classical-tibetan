@@ -16,9 +16,13 @@ stageTitles:
   - Stage 3 Beginners
   - Stage 4 Beginners
 ---
-<p class="row">&nbsp;</p>
 
-# Learning Resources
+<div class="row">
+  <ol class="breadcrumb">
+    <li><a href="{{site.url}}">Home</a></li>
+    <li class="active">Learning Materials</li>
+  </ol>
+</div>
 
 <div class="row">
   <div class="col-lg-3">

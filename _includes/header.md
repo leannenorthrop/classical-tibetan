@@ -39,11 +39,11 @@ ript>
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
             <li>
-              <a href="#" id="learn">Learn</a>
+              <a href="{{site.url}}/lessons/index.html" id="learn">Learn</a>
             </li>
-            <li
-              <a href="#" id="exercises">Exercises</a>
-            </li>
+            <!--li>
+              <a href="{{site.url}}/exercises/index.html" id="exercises">Exercises</a>
+            </li-->
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="typeset">Create You Own <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="typeset">

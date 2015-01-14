@@ -3,6 +3,12 @@ layout: plain
 title: Posts
 ---
 
+<div class="row">
+  <ol class="breadcrumb">
+    <li><a href="{{site.url}}">Home</a></li>
+    <li class="active">Site Resources</li>
+  </ol>
+</div>
 
 <div class="blog-header">
   <h1 class="blog-title">Resources <small>For the Curious</small></h1>
@@ -63,6 +69,8 @@ function capitalize(text) {
     return text.substr(0,1).toUpperCase() + text.substr(1);
 }
 
-$('h1.blog-title small').text(capitalize(tag) + " " + capitalize(type) + " Posts");
-document.title = document.title.replace("Posts", capitalize(tag) + " " + capitalize(type) + " Posts");
+var title = capitalize(tag) + " " + capitalize(type) + " Posts";
+$('h1.blog-title small').text(title);
+$('li.active').text(capitalize(type) + " Posts");
+document.title = document.title.replace("Posts", title);
 </script>
