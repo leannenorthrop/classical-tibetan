@@ -83,9 +83,9 @@ ript>
             </li>
           </ul>
 
-          <ul class="nav navbar-nav navbar-right">
+          <!--ul class="nav navbar-nav navbar-right">
             <li><a href="blog.html" target="_blank">Blog</a></li>
-          </ul>
+          </ul-->
 
         </div>
       </div>
