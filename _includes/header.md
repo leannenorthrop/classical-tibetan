@@ -38,37 +38,11 @@ ript>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="learn">Learn <span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="learn">
-                <li role="presentation" class="dropdown-header">Novice</li>
-                <li><a href="../default/">Nothing Yet :cry:</a></li>
-                <li class="divider"></li>
-                <li role="presentation" class="dropdown-header">Beginner</li>
-                <li><a href="../default/">Nothing Yet</a></li>
-                <li class="divider"></li>
-                <li role="presentation" class="dropdown-header">Intermediate</li>
-                <li><a href="../default/">Nothing Yet</a></li>
-                <li class="divider"></li>
-                <li role="presentation" class="dropdown-header">Advanced</li>
-                <li><a href="../default/">Nothing Yet</a></li>
-              </ul>
+            <li>
+              <a href="#" id="learn">Learn</a>
             </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="exercises">Exercises <span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="exercises">
-                <li role="presentation" class="dropdown-header">Novice</li>
-                <li><a href="../default/">Nothing Yet</a></li>
-                <li class="divider"></li>
-                <li role="presentation" class="dropdown-header">Beginner</li>
-                <li><a href="../default/">Nothing Yet</a></li>
-                <li class="divider"></li>
-                <li role="presentation" class="dropdown-header">Intermediate</li>
-                <li><a href="../default/">Nothing Yet</a></li>
-                <li class="divider"></li>
-                <li role="presentation" class="dropdown-header">Advanced</li>
-                <li><a href="../default/">Nothing Yet</a></li>
-              </ul>
+            <li
+              <a href="#" id="exercises">Exercises</a>
             </li>
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="typeset">Create You Own <span class="caret"></span></a>
