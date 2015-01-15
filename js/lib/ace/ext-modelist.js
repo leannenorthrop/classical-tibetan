@@ -1,4 +1,4 @@
-ace.define("ace/ext/modelist",["require","exports","module"], function(require, exports, module) {
+define("ace/ext/modelist",["require","exports","module"], function(require, exports, module) {
 "use strict";
 
 var modes = [];
@@ -182,6 +182,6 @@ module.exports = {
 
 });
                 (function() {
-                    ace.require(["ace/ext/modelist"], function() {});
+                    window.require(["ace/ext/modelist"], function() {});
                 })();
             

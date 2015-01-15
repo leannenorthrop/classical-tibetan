@@ -1,4 +1,4 @@
-ace.define("ace/ext/searchbox",["require","exports","module","ace/lib/dom","ace/lib/lang","ace/lib/event","ace/keyboard/hash_handler","ace/lib/keys"], function(require, exports, module) {
+define("ace/ext/searchbox",["require","exports","module","ace/lib/dom","ace/lib/lang","ace/lib/event","ace/keyboard/hash_handler","ace/lib/keys"], function(require, exports, module) {
 "use strict";
 
 var dom = require("../lib/dom");
@@ -404,7 +404,7 @@ exports.Search = function(editor, isReplace) {
 
 });
 
-ace.define("ace/ext/old_ie",["require","exports","module","ace/lib/useragent","ace/tokenizer","ace/ext/searchbox","ace/mode/text"], function(require, exports, module) {
+define("ace/ext/old_ie",["require","exports","module","ace/lib/useragent","ace/tokenizer","ace/ext/searchbox","ace/mode/text"], function(require, exports, module) {
 "use strict";
 var MAX_TOKEN_COUNT = 1000;
 var useragent = require("../lib/useragent");
@@ -489,6 +489,6 @@ useragent.isOldIE = true;
 
 });
                 (function() {
-                    ace.require(["ace/ext/old_ie"], function() {});
+                    window.require(["ace/ext/old_ie"], function() {});
                 })();
             
