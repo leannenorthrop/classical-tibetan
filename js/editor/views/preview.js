@@ -2,8 +2,10 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'editor/models/preview'
-], function($, _, Backbone, PreviewModel){
+  'editor/models/preview',
+  'markdown'
+], function($, _, Backbone, PreviewModel, Markdown){
+  var markdown = Markdown;
   var PreviewView = Backbone.View.extend({
     initialize: function(options){
       if (!options.model) {
