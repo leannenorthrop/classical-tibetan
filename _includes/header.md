@@ -39,20 +39,20 @@ ript>
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
             <li>
-              <a href="{{site.url}}/lessons/index.html" id="learn">Learn</a>
+              <a href="{{site.baseurl}}/lessons/index.html" id="learn">Learn</a>
             </li>
             <!--li>
-              <a href="{{site.url}}/exercises/index.html" id="exercises">Exercises</a>
+              <a href="{{site.baseurl}}/exercises/index.html" id="exercises">Exercises</a>
             </li-->
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="typeset">Create You Own <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="typeset">
                 <li role="presentation" class="dropdown-header">Contribute</li>
-                <li><a href="../default/">Editor</a></li>
+                <li><a href="{{site.baseurl}}/editor/">Editor</a></li>
                 <li role="presentation" class="dropdown-header">Create Personal Resources</li>
-                <li><a href="../default/">Editor</a></li>
+                <li><a href="{{site.baseurl}}/editor/">Editor</a></li>
                 <li role="presentation" class="dropdown-header">Typesetting</li>
-                <li><a href="../default/">Editor</a></li>
+                <li><a href="{{site.baseurl}}/editor/">Editor</a></li>
               </ul>
             </li>
           </ul>
