@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Leanne" />
     <meta name="description" content="{{ site.description }}">
-    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
+    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.github.project_title }} – {{ site.github.project_tagline }}</title>
     <link href="{{ site.baseurl }}/css/bootstrap.css" rel="stylesheet">
     <style>
       body {
