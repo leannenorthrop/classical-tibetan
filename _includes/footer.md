@@ -21,7 +21,7 @@
     </footer>
 
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="/js/bootstrap.js"></script>
+    <script src="{{site.baseurl}}/js/bootstrap.js"></script>
 {% if site.google_analytics %}
   <!-- Google Analytics -->
   <script>
