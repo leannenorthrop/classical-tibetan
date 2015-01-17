@@ -1,0 +1,20 @@
+[
+  {
+    "file": "../js/content/help/gettingstarted.md",
+    "select_name": "Getting Started",
+    "select_value": "help-gettingstarted",
+    "select_icon": "glyphicon-info-sign"
+  },
+  {
+    "file": "../js/content/help/mdguide.md",
+    "select_name": "Markdown Guide",
+    "select_value": "help-mdguide",
+    "select_icon": "glyphicon-info-sign"
+  },
+  {
+    "file": "../js/content/help/wylieguide.md",
+    "select_name": "Extended Wylie Guide",
+    "select_value": "help-wylieguide",
+    "select_icon": "glyphicon-info-sign"
+  }
+]
