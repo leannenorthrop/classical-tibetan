@@ -3,8 +3,9 @@ define([
   'underscore',
   'backbone',
   'editor/models/preview',
-  'markdown'
-], function($, _, Backbone, PreviewModel, Markdown){
+  'markdown',
+  'text!templates/editor.html'
+], function($, _, Backbone, PreviewModel, Markdown, Template){
   var markdown = Markdown;
   var PreviewView = Backbone.View.extend({
     initialize: function(options){
@@ -14,12 +15,16 @@ define([
 
       this.listenTo(this.model, "change", this.render);
     },
+    template: _.template(Template),
     render: function() {
       this.$el.html(this.model.attributes.text);
       return this;
     },
     process: function(model) {
       var text = model.get("text");
+      if (model.get("mode") === "plain-wylie") {
+        text = "~~\n" + text + "\n~~";
+      }
       var tree = markdown.parse(text, "ExtendedWylie");
       var jsonml = markdown.toHTMLTree( tree );
       var html = markdown.renderJsonML( jsonml );

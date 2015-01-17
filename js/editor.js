@@ -4,7 +4,9 @@ requirejs.config({
         editor: '../editor',
         jquery: 'jquery-1.11.2',
         underscore: 'underscore',
-        backbone: 'backbone'
+        backbone: 'backbone',
+        templates: '../templates',
+        content: '../content'
     },
     shim: {
         'underscore': {
@@ -19,6 +21,9 @@ requirejs.config({
         },
         'bootstrap': {
             deps: ['jquery']
+        },
+        'bootstrap-select': {
+            deps: ['jquery', 'bootstrap']
         }
     }
 });
