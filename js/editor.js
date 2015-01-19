@@ -4,9 +4,14 @@ requirejs.config({
         editor: '../editor',
         jquery: 'jquery-1.11.2',
         underscore: 'underscore',
-        backbone: 'backbone',
+        backbone: 'backbone/backbone',
         templates: '../templates',
-        content: '../content'
+        content: '../content',
+        bootstrap: 'bootstrap/bootstrap',
+        marionette: 'backbone/marionette',
+        'bootstrap.select': 'bootstrap/bootstrap-select',
+        'backbone.wreqr': 'backbone/wreqr',
+        'backbone.babysitter': 'backbone/babysitter'
     },
     shim: {
         'underscore': {
@@ -16,13 +21,16 @@ requirejs.config({
             deps: ['underscore', 'jquery'],
             exports: 'Backbone'
         },
+        'marionette': {
+            deps: ['backbone', 'backbone.wreqr', 'backbone.babysitter'],
+        },
         'markdown': {
             exports: 'markdown'
         },
         'bootstrap': {
             deps: ['jquery']
         },
-        'bootstrap-select': {
+        'bootstrap.select': {
             deps: ['jquery', 'bootstrap']
         }
     }

@@ -9,10 +9,6 @@ define([
       state: "",
       text: "",
       mode: "",
-      ace_theme: "",
-      ace_wrap: false,
-      ace_showMargin: false,
-      ace_mode: ""
     }
   });
 
