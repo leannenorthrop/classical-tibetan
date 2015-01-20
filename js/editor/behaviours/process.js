@@ -12,7 +12,6 @@ define(['jquery', 'bootstrap', 'marionette'], function(Jquery, Bootstrap, Marion
         var previewModel = previewView.model;
 
         var text = editorModel.get("text");
-        editorView.model.get("currentDocument").set("text", text);
 
         //if (model.get("mode") === "plain-wylie") {
         //  text = "~~\n" + text + "\n~~";

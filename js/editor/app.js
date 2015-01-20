@@ -1,7 +1,7 @@
 define(["jquery",
         "backbone",
         "marionette",
-        "editor/views/app",
+        "editor/views/layout",
         "editor/views/editor",
         "editor/views/preview",
         "editor/views/alert",
