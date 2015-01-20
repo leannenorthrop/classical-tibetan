@@ -6,19 +6,29 @@ define(["jquery",
         "editor/views/preview",
         "editor/views/alert",
         "editor/commands/init",
-        "markdown"],
+        "markdown",
+        "editor/models/editor",
+        "editor/models/document"],
 
-  function($, Backbone, Marionette, Layout, EditorView, PreviewView, AlertView, Commands, Markdown) {
+  function($, Backbone, Marionette, Layout,
+           EditorView, PreviewView, AlertView,
+           Commands, Markdown, EditorModel, DocumentModel) {
     var markdown = Markdown;
+
     var EditorApp = new Backbone.Marionette.Application({
       updatePreview: function() {
+        var editorView = EditorApp.layout.getRegion('leftColumn').currentView;
+        var previewView = EditorApp.layout.getRegion('rightColumn').currentView;
+        var documentModel = editorView.model.get("currentDocument");
+        var previewModel = previewView.model;
+
         //if (model.get("mode") === "plain-wylie") {
         //  text = "~~\n" + text + "\n~~";
         //}
-        var tree = markdown.parse(EditorApp.editorModel.get("text"), "ExtendedWylie");
+        var tree = markdown.parse(documentModel.get("text"), "ExtendedWylie");
         var jsonml = markdown.toHTMLTree( tree );
         var html = markdown.renderJsonML( jsonml );
-        EditorApp.previewModel.set("text", html);
+        previewModel.set("text", html);
       }
     });
 
@@ -37,15 +47,13 @@ define(["jquery",
       var layoutRender = EditorApp.layout.render();
       $("body").append(EditorApp.layout.el);
 
-      var editor = new EditorView({app:EditorApp});
-      var preview = new PreviewView({app: EditorApp});
+      var preview = new PreviewView({app: EditorApp, model: new DocumentModel()});
+      var editor = new EditorView({model: new EditorModel(), app:EditorApp});
 
       EditorApp.layout.getRegion('leftColumn').show(editor);
       EditorApp.layout.getRegion('rightColumn').show(preview);
 
-      EditorApp.editorModel = editor.model;
-      EditorApp.previewModel = preview.model;
-      EditorApp.listenTo(EditorApp.editorModel, "change", EditorApp.updatePreview);
+      EditorApp.listenTo(editor.model.get("currentDocument"), "change", EditorApp.updatePreview);
 
       // This kicks off the rest of the app, through the router
       /*layoutRender.done(function(){

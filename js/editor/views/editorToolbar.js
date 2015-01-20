@@ -35,6 +35,7 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect, Template, Options,
           }
         });
         //this.listenTo(this.optionsCollection, "change", this.render);
+        this.editorModel = options.editorModel;
       },
       onShow: function () {
         console.log("hi");

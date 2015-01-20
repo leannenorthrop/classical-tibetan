@@ -1,14 +1,16 @@
 define([
   'underscore',
-  'backbone'
-], function(_, Backbone){
+  'backbone',
+  'editor/models/ace',
+  'editor/models/document'
+], function(_, Backbone, AceModel, Document){
 
   var EditorModel = Backbone.Model.extend({
     defaults: {
-      textBuffer: "",
       state: "",
-      text: "",
       mode: "",
+      currentDocument: undefined,
+      editor: undefined
     }
   });
 
