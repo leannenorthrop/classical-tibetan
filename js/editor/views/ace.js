@@ -2,11 +2,21 @@ define(["jquery",
         "backbone",
         "marionette",
         "editor/models/ace",
-        "ace/ace"],
-function($, Backbone, Marionette, AceModel, Ace) {
+        "ace/ace",
+        "editor/behaviours/process"],
+function($, Backbone, Marionette, AceModel, Ace, ProcessText) {
   var AceView = Backbone.Marionette.ItemView.extend({
     id: 'editor',
     template: false,
+    behaviors: {
+      Preview: {
+        behaviorClass: ProcessText,
+        app: this.app
+      }
+    },
+    initialize: function(options) {
+      this.app = options.app;
+    },
     onRender: function() {
       this.$el.attr("style", "background:black;font-size:12pt");
     },

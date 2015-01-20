@@ -8,7 +8,8 @@ define(["jquery",
         "editor/models/document",
         "text!templates/editor_layout.html"],
 
-function($, Backbone, Marionette, AceView, ToolbarView, EditorModel, AceModel, DocumentModel, Template) {
+function($, Backbone, Marionette, AceView, ToolbarView,
+         EditorModel, AceModel, DocumentModel, Template) {
   var template = Template;
   var EditorView = Backbone.Marionette.LayoutView.extend({
     modelEvents: {
@@ -35,7 +36,7 @@ function($, Backbone, Marionette, AceView, ToolbarView, EditorModel, AceModel, D
       this.model.set("currentDocument", new DocumentModel());
       this.model.set("editor", new AceModel());
       this.getRegion('toolbar').show(new ToolbarView({editorModel: this.model, commands: this.commands}));
-      this.getRegion('editor').show(new AceView({model: this.model.get("editor")}));
+      this.getRegion('editor').show(new AceView({model: this.model.get("editor"), app: this.app}));
     },
     onTextChange: function() {
       this.model.get("currentDocument").set("text", this.model.get("editor").get("text"));
