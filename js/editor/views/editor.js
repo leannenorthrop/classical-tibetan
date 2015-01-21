@@ -33,7 +33,6 @@ function($, Backbone, Marionette, AceView, ToolbarView,
         this.model = new EditorModel();
       }
       this.app = options.app;
-      this.commands = this.app.commands;
     },
     getTemplate: function(){
       return template;
@@ -45,7 +44,7 @@ function($, Backbone, Marionette, AceView, ToolbarView,
     onShow: function() {
       this.model.set("currentDocument", new DocumentModel());
       this.model.set("editor", new AceModel());
-      this.getRegion('toolbar').show(new ToolbarView({editorModel: this.model, commands: this.commands}));
+      this.getRegion('toolbar').show(new ToolbarView({editorModel: this.model}));
       this.getRegion('editor').show(new AceView({model: this.model.get("editor"), app: this.app}));
     }
   });

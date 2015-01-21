@@ -3,18 +3,10 @@ define(["jquery",
         "marionette",
         "editor/views/layout",
         "editor/views/editor",
-        "editor/views/preview",
-        "editor/views/alert",
-        "markdown",
-        "editor/models/editor",
-        "editor/models/document"],
+        "editor/views/preview"],
 
   function($, Backbone, Marionette, Layout,
-           EditorView, PreviewView, AlertView,
-           Commands, Markdown, EditorModel,
-           DocumentModel) {
-    var markdown = Markdown;
-
+           EditorView, PreviewView) {
     var EditorApp = new Backbone.Marionette.Application({});
     EditorApp.behaviours = {};
     Marionette.Behaviors.behaviorsLookup = function() {

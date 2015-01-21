@@ -5,7 +5,7 @@ define(['jquery', 'bootstrap', 'marionette', "editor/models/document"],
     if (this.view && this.view.model && this.view.model.currentDocument) {
       var view = this.view;
       var model = view.model;
-      this.listenToOnce(model.currentDocument, "change", function() {
+      this.listenToOnce(model.currentDocument, "change:text", function() {
         var ace = view.getRegion('editor').currentView.markdownEditor;
         ace.setValue(model.currentDocument.get("text"));
       });

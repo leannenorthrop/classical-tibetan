@@ -18,7 +18,6 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
         var selectOptions = [{value: "mode-plain-wylie",icon: "glyphicon-pencil",name: "Wylie",cmd: {name: "setEditorMode", options: {mode: "plain-wylie"}}},
                              {value: "mode-plain-mixed",icon: "glyphicon-pencil",name: "Mixed Wylie/English/etc..",cmd: {name: "setEditorMode", options: {mode: "plain-mixed"}}}];
         this.collection = new Options(selectOptions);
-        this.cmds = options.commands;
 
         var me = this;
         this.help = new HelpFiles();
