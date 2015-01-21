@@ -9,6 +9,7 @@ define([
     defaults: {
       state: "",
       mode: "",
+      format: "",
       currentDocument: undefined,
       editor: undefined
     }

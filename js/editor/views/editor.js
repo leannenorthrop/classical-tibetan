@@ -9,7 +9,8 @@ define(["jquery",
         "text!templates/editor_layout.html"],
 
 function($, Backbone, Marionette, AceView, ToolbarView,
-         EditorModel, AceModel, DocumentModel, Template) {
+         EditorModel, AceModel, DocumentModel, Template,
+         OnEditorModeChange) {
   var template = Template;
   var EditorView = Backbone.Marionette.LayoutView.extend({
     modelEvents: {
@@ -19,6 +20,24 @@ function($, Backbone, Marionette, AceView, ToolbarView,
           this.model.get("currentDocument").set("text", this.model.get("editor").get("text"));
         });
       },
+      "change:mode": function() {
+        var editorMode = this.model.get("mode");
+        if (editorMode === "help") {
+          var toolbar = this.getRegion('toolbar').currentView;
+          var mode = toolbar.currentMode;
+          this.editorModel.currentDocument = new Document({name: mode.file, category: "help"});
+          this.editorModel.currentDocument.open();
+        } else {
+          if (this.editorModel.currentDocument).category === "help") {
+            this.editorModel.currentDocument = new Document(name: "New");
+          } else {
+            this.editorModel.currentDocument = new Document(name: "New");
+          }
+        }
+      },
+      "change:state": function() {
+
+      }
     },
     initialize: function(options) {
       if (!this.model) {

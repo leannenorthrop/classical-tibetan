@@ -11,7 +11,8 @@ define([
       text: "",
       description: "",
       tags: [],
-      name: ""
+      name: "",
+      category: ""
     },
     load: function(text) {
       // strip any yaml
@@ -30,7 +31,7 @@ define([
         auth: "basic"
       });
       var repo = github.getRepo("leannenorthrop", "classical-tibetan");
-      repo.read('gh-pages', '_posts/'+options.name+".md", function(err, data) {
+      repo.read('gh-pages', '_posts/'+me.name+".md", function(err, data) {
         if (!err) {
           me.load(data);
         } else {

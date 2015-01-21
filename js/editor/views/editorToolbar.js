@@ -7,7 +7,8 @@ define(["jquery",
         "editor/collections/options",
         "editor/collections/help"],
 
-function($, Backbone, Marionette, Bootstrap, BootstrapSelect, Template, Options, HelpFiles) {
+function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
+         Template, Options, HelpFiles) {
   var template = Template;
   var EditorToolbarView = Backbone.Marionette.ItemView.extend({
     getTemplate: function(){
@@ -27,7 +28,7 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect, Template, Options,
               me.collection.add({value: model.get("select_value"),
                                 name: model.get("select_name"),
                                 icon: model.get("select_icon"),
-                                cmd: {name: "showHelp", options: {file: model.get("file")}}});
+                                file: model.get("file")});
             });
           },
           error: function(collection, response, options) {
@@ -50,17 +51,20 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect, Template, Options,
         me.onModeChange();
         }*/
       },
-    events: {
-        "change #modeSelector": "onModeChange"
-    },
-    onModeChange: function(){
-      var modeSelect = $("#modeSelector option:selected");
-      var selectedMode = modeSelect.val();
-      var model = this.optionsCollection.detect(function(model){return model.get("value")===selectedMode;})
-      var cmd = model.get("cmd");
-      cmd.options.context = this;
-      this.cmds.execute(cmd.name, cmd.options);
-    },
+      currentMode: function() {
+          var modeSelect = $("#modeSelector option:selected");
+          var selectedMode = modeSelect.val();
+          return _.find(this.collection, function(item) {item.value === selectedMode});
+      }
+      events: {
+          "change #modeSelector": function(){
+            var modeSelect = $("#modeSelector option:selected");
+            var selectedMode = modeSelect.val();
+            var modes = selectedMode.split("-");
+            this.editorModel.set("state", modes[0]);
+            this.editorModel.set("mode", modes.slice(1).join("-"));
+          }
+      },
   });
 
   return EditorToolbarView;
