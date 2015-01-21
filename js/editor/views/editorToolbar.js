@@ -25,21 +25,24 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
         this.help.fetch({
           success: function(collection, response, options) {
             collection.forEach(function(model,index){
-              me.collection.add({value: model.get("select_value"),
-                                name: model.get("select_name"),
-                                icon: model.get("select_icon"),
-                                file: model.get("file")});
+              if (model.get("categories").indexOf("help") >= 0) {
+                me.collection.add({value: "help-"+model.get("name"),
+                                  name: model.get("title"),
+                                  icon: "glyphicon-info-sign",
+                                  file: model.get("name")});
+              }
             });
           },
           error: function(collection, response, options) {
+            console.log(response);
             me.cmds.execute("showAlert", {msg: "Unable to find help files. Lost internet connection?", title: "alert"})
           }
         });
-        //this.listenTo(this.optionsCollection, "change", this.render);
+        this.listenTo(this.collection, "add", this.render);
+        this.listenTo(this.collection, "change", this.render);
         this.editorModel = options.editorModel;
       },
       onShow: function () {
-        console.log("hi");
         this.$el.find('.selectpicker').selectpicker({
           style: 'btn-default btn-sm ',
           size: 7,
@@ -51,11 +54,20 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
         me.onModeChange();
         }*/
       },
+      onRender: function() {
+        this.$el.find('.selectpicker').selectpicker({
+          style: 'btn-default btn-sm ',
+          size: 7,
+          mobile: true,
+          showSubtext: true
+        });
+      },
       currentMode: function() {
           var modeSelect = $("#modeSelector option:selected");
           var selectedMode = modeSelect.val();
-          return _.find(this.collection, function(item) {item.value === selectedMode});
-      }
+          var modeModel = this.collection.find(function(model) { return model.get('value') === selectedMode; });;
+          return modeModel ? modeModel.toJSON() : modeModel;
+      },
       events: {
           "change #modeSelector": function(){
             var modeSelect = $("#modeSelector option:selected");

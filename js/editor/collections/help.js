@@ -5,7 +5,7 @@ define([
 
   var AllHelpFiles = Backbone.Collection.extend({
     model: Help,
-    url: "../js/content/help/options.json"
+    url: "../post_index.json"
   });
 
   return AllHelpFiles;

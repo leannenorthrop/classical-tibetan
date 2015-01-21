@@ -1,0 +1,12 @@
+---
+layout: none
+title: Json Posts
+---
+{% assign posts = site.posts | sort: "date" %}
+[{% for post in posts %}{
+    "name": "{{post.path}}",
+    "tags": "{{post.tags}}",
+    "title": "{{post.title}}",
+    "categories": "{{post.category}}"
+  } {% if forloop.last == false %}, {% endif %}
+{% endfor %}]

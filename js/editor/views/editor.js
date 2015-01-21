@@ -6,7 +6,8 @@ define(["jquery",
         "editor/models/editor",
         "editor/models/ace",
         "editor/models/document",
-        "text!templates/editor_layout.html"],
+        "text!templates/editor_layout.html",
+        "editor/behaviours/editorMode"],
 
 function($, Backbone, Marionette, AceView, ToolbarView,
          EditorModel, AceModel, DocumentModel, Template,
@@ -19,24 +20,12 @@ function($, Backbone, Marionette, AceView, ToolbarView,
         this.listenTo(aceModel, "change:text", function() {
           this.model.get("currentDocument").set("text", this.model.get("editor").get("text"));
         });
-      },
-      "change:mode": function() {
-        var editorMode = this.model.get("mode");
-        if (editorMode === "help") {
-          var toolbar = this.getRegion('toolbar').currentView;
-          var mode = toolbar.currentMode;
-          this.editorModel.currentDocument = new Document({name: mode.file, category: "help"});
-          this.editorModel.currentDocument.open();
-        } else {
-          if (this.editorModel.currentDocument).category === "help") {
-            this.editorModel.currentDocument = new Document(name: "New");
-          } else {
-            this.editorModel.currentDocument = new Document(name: "New");
-          }
-        }
-      },
-      "change:state": function() {
-
+      }
+    },
+    behaviors: {
+      EditorModeChange: {
+        behaviorClass: OnEditorModeChange,
+        app: this.app
       }
     },
     initialize: function(options) {
