@@ -20,6 +20,10 @@ define([
         var endIndex = text.indexOf("---", 4);
         var yaml = text.substring(4,endIndex);
         var json = JsYaml.load(yaml);
+        this.set("description", json.description ? json.description : "");
+        this.set("category", json.category ? json.category : "");
+        this.set("tags", json.tags ? json.tags : "");
+        text = text.substring(endIndex+4);
       }
       this.set("text", text);
     },
