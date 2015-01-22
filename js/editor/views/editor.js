@@ -7,12 +7,12 @@ define(["jquery",
         "editor/models/ace",
         "editor/models/document",
         "text!templates/editor_layout.html",
-        "editor/behaviours/editorMode",
-        "editor/behaviours/configEditor"],
+        "editor/behaviours/editorToolbar",
+        ],
 
 function($, Backbone, Marionette, AceView, ToolbarView,
          EditorModel, AceModel, DocumentModel, Template,
-         OnEditorModeChange, OnConfigEditor) {
+         Behaviours) {
   var template = Template;
   var EditorView = Backbone.Marionette.LayoutView.extend({
     modelEvents: {
@@ -21,16 +21,6 @@ function($, Backbone, Marionette, AceView, ToolbarView,
         this.listenTo(aceModel, "change:text", function() {
           this.model.get("currentDocument").set("text", this.model.get("editor").get("text"));
         });
-      }
-    },
-    behaviors: {
-      EditorModeChange: {
-        behaviorClass: OnEditorModeChange,
-        app: this.app
-      },
-      Config: {
-        behaviorClass: OnConfigEditor,
-        app: this.app
       }
     },
     initialize: function(options) {
@@ -53,6 +43,8 @@ function($, Backbone, Marionette, AceView, ToolbarView,
       this.getRegion('editor').show(new AceView({model: this.model.get("editor"), app: this.app}));
     }
   });
+
+  _.extend( EditorView.prototype, Behaviours);
 
   return EditorView;
 });

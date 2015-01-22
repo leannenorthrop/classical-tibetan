@@ -17,18 +17,17 @@
       </optgroup>
     </select>
 
-<input type="file" id="fileInput">
     <div id="editor_btns" class="btn-group btn-group-sm" role="group" aria-label="..." style="float:right">
-      <button type="button" class="import btn btn-default" aria-label="Import">
-        <span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+      <button type="button" class="import btn btn-default btn-file" aria-label="Import">
+        Import... <input type="file" id="importFile">
       </button>
-      <button type="button" class="export btn btn-default" aria-label="Export">
-        <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+      <button type="button" class="export btn btn-default btn-file" aria-label="Export">
+        Export... <input type="file" id="exportFile">
       </button>
       <button type="button" class="open btn btn-default" aria-label="Open">
         <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
       </button>
-      <button type="button" class="close btn btn-default" aria-label="Save">
+      <button type="button" class="save btn btn-default" aria-label="Save">
         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
       </button>
       <button type="button" class="delete btn btn-default" aria-label="Delete">

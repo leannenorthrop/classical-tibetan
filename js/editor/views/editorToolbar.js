@@ -70,6 +70,10 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
           var modeModel = this.collection.find(function(model) { return model.get('value') === selectedMode; });;
           return modeModel ? modeModel.toJSON() : modeModel;
       },
+      fire: function(name, options) {
+        console.log("Editor toolbar trigger " + name + " " + options);
+        this.parentView.triggerMethod(name, options);
+      },
       events: {
         "change @ui.modeSelector": function(){
           var modeSelect = $("#modeSelector option:selected");
@@ -78,44 +82,44 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
           this.editorModel.set("state", modes[0]);
           this.editorModel.set("mode", modes.slice(1).join("-"));
         },
-        "click @ui.importBtn": function() {
+        "change @ui.importBtn": function() {
           var file = $("input[type=file]").val();
-          this.parentView.triggerMethod("Import", {file: file});
+          this.fire("Import", {file: file});
         },
-        "click @ui.exportBtn": function() {
+        "change @ui.exportBtn": function() {
           var file = $("input[type=file]").val();
-          this.parentView.triggerMethod("Export", {file: file});
+          this.fire("Export", {file: file});
         },
         "click @ui.openBtn": function() {
           var file = "";
-          this.parentView.triggerMethod("Open", {file: file});
+          this.fire("Open", {file: file});
         },
-        "click @ui.closeBtn": function() {
+        "click @ui.saveBtn": function() {
           var file = "";
-          this.parentView.triggerMethod("Close", {file: file});
+          this.fire("Close", {file: file, save: true});
         },
         "click @ui.deleteBtn": function() {
-          this.parentView.triggerMethod("Delete", {});
+          this.fire("Delete", {});
         },
         "click @ui.configBtn": function() {
-          this.parentView.triggerMethod("Config", {});
+          this.fire("Config", {});
         },
         "click @ui.descriptionBtn": function() {
-          this.parentView.triggerMethod("SetDescription", {});
+          this.fire("SetDescription", {});
         },
         "click @ui.tagsBtn": function() {
-          this.parentView.triggerMethod("SetTags", {});
+          this.fire("SetTags", {});
         },
         "click @ui.screenBtn": function() {
-          this.parentView.triggerMethod("ToggleColumnSize", {col: "leftColumn"});
+          this.fire("ToggleColumnSize", {col: "leftColumn"});
         },
       },
       ui: {
         "modeSelector": "#modeSelector",
-        "importBtn": ".import",
-        "exportBtn": ".export",
+        "importBtn": "#importFile",
+        "exportBtn": "#exportFile",
         "openBtn": ".open",
-        "closeBtn": ".close",
+        "saveBtn": ".save",
         "deleteBtn": ".delete",
         "configBtn": ".config",
         "descriptionBtn": ".description",
