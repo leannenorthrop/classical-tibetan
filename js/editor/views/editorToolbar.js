@@ -91,8 +91,8 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
         "change @ui.importBtn": function() {
           this.fire("Import", {file: $(".import input[type=file]")[0].files[0]});
         },
-        "change @ui.exportBtn": function() {
-          this.fire("Export", {file: $(".export input[type=file]")[0].files[0]});
+        "click @ui.exportBtn": function() {
+          this.fire("Export", {});
         },
         "click @ui.openBtn": function() {
           var file = "";
@@ -121,7 +121,7 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
       ui: {
         "modeSelector": "#modeSelector",
         "importBtn": "#importFile",
-        "exportBtn": "#exportFile",
+        "exportBtn": ".export",
         "openBtn": ".open",
         "saveBtn": ".save",
         "deleteBtn": ".delete",

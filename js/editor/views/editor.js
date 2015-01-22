@@ -25,7 +25,7 @@ function($, Backbone, Marionette, AceView, ToolbarView,
     },
     initialize: function(options) {
       if (!this.model) {
-        this.model = new EditorModel();
+        this.model = new EditorModel({currentDocument: new DocumentModel({name: "New.md"})});
       }
       this.app = options.app;
     },
@@ -37,7 +37,6 @@ function($, Backbone, Marionette, AceView, ToolbarView,
       editor: "#editor-area"
     },
     onShow: function() {
-      this.model.set("currentDocument", new DocumentModel());
       this.model.set("editor", new AceModel());
       this.getRegion('toolbar').show(new ToolbarView({editorModel: this.model, parent: this}));
       this.getRegion('editor').show(new AceView({model: this.model.get("editor"), app: this.app}));
