@@ -51,6 +51,12 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
           mobile: true,
           showSubtext: true
         });
+        try {
+          var isFileSaverSupported = !!new Blob;
+          if (isFileSaverSupported) {
+            $("button.export").addClass("disabled");
+          }
+        } catch (e) {}
         //if (this.editorModel.get("state").indexOf("help") === 0) {
         //  $('#modeSelector').selectpicker('val', this.model.get("state"));
         //  this.onModeChange();
@@ -83,12 +89,10 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
           this.editorModel.set("mode", modes.slice(1).join("-"));
         },
         "change @ui.importBtn": function() {
-          //var file = $(".import input[type=file]").val();
           this.fire("Import", {file: $(".import input[type=file]")[0].files[0]});
         },
         "change @ui.exportBtn": function() {
-          var file = $(".export input[type=file]").val();
-          this.fire("Export", {file: file});
+          this.fire("Export", {file: $(".export input[type=file]")[0].files[0]});
         },
         "click @ui.openBtn": function() {
           var file = "";

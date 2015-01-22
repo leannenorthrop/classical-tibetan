@@ -1,5 +1,5 @@
-define(['jquery', 'bootstrap', 'marionette', "editor/models/document"],
-  function(Jquery, Bootstrap, Marionette, DocumentModel){
+define(['jquery', 'bootstrap', 'marionette', "editor/models/document", "fileSaver"],
+  function(Jquery, Bootstrap, Marionette, DocumentModel, FileSaver){
   var OpenDocumentBehavior = Backbone.Marionette.Behavior.extend({});
 
   OpenDocumentBehavior.read = function(file) {
@@ -18,6 +18,11 @@ define(['jquery', 'bootstrap', 'marionette', "editor/models/document"],
     } else {
       fileDisplayArea.innerText = "File not supported!"
     }
+  };
+
+  OpenDocumentBehavior.write = function(name, text) {
+    var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
+    new FileSaver(blob, name);
   };
 
   OpenDocumentBehavior.open = function() {
