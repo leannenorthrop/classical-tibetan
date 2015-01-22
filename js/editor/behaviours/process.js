@@ -1,4 +1,5 @@
-define(['jquery', 'bootstrap', 'marionette'], function(Jquery, Bootstrap, Marionette){
+define(['jquery', 'bootstrap', 'marionette', "markdown"], function(Jquery, Bootstrap, Marionette, Markdown){
+  var markdown = Markdown;
   var ProcessBehavior = Backbone.Marionette.Behavior.extend({
     modelEvents: {
       "change:text": "onTextChange"

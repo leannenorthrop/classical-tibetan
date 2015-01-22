@@ -12,7 +12,8 @@ define([
       description: "",
       tags: [],
       name: "",
-      category: ""
+      category: "",
+      file: ""
     },
     load: function(text) {
       // strip any yaml

@@ -18,9 +18,15 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
         var selectOptions = [{value: "mode-plain-wylie",icon: "glyphicon-pencil",name: "Wylie",cmd: {name: "setEditorMode", options: {mode: "plain-wylie"}}},
                              {value: "mode-plain-mixed",icon: "glyphicon-pencil",name: "Mixed Wylie/English/etc..",cmd: {name: "setEditorMode", options: {mode: "plain-mixed"}}}];
         this.collection = new Options(selectOptions);
-
-        var me = this;
+        this.parentView = options.parent;
         this.help = new HelpFiles();
+        this.listenTo(this.collection, "add", this.render);
+        this.listenTo(this.collection, "change", this.render);
+        this.editorModel = options.editorModel;
+        this.fetchHelpModes();
+      },
+      fetchHelpModes: function() {
+        var me = this;
         this.help.fetch({
           success: function(collection, response, options) {
             collection.forEach(function(model,index){
@@ -37,9 +43,6 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
             me.cmds.execute("showAlert", {msg: "Unable to find help files. Lost internet connection?", title: "alert"})
           }
         });
-        this.listenTo(this.collection, "add", this.render);
-        this.listenTo(this.collection, "change", this.render);
-        this.editorModel = options.editorModel;
       },
       onShow: function () {
         this.$el.find('.selectpicker').selectpicker({
@@ -48,10 +51,10 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
           mobile: true,
           showSubtext: true
         });
-        /*if (me.model.get("state").indexOf("help") === 0) {
-        $('#modeSelector').selectpicker('val', me.model.get("state"));
-        me.onModeChange();
-        }*/
+        //if (this.editorModel.get("state").indexOf("help") === 0) {
+        //  $('#modeSelector').selectpicker('val', this.model.get("state"));
+        //  this.onModeChange();
+        //}
       },
       onRender: function() {
         this.$el.find('.selectpicker').selectpicker({
@@ -68,14 +71,57 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
           return modeModel ? modeModel.toJSON() : modeModel;
       },
       events: {
-          "change #modeSelector": function(){
-            var modeSelect = $("#modeSelector option:selected");
-            var selectedMode = modeSelect.val();
-            var modes = selectedMode.split("-");
-            this.editorModel.set("state", modes[0]);
-            this.editorModel.set("mode", modes.slice(1).join("-"));
-          }
+        "change @ui.modeSelector": function(){
+          var modeSelect = $("#modeSelector option:selected");
+          var selectedMode = modeSelect.val();
+          var modes = selectedMode.split("-");
+          this.editorModel.set("state", modes[0]);
+          this.editorModel.set("mode", modes.slice(1).join("-"));
+        },
+        "click @ui.importBtn": function() {
+          var file = $("input[type=file]").val();
+          this.parentView.triggerMethod("Import", {file: file});
+        },
+        "click @ui.exportBtn": function() {
+          var file = $("input[type=file]").val();
+          this.parentView.triggerMethod("Export", {file: file});
+        },
+        "click @ui.openBtn": function() {
+          var file = "";
+          this.parentView.triggerMethod("Open", {file: file});
+        },
+        "click @ui.closeBtn": function() {
+          var file = "";
+          this.parentView.triggerMethod("Close", {file: file});
+        },
+        "click @ui.deleteBtn": function() {
+          this.parentView.triggerMethod("Delete", {});
+        },
+        "click @ui.configBtn": function() {
+          this.parentView.triggerMethod("Config", {});
+        },
+        "click @ui.descriptionBtn": function() {
+          this.parentView.triggerMethod("SetDescription", {});
+        },
+        "click @ui.tagsBtn": function() {
+          this.parentView.triggerMethod("SetTags", {});
+        },
+        "click @ui.screenBtn": function() {
+          this.parentView.triggerMethod("ToggleColumnSize", {col: "leftColumn"});
+        },
       },
+      ui: {
+        "modeSelector": "#modeSelector",
+        "importBtn": ".import",
+        "exportBtn": ".export",
+        "openBtn": ".open",
+        "closeBtn": ".close",
+        "deleteBtn": ".delete",
+        "configBtn": ".config",
+        "descriptionBtn": ".description",
+        "tagsBtn": ".tags",
+        "screenBtn": ".screen",
+      }
   });
 
   return EditorToolbarView;
