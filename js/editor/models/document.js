@@ -36,7 +36,7 @@ define([
         auth: "basic"
       });
       var repo = github.getRepo("leannenorthrop", "classical-tibetan");
-      repo.read('gh-pages', me.get("name"), function(err, data) {
+      repo.read('gh-pages', me.get("file"), function(err, data) {
         if (!err) {
           me.load(data);
         } else {

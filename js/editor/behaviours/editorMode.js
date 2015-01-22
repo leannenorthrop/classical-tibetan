@@ -18,7 +18,7 @@ define(['jquery',
         if (editorState === "help") {
           var toolbar = view.getRegion('toolbar').currentView;
           var mode = toolbar.currentMode();
-          model.currentDocument = new DocumentModel({name: mode.file, category: "help"});
+          model.currentDocument = new DocumentModel({name: mode.file, file: mode.file, category: "help"});
           this.options.model = model;
           this.options.view = view;
           this.options.doc = model.currentDocument;
