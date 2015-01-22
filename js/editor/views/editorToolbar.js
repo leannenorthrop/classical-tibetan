@@ -83,11 +83,11 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
           this.editorModel.set("mode", modes.slice(1).join("-"));
         },
         "change @ui.importBtn": function() {
-          var file = $("input[type=file]").val();
-          this.fire("Import", {file: file});
+          //var file = $(".import input[type=file]").val();
+          this.fire("Import", {file: $(".import input[type=file]")[0].files[0]});
         },
         "change @ui.exportBtn": function() {
-          var file = $("input[type=file]").val();
+          var file = $(".export input[type=file]").val();
           this.fire("Export", {file: file});
         },
         "click @ui.openBtn": function() {

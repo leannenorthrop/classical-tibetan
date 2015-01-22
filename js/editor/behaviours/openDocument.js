@@ -11,7 +11,7 @@ define(['jquery', 'bootstrap', 'marionette', "editor/models/document"],
       reader.onload = function(e) {
         var txt = reader.result;
         // should save current document but for now simply overwrite
-        me.options.doc.set("txt");
+        me.options.doc.load(txt);
       }
 
       reader.readAsText(file);
@@ -22,6 +22,11 @@ define(['jquery', 'bootstrap', 'marionette', "editor/models/document"],
 
   OpenDocumentBehavior.open = function() {
     this.loadDocument().open();
+  };
+
+  OpenDocumentBehavior.import = function() {
+    this.loadDocument();
+    this.read(this.options.doc.get("file"));
   };
 
   OpenDocumentBehavior.loadDocument = function() {
