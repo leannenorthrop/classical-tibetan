@@ -5,11 +5,15 @@ define([
 
   var AceModel = Backbone.Model.extend({
     defaults: {
-      theme: "ace/theme/monokai",
+      theme: "ace/theme/tomorrow",
       wrap: true,
       showMargin: false,
+      hightlightActiveLine: false,
+      fontSize: "12pt",
       mode: "ace/mode/markdown",
-      text: ""
+      text: "",
+      blockScrolling: Infinity,
+      showGutter: false
     }
   });
 

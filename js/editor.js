@@ -11,7 +11,8 @@ requirejs.config({
         marionette: 'backbone/marionette',
         'bootstrap.select': 'bootstrap/bootstrap-select',
         'backbone.wreqr': 'backbone/wreqr',
-        'backbone.babysitter': 'backbone/babysitter'
+        'backbone.babysitter': 'backbone/babysitter',
+        'cookies': 'jquery/cookies'
     },
     shim: {
         'underscore': {
@@ -32,6 +33,9 @@ requirejs.config({
         },
         'bootstrap.select': {
             deps: ['jquery', 'bootstrap']
+        },
+        'cookies': {
+            deps: ['jquery']
         }
     }
 });

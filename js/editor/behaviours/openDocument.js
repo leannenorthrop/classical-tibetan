@@ -41,6 +41,8 @@ define(['jquery', 'bootstrap', 'marionette', "editor/models/document", "fileSave
       this.listenToOnce(doc, "change:text", function() {
         var ace = view.getRegion('editor').currentView.markdownEditor;
         ace.setValue(doc.get("text"));
+        ace.clearSelection();
+        ace.gotoLine(0, 0, false);
       });
       return doc;
     } else {

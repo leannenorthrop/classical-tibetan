@@ -3,8 +3,14 @@ define([
   'backbone',
   'jquery',
   'github',
-  'js-yaml'
-], function(_, Backbone, $, GitHub, JsYaml){
+  'js-yaml',
+  'cookies'
+], function(_, Backbone, $, GitHub, JsYaml, Cookies){
+
+  var token = "2b0eb792116e96b059744ffdb21ab03a125625d3";
+  var uname = "leannenorthrop";
+  var repositoryName = "classical-tibetan";
+  var branch = "gh-pages";
 
   var DocumentModel = Backbone.Model.extend({
     defaults: {
@@ -31,12 +37,11 @@ define([
     open: function(options) {
       var me = this;
       var github = new Github({
-        username: "leannenorthrop",
-        password: "***REMOVED***",
-        auth: "basic"
+        token: token,
+        auth: "oauth"
       });
-      var repo = github.getRepo("leannenorthrop", "classical-tibetan");
-      repo.read('gh-pages', me.get("file"), function(err, data) {
+      var repo = github.getRepo(uname, repositoryName);
+      repo.read(branch, me.get("file"), function(err, data) {
         if (!err) {
           me.load(data);
         } else {
@@ -48,12 +53,12 @@ define([
       if (options && options.save) {
         var me = this;
         var github = new Github({
-          username: "leannenorthrop",
-          password: "",
+          username: $.cookie('gu'),
+          password: $.cookie('gp'),
           auth: "basic"
         });
-        /* lib broken var repo = github.getRepo("leannenorthrop", "classical-tibetan");
-        repo.write('gh-pages', '_posts/'+options.name+".md", this.get("text"), 'updated by javascript api', function(err) {
+        /* lib broken var repo = github.getRepo(uname, repositoryName);
+        repo.write(branch, '_drafts/'+options.name+".md", this.get("text"), 'updated by javascript api', function(err) {
           console.log(err);
         });*/
       }
