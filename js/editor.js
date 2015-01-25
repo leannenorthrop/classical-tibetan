@@ -12,7 +12,8 @@ requirejs.config({
         'bootstrap.select': 'bootstrap/bootstrap-select',
         'backbone.wreqr': 'backbone/wreqr',
         'backbone.babysitter': 'backbone/babysitter',
-        'cookies': 'jquery/cookies'
+        'cookies': 'jquery/cookies',
+        'bootstrap.tagsinput': 'bootstrap/bootstrap-tagsinput'
     },
     shim: {
         'underscore': {
@@ -32,6 +33,9 @@ requirejs.config({
             deps: ['jquery']
         },
         'bootstrap.select': {
+            deps: ['jquery', 'bootstrap']
+        },
+        'bootstrap.tagsinput': {
             deps: ['jquery', 'bootstrap']
         },
         'cookies': {
