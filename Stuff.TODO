@@ -1,6 +1,6 @@
  ☐ Build
  ☐ Tests
- ☐  Tidy up marionette view-model binding
+ ☐ Tidy up marionette view-model binding
  ☐ Editor resizing
  ☐ Mode selector
  ☐ Save to github
@@ -20,6 +20,7 @@
  ☐ zen mode
  ☐ fullscreen toggle icon
  ☐ use ace documents and session
+ ✔ code highlighting @done (15-01-25 22:49)
 
 Save to
  ☐ Dropbox
@@ -30,6 +31,6 @@ Save to
  Markdown
  ☐ xslt
  ☐ tables
- ☐ code
+ ✔ code @done (15-01-25 22:48)
  ☐ wylie blocks
  ☐ implement remaining wylie rules
