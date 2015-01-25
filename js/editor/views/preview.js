@@ -11,6 +11,9 @@ function($, Backbone, Marionette, DocumentModel) {
       "change:text": function() {
         var text = this.model.get("text");
         this.$el.html(text);
+        this.$el.find('pre code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
       },
     }
   });

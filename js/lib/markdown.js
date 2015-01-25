@@ -5,7 +5,7 @@
  * Copyright (c) 2009-2010 Ash Berlin
  * Copyright (c) 2011 Christoph Dorn <christoph@christophdorn.com> (http://www.christophdorn.com)
  * Version: 0.6.0-beta1
- * Date: 2015-01-14T17:52Z
+ * Date: 2015-01-25T22:30Z
  */
 
 (function(expose) {
@@ -770,6 +770,41 @@
         return [ [ "code_block", ret.join("\n") ] ];
       },
 
+      hlcode: function code( block, next ) {
+        var ret = [],
+            re = /(```)(.*\n)(([\s\S\W\w\n\r]*?)\1)/,
+            reStartBlock = /(```)(.*\n)(([\s\S\W\w\n\r]*?))/,
+            reEndBlock = /(.*)(```$)/;
+
+        if ( !block.match( reStartBlock ) )
+          return undefined;
+
+        var content = "";
+        var type = "";
+        if ( block.match( re ) ) {
+          content = block.match( re )[4];
+          type = block.match( re )[2];
+          type = type ? (type.indexOf("highlight") >= 0 ? "nohighlight" : type.replace(/\n/g, '')) : "";
+        } else {
+          content = "";
+
+          var seen = false;
+          var b = block;
+          while ( next.length && !seen) {
+            seen = b.match(reEndBlock);
+            if (!seen && b.indexOf("```") === 0) {
+              type = b.split("\n")[0].replace("```","");
+              type = type ? (type.indexOf("highlight") >= 0 ? "nohighlight" : type.replace(/\n/g, '')) : "";
+              b = type.length ? b.replace(type, "") : b;
+            }
+            content += b.replace(/```/g,"") + (seen ? "" : "\n\n");
+            b = seen ? "" : next.shift();
+          }
+        }
+
+        return [ [ "code_block", { class: type }, content ] ];
+      },
+
       horizRule: function horizRule( block, next ) {
         // this needs to find any hr in the block to handle abutting blocks
         var m = block.match( /^(?:([\s\S]*?)\n)?[ \t]*([-_*])(?:[ \t]*\2){2,}[ \t]*(?:\n([\s\S]*))?$/ );
@@ -1407,7 +1442,7 @@
       "`": function inlineCode( text ) {
         // Inline code block. as many backticks as you like to start it
         // Always skip over the opening ticks.
-        var m = text.match( /(`+)(([\s\S]*?)\1)/ );
+        var m = text.match( /(`{1,2})(([\s\S]*?)\1)/ );
 
         if ( m && m[2] )
           return [ m[1].length + m[2].length, [ "inlinecode", m[3] ] ];
