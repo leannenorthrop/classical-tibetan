@@ -5,7 +5,7 @@
  * Copyright (c) 2009-2010 Ash Berlin
  * Copyright (c) 2011 Christoph Dorn <christoph@christophdorn.com> (http://www.christophdorn.com)
  * Version: 0.6.0-beta1
- * Date: 2015-01-25T22:30Z
+ * Date: 2015-01-27T11:59Z
  */
 
 (function(expose) {
@@ -768,41 +768,6 @@
         } while ( true );
 
         return [ [ "code_block", ret.join("\n") ] ];
-      },
-
-      hlcode: function code( block, next ) {
-        var ret = [],
-            re = /(```)(.*\n)(([\s\S\W\w\n\r]*?)\1)/,
-            reStartBlock = /(```)(.*\n)(([\s\S\W\w\n\r]*?))/,
-            reEndBlock = /(.*)(```$)/;
-
-        if ( !block.match( reStartBlock ) )
-          return undefined;
-
-        var content = "";
-        var type = "";
-        if ( block.match( re ) ) {
-          content = block.match( re )[4];
-          type = block.match( re )[2];
-          type = type ? (type.indexOf("highlight") >= 0 ? "nohighlight" : type.replace(/\n/g, '')) : "";
-        } else {
-          content = "";
-
-          var seen = false;
-          var b = block;
-          while ( next.length && !seen) {
-            seen = b.match(reEndBlock);
-            if (!seen && b.indexOf("```") === 0) {
-              type = b.split("\n")[0].replace("```","");
-              type = type ? (type.indexOf("highlight") >= 0 ? "nohighlight" : type.replace(/\n/g, '')) : "";
-              b = type.length ? b.replace(type, "") : b;
-            }
-            content += b.replace(/```/g,"") + (seen ? "" : "\n\n");
-            b = seen ? "" : next.shift();
-          }
-        }
-
-        return [ [ "code_block", { class: type }, content ] ];
       },
 
       horizRule: function horizRule( block, next ) {
@@ -1843,6 +1808,115 @@
   Markdown.buildBlockOrder ( Markdown.dialects.Maruku.block );
   Markdown.buildInlinePatterns( Markdown.dialects.Maruku.inline );
 
+  var ExtendedGruber = DialectHelpers.subclassDialect( Gruber ),
+      forEach = MarkdownHelpers.forEach;
+
+  ExtendedGruber.block.hlcode = function code( block, next ) {
+        var ret = [],
+            re = /(```)(.*\n)(([\s\S\W\w\n\r]*?)\1)/,
+            reStartBlock = /(```)(.*\n)(([\s\S\W\w\n\r]*?))/,
+            reEndBlock = /(.*)(```$)/;
+
+        if ( !block.match( reStartBlock ) )
+          return undefined;
+
+        var content = "";
+        var type = "";
+        if ( block.match( re ) ) {
+          content = block.match( re )[4];
+          type = block.match( re )[2];
+          type = type ? (type.indexOf("highlight") >= 0 ? "nohighlight" : type.replace(/\n/g, '')) : "";
+        } else {
+          content = "";
+
+          var seen = false;
+          var b = block;
+          while ( next.length && !seen) {
+            seen = b.match(reEndBlock);
+            if (!seen && b.indexOf("```") === 0) {
+              type = b.split("\n")[0].replace("```","");
+              type = type ? (type.indexOf("highlight") >= 0 ? "nohighlight" : type.replace(/\n/g, '')) : "";
+              b = type.length ? b.replace(type, "") : b;
+            }
+            content += b.replace(/```/g,"") + (seen ? "" : "\n\n");
+            b = seen ? "" : next.shift();
+          }
+        }
+
+        return [ [ "code_block", { class: type }, content ] ];
+      };
+
+  ExtendedGruber.block.table = function table ( block ) {
+
+    var _split_on_unescaped = function( s, ch ) {
+      ch = ch || '\\s';
+      if ( ch.match(/^[\\|\[\]{}?*.+^$]$/) )
+        ch = '\\' + ch;
+      var res = [ ],
+          r = new RegExp('^((?:\\\\.|[^\\\\' + ch + '])*)' + ch + '(.*)'),
+          m;
+      while ( ( m = s.match( r ) ) ) {
+        res.push( m[1] );
+        s = m[2];
+      }
+      res.push(s);
+      return res;
+    };
+
+    var leading_pipe = /^ {0,3}\|(.+)\n {0,3}\|\s*([\-:]+[\-| :]*)\n((?:\s*\|.*(?:\n|$))*)(?=\n|$)/,
+        // find at least an unescaped pipe in each line
+        no_leading_pipe = /^ {0,3}(\S(?:\\.|[^\\|])*\|.*)\n {0,3}([\-:]+\s*\|[\-| :]*)\n((?:(?:\\.|[^\\|])*\|.*(?:\n|$))*)(?=\n|$)/,
+        i,
+        m;
+    if ( ( m = block.match( leading_pipe ) ) ) {
+      // remove leading pipes in contents
+      // (header and horizontal rule already have the leading pipe left out)
+      m[3] = m[3].replace(/^\s*\|/gm, '');
+    } else if ( ! ( m = block.match( no_leading_pipe ) ) ) {
+      return undefined;
+    }
+
+    var table = [ "table", [ "thead", [ "tr" ] ], [ "tbody" ] ];
+
+    // remove trailing pipes, then split on pipes
+    // (no escaped pipes are allowed in horizontal rule)
+    m[2] = m[2].replace(/\|\s*$/, '').split('|');
+
+    // process alignment
+    var html_attrs = [ ];
+    forEach (m[2], function (s) {
+      if (s.match(/^\s*-+:\s*$/))
+        html_attrs.push({align: "right"});
+      else if (s.match(/^\s*:-+\s*$/))
+        html_attrs.push({align: "left"});
+      else if (s.match(/^\s*:-+:\s*$/))
+        html_attrs.push({align: "center"});
+      else
+        html_attrs.push({});
+    });
+
+    // now for the header, avoid escaped pipes
+    m[1] = _split_on_unescaped(m[1].replace(/\|\s*$/, ''), '|');
+    for (i = 0; i < m[1].length; i++) {
+      table[1][1].push(['th', html_attrs[i] || {}].concat(
+        this.processInline(m[1][i].trim())));
+    }
+
+    // now for body contents
+    forEach (m[3].replace(/\|\s*$/mg, '').split('\n'), function (row) {
+      var html_row = ['tr'];
+      row = _split_on_unescaped(row, '|');
+      for (i = 0; i < row.length; i++)
+        html_row.push(['td', html_attrs[i] || {}].concat(this.processInline(row[i].trim())));
+      table[2].push(html_row);
+    }, this);
+
+    return [table];
+  };
+
+  Markdown.dialects.ExtendedGruber = ExtendedGruber;
+  Markdown.buildBlockOrder ( Markdown.dialects.ExtendedGruber.block );
+
     // Implementation of http://www.thlib.org/reference/transliteration/#!essay=/thl/ewts/intro/
     // Rules http://www.thlib.org/reference/transliteration/#!essay=/thl/ewts/rules/
     //
@@ -2363,42 +2437,30 @@
 
   var Wylie = {
     block: {
-      wylie: function(block, next) {
+      wylie: function wylie(block, next) {
         var ret = [],
-            re = /^(~~)\s*(.*?)\s*~*\s*(?:\n|$)/;
+            re = /^(:::\n)(.*\n)(([\s\S\W\w\n\r]*?)\1)/,
+            reStartBlock = /^(:::\n)(.*\n)(([\s\S\W\w\n\r]*?))/,
+            reEndBlock = /(.*)(:::$)/;
 
-        var m = block.match( re );
-
-        if ( !m )
+        if ( !block.match( reStartBlock ) )
           return undefined;
 
-        block_search:
-        do {
-          // Now pull out the rest of the lines
-          var b = this.loop_re_over_block(
-                    re, block.valueOf(), function( m ) { ret.push( uChenMap.toUnicode(m[2]) ); } );
-
-          if ( b.length ) {
-            // push it back on as a new block
-            next.unshift( mk_block(b, block.trailing) );
-            break block_search;
+        var content = "";
+        if ( block.match( re ) ) {
+          content = uChenMap.toUnicode(block.match( re )[4]);
+        } else {
+          content = "";
+          var seen = false;
+          var b = block;
+          while ( next.length && !seen) {
+            seen = b.match(reEndBlock);
+            content += uChenMap.toUnicode(b.replace(/(:::|:::\n)/g,"") + (seen ? "" : "\n\n"));
+            b = seen ? "" : next.shift();
           }
-          else if ( next.length ) {
-            // Check the next block - it might be code too
-            if ( !next[0].match( re ) )
-              break block_search;
+        }
 
-            // Pull how how many blanks lines follow - minus two to account for .join
-            ret.push ( block.trailing.replace(/[^\n]/g, "").substring(2) );
-
-            block = next.shift();
-          }
-          else {
-            break block_search;
-          }
-        } while ( true );
-
-        return [ [ "uchen_block", { style: "font-size:72pt;font-family:Uchen_05"}, ret.join("\n") ] ];
+        return [ [ "uchen", { class: "uchen" }, content ] ];
       },
       para: function para( block ) {
         // everything's a para!
@@ -2472,17 +2534,17 @@
     }
   };
 
-  Wylie.inline[ "~" ] = function inlineWylie( text ) {
+  Wylie.inline[ "::" ] = function inlineWylie( text ) {
         // Inline wylie block.
-        var m = text.match( /(~+)(([\s\S\W\w]*?)\1)/ );
+        var m = text.match( /(::)((\s|\S|\W|\w)*?)(\1)/ );
 
         if ( m && m[2] ) {
-          var txt = uChenMap.toUnicode(m[3]);
-          return [ m[1].length + m[2].length, [ "uchen", { style: "font-size:72pt;font-family:Uchen_05"}, txt ] ];
+          var txt = uChenMap.toUnicode(m[2]);
+          return [ (m[1].length*2) + m[2].length, [ "uchen", { class: "uchen"}, txt ] ];
         }
         else {
           // TODO: No matching end code found - warn!
-          return [ 1, "~" ];
+          return [ 2, "::" ];
         }
       };
 
@@ -2490,61 +2552,49 @@
   Markdown.buildBlockOrder ( Markdown.dialects.Wylie.block );
   Markdown.buildInlinePatterns( Markdown.dialects.Wylie.inline );
 
-  var ExtendedWylie = DialectHelpers.subclassDialect( Gruber );
+  var ExtendedWylie = DialectHelpers.subclassDialect( ExtendedGruber );
   var inline_until_char = DialectHelpers.inline_until_char;
   var mk_block = MarkdownHelpers.mk_block;
   var uChenMap = UChenMap;
 
-  ExtendedWylie.inline[ "~" ] = function inlineWylie( text ) {
+  ExtendedWylie.inline[ "::" ] = function inlineWylie( text ) {
         // Inline wylie block.
-        var m = text.match( /(~+)(([\s\S\W\w]*?)\1)/ );
+        var m = text.match( /(::)((\s|\S|\W|\w)*?)(\1)/ );
 
         if ( m && m[2] ) {
-          var txt = uChenMap.toUnicode(m[3]);
-          return [ m[1].length + m[2].length, [ "uchen", { style: "font-size:72pt;font-family:Uchen_05"}, txt ] ];
+          var txt = uChenMap.toUnicode(m[2]);
+          return [ (m[1].length*2) + m[2].length, [ "uchen", { class: "uchen"}, txt ] ];
         }
         else {
           // TODO: No matching end code found - warn!
-          return [ 1, "~" ];
+          return [ 2, "::" ];
         }
       };
 
   ExtendedWylie.block.wylie = function(block, next) {
         var ret = [],
-            re = /^(~~)\s*(.*?)\s*~*\s*(?:\n|$)/;
+            re = /^(:::\n)(.*\n)(([\s\S\W\w\n\r]*?)\1)/,
+            reStartBlock = /^(:::\n)(.*\n)(([\s\S\W\w\n\r]*?))/,
+            reEndBlock = /(.*)(:::$)/;
 
-        var m = block.match( re );
-
-        if ( !m )
+        if ( !block.match( reStartBlock ) )
           return undefined;
 
-        block_search:
-        do {
-          // Now pull out the rest of the lines
-          var b = this.loop_re_over_block(
-                    re, block.valueOf(), function( m ) { ret.push( uChenMap.toUnicode(m[2]) ); } );
-
-          if ( b.length ) {
-            // push it back on as a new block
-            next.unshift( mk_block(b, block.trailing) );
-            break block_search;
+        var content = "";
+        if ( block.match( re ) ) {
+          content = uChenMap.toUnicode(block.match( re )[4]);
+        } else {
+          content = "";
+          var seen = false;
+          var b = block;
+          while ( next.length && !seen) {
+            seen = b.match(reEndBlock);
+            content += uChenMap.toUnicode(b.replace(/(:::|:::\n)/g,"") + (seen ? "" : "\n\n"));
+            b = seen ? "" : next.shift();
           }
-          else if ( next.length ) {
-            // Check the next block - it might be code too
-            if ( !next[0].match( re ) )
-              break block_search;
+        }
 
-            // Pull how how many blanks lines follow - minus two to account for .join
-            ret.push ( block.trailing.replace(/[^\n]/g, "").substring(2) );
-
-            block = next.shift();
-          }
-          else {
-            break block_search;
-          }
-        } while ( true );
-
-        return [ [ "uchen_block", { style: "font-size:72pt;font-family:Uchen_05"}, ret.join("\n") ] ];
+        return [ [ "uchen", { class: "uchen" }, content ] ];
       };
 
   Markdown.dialects.ExtendedWylie = ExtendedWylie;

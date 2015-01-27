@@ -30,7 +30,8 @@ Save to
 
  Markdown
  ☐ xslt
- ☐ tables
+ ✔ tables @done (15-01-27 12:04)
  ✔ code @done (15-01-25 22:48)
- ☐ wylie blocks
+ ✔ wylie blocks @done (15-01-27 12:04)
  ☐ implement remaining wylie rules
+ ☐ fix wylie blocks if last in text which fail to render
