@@ -4,34 +4,45 @@ define(["jquery",
         "bootstrap",
         "bootstrap.select",
         "text!templates/editor_toolbar.html",
+        "text!templates/editor_mode_options.html",
         "editor/collections/options",
         "editor/collections/help"],
 
 function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
-         Template, Options, HelpFiles) {
+         Template, ModesTemplate, Options, HelpFiles) {
   var template = Template;
+  var modeTemplate = ModesTemplate;
+  var selectOptions = [{value: "mode-plain-wylie",icon: "glyphicon-pencil",name: "Wylie",cmd: {name: "setEditorMode", options: {mode: "plain-wylie"}}},
+                       {value: "mode-plain-mixed",icon: "glyphicon-pencil",name: "Mixed Wylie/English/etc..",cmd: {name: "setEditorMode", options: {mode: "plain-mixed"}}}];
+
   var EditorToolbarView = Backbone.Marionette.ItemView.extend({
     getTemplate: function(){
       return _.template(template);
     },
+    getModeTemplate: function() {
+      return _.template(modeTemplate);
+    },
     initialize: function(options){
-        var selectOptions = [{value: "mode-plain-wylie",icon: "glyphicon-pencil",name: "Wylie",cmd: {name: "setEditorMode", options: {mode: "plain-wylie"}}},
-                             {value: "mode-plain-mixed",icon: "glyphicon-pencil",name: "Mixed Wylie/English/etc..",cmd: {name: "setEditorMode", options: {mode: "plain-mixed"}}}];
-        this.collection = new Options(selectOptions);
         this.parentView = options.parent;
-        this.help = new HelpFiles();
-        this.listenTo(this.collection, "add", this.render);
-        this.listenTo(this.collection, "change", this.render);
         this.editorModel = options.editorModel;
+
+        // modes
+        this.collection = new Options(selectOptions);
+        this.listenTo(this.collection, "add", this.renderSelect);
+        this.listenTo(this.collection, "change", this.renderSelect);
+        this.listenTo(this.editorModel, "change:mode", this.updateMode);
         this.fetchHelpModes();
       },
       fetchHelpModes: function() {
+        if (!this.help) {
+          this.help = new HelpFiles();
+        }
         var me = this;
         this.help.fetch({
           success: function(collection, response, options) {
             collection.forEach(function(model,index){
               if (model.get("categories").indexOf("help") >= 0) {
-                me.collection.add({value: "help-"+model.get("name"),
+                me.collection.add({value: "help-file-"+model.get("name"),
                                   name: model.get("title"),
                                   icon: "glyphicon-info-sign",
                                   file: model.get("name")});
@@ -44,9 +55,16 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
           }
         });
       },
-      onShow: function () {
+      renderSelect: function() {
+        var optionsHtml = this.getModeTemplate()({items:this.collection.toJSON()});
+        this.$el.find('#modeSelector').html(optionsHtml);
+        var mode = this.editorModel.get("state") + "-" + this.editorModel.get("mode");
+        this.$el.find('.selectpicker').val(mode);
+        this.$el.find('.selectpicker').selectpicker('render');
+      },
+      onRender: function() {
         this.$el.find('.selectpicker').selectpicker({
-          style: 'btn-default btn-sm ',
+          style: 'btn-default btn-sm',
           size: 7,
           mobile: true,
           showSubtext: true
@@ -57,24 +75,15 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
             $("button.export").addClass("disabled");
           }
         } catch (e) {}
-        //if (this.editorModel.get("state").indexOf("help") === 0) {
-        //  $('#modeSelector').selectpicker('val', this.model.get("state"));
-        //  this.onModeChange();
-        //}
-      },
-      onRender: function() {
-        this.$el.find('.selectpicker').selectpicker({
-          style: 'btn-default btn-sm ',
-          size: 7,
-          mobile: true,
-          showSubtext: true
-        });
       },
       currentMode: function() {
           var modeSelect = $("#modeSelector option:selected");
           var selectedMode = modeSelect.val();
           var modeModel = this.collection.find(function(model) { return model.get('value') === selectedMode; });;
           return modeModel ? modeModel.toJSON() : modeModel;
+      },
+      updateMode: function() {
+        $('#modeSelector').selectpicker('val', this.editorModel.get("state") + "-" + this.editorModel.get("mode"));
       },
       fire: function(name, options) {
         console.log("Editor toolbar trigger " + name + " " + options);

@@ -1,20 +1,6 @@
 <div>
   <div class="btn-toolbar" role="toolbar" aria-label="...">
     <select id="modeSelector" class="selectpicker show-tick" data-width="15em" data-header="Select Editor Mode">
-      <optgroup id="editor_help_options" label="Show Help File">
-        <% _.each( obj.items, function( item ){ %>
-          <% if(item.value.indexOf("help-") === 0) { %>
-            <option value="<%= item.value %>" data-icon="<%= item.icon %>"><%= item.name %></option>
-          <% } %>
-        <% }); %>
-      </optgroup>
-      <optgroup id="editor_mode_options" label="Set Writing Style">
-        <% _.each(items, function( item ){ %>
-          <% if(item.value.indexOf("mode-") === 0) { %>
-            <option value="<%= item.value %>" data-icon="<%= item.icon %>"><%= item.name %></option>
-          <% } %>
-        <% }); %>
-      </optgroup>
     </select>
 
     <div id="editor_btns" class="btn-group btn-group-sm" role="group" aria-label="..." style="float:right">

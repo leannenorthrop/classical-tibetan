@@ -55,7 +55,7 @@ define(['jquery', 'bootstrap'], function(Jquery, Bootstrap){
       EditorApp.editor = editor;
       layout.getRegion('leftColumn').show(editor);
       layout.getRegion('rightColumn').show(preview);
-
+      editor.mode("help-file-_posts/2015-01-01-markdown.md");
       // This kicks off the rest of the app, through the router
       /*layoutRender.done(function(){
         Backbone.history.start();

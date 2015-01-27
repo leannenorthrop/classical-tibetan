@@ -14,21 +14,18 @@ define(['jquery',
         var view = this.view;
         var model = this.view.model;
         var editorState = model.get("state");
+        var editorMode = model.get("mode");
 
         if (editorState === "help") {
-          var toolbar = view.getRegion('toolbar').currentView;
-          var mode = toolbar.currentMode();
-          model.currentDocument = new DocumentModel({name: mode.file, file: mode.file, category: "help"});
+          var file = editorMode.substr(5);
+          model.set("currentDocument", new DocumentModel({name: file, file: file, category: "help"}));
           this.options.model = model;
           this.options.view = view;
-          this.options.doc = model.currentDocument;
+          this.options.doc = model.get("currentDocument");
           this.open();
         } else {
-          if (model.currentDocument.category === "help") {
-            model.currentDocument = new DocumentModel({name: "New"});
-          } else {
-            model.currentDocument = new DocumentModel({name: "New"});
-          }
+          model.set("currentDocument", new DocumentModel({name: "New"}));
+          view.getRegion('editor').currentView.setText(model.get("currentDocument").get("text"));
         }
       }
     }

@@ -35,6 +35,11 @@ function($, Backbone, Marionette, AceModel, Ace,
         this.model.set("text", text);
       }.bind(this);
       this.markdownEditor.getSession().on('change', this.update);
+    },
+    setText: function(text){
+      this.markdownEditor.setValue(text);
+      this.markdownEditor.clearSelection();
+      this.markdownEditor.gotoLine(0, 0, false);
     }
   });
 

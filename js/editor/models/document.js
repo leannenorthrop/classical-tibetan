@@ -4,13 +4,15 @@ define([
   'jquery',
   'github',
   'js-yaml',
-  'cookies'
-], function(_, Backbone, $, GitHub, JsYaml, Cookies){
+  'cookies',
+  "markdown"
+], function(_, Backbone, $, GitHub, JsYaml, Cookies, Markdown){
 
   var token = "2b0eb792116e96b059744ffdb21ab03a125625d3";
   var uname = "leannenorthrop";
   var repositoryName = "classical-tibetan";
   var branch = "gh-pages";
+  var markdown = Markdown;
 
   var DocumentModel = Backbone.Model.extend({
     defaults: {
@@ -20,6 +22,25 @@ define([
       name: "",
       category: "",
       file: ""
+    },
+    toFormat: function(format,options) {
+      var result = "";
+      switch(format) {
+        case "html": return toHTML(options); break;
+      }
+      return result;
+    },
+    toHTML: function(options) {
+        var text = this.get("text");
+        if (options.isWylieOnly === true) {
+          text = "(alpha mode)\n\n:::\n" + text + ":::\n\n(end)";
+        }
+
+        var tree = markdown.parse(text, "ExtendedWylie");
+        var jsonml = markdown.toHTMLTree( tree );
+        var html = markdown.renderJsonML( jsonml );
+
+        return html;
     },
     load: function(text) {
       // strip any yaml

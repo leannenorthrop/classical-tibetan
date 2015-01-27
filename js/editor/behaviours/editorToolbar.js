@@ -10,13 +10,14 @@ define(['jquery',
         "editor/behaviours/doDelete",
         "editor/behaviours/doGetDescription",
         "editor/behaviours/doGetTags",
-        "editor/behaviours/doToggleColumnSize"
+        "editor/behaviours/doToggleColumnSize",
+        "editor/behaviours/process"
         ],
 function(Jquery, Bootstrap, Marionette,
          OnEditorModeChange, OnConfigEditor,
          OnImport, OnExport, OnOpen, OnClose,
          OnDelete, OnGetDescription, OnGetTags,
-         OnToggleColumnSize){
+         OnToggleColumnSize, OnTextChange){
   var EditorToolbarBehaviors = {
     behaviors: {
       EditorModeChange: {
@@ -57,6 +58,10 @@ function(Jquery, Bootstrap, Marionette,
       },
       ToggleColumnSize: {
         behaviorClass: OnToggleColumnSize,
+        app: this.app
+      },
+      TextChange: {
+        behaviorClass: OnTextChange,
         app: this.app
       },
     },

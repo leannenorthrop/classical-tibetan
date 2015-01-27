@@ -26,23 +26,20 @@ define(['jquery', 'bootstrap', 'marionette', "editor/models/document", "fileSave
   };
 
   OpenDocumentBehavior.open = function() {
-    this.loadDocument().open();
+    this.load().open();
   };
 
   OpenDocumentBehavior.import = function() {
-    this.loadDocument();
+    this.load();
     this.read(this.options.doc.get("file"));
   };
 
-  OpenDocumentBehavior.loadDocument = function() {
+  OpenDocumentBehavior.load = function() {
     var doc = this.options.doc;
     var view = this.options.view;
     if (doc) {
       this.listenToOnce(doc, "change:text", function() {
-        var ace = view.getRegion('editor').currentView.markdownEditor;
-        ace.setValue(doc.get("text"));
-        ace.clearSelection();
-        ace.gotoLine(0, 0, false);
+        view.getRegion('editor').currentView.setText(doc.get("text"));
       });
       return doc;
     } else {

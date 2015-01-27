@@ -1,0 +1,16 @@
+<div>
+  <optgroup id="editor_help_options" label="Show Help File">
+    <% _.each( obj.items, function( item ){ %>
+      <% if(item.value.indexOf("help-") === 0) { %>
+        <option value="<%= item.value %>" data-icon="<%= item.icon %>"><%= item.name %></option>
+      <% } %>
+    <% }); %>
+  </optgroup>
+  <optgroup id="editor_mode_options" label="Set Writing Style">
+    <% _.each(items, function( item ){ %>
+      <% if(item.value.indexOf("mode-") === 0) { %>
+        <option value="<%= item.value %>" data-icon="<%= item.icon %>"><%= item.name %></option>
+      <% } %>
+    <% }); %>
+  </optgroup>
+</div>

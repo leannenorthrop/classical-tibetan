@@ -1,26 +1,22 @@
-define(['jquery', 'bootstrap', 'marionette', "markdown"], function(Jquery, Bootstrap, Marionette, Markdown){
-  var markdown = Markdown;
+define(['jquery', 'bootstrap', 'marionette'], function(Jquery, Bootstrap, Marionette){
+
   var ProcessBehavior = Backbone.Marionette.Behavior.extend({
     modelEvents: {
       "change:text": "onTextChange"
     },
-
     onTextChange: function() {
       if (this.view.app) {
         var editorView = this.view.app.editor;
         var previewView = this.view.app.preview;
-        var editorModel = editorView.model.get("editor");
+        var editorModel = editorView.model;
         var previewModel = previewView.model;
 
-        var text = editorModel.get("text");
-
-        //if (model.get("mode") === "plain-wylie") {
-        //  text = "~~\n" + text + "\n~~";
-        //}
-        var tree = markdown.parse(text, "ExtendedWylie");
-        var jsonml = markdown.toHTMLTree( tree );
-        var html = markdown.renderJsonML( jsonml );
-        previewModel.set("text", html);
+        var options = {};
+        options.isWylieOnly = editorModel.get("mode") === "plain-wylie";
+        if (editorModel.get("currentDocument")) {
+          var html = editorModel.get("currentDocument").toHTML(options);
+          previewModel.set("text", html);
+        }
       }
     }
   });

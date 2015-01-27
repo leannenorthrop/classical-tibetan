@@ -2,7 +2,7 @@
  ☐ Tests
  ☐ Tidy up marionette view-model binding
  ☐ Editor resizing
- ☐ Mode selector
+ ✔ Mode selector @done (15-01-27 14:44)
  ☐ Save to github
  ☐ Wylie modes
  ☐ Wylie theme
@@ -18,7 +18,7 @@
  ☐ acknowledgment page
  ☐ help pages
  ☐ zen mode
- ☐ fullscreen toggle icon
+ ✔ fullscreen toggle icon @done (15-01-27 12:25)
  ☐ use ace documents and session
  ✔ code highlighting @done (15-01-25 22:49)
 
