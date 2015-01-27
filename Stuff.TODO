@@ -5,6 +5,7 @@
  ✔ Mode selector @done (15-01-27 14:44)
  ☐ Save to github
  ☐ Wylie modes
+ ☐ Restore bootstrap theme
  ☐ Wylie theme
  ☐ Beautify forms http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-forms.php
  ☐ http://www.abeautifulsite.net/whipping-file-inputs-into-shape-with-bootstrap-3/
@@ -21,7 +22,7 @@
  ✔ fullscreen toggle icon @done (15-01-27 12:25)
  ☐ use ace documents and session
  ✔ code highlighting @done (15-01-25 22:49)
-
+ ☐ file open should use editor state and mode
 Save to
  ☐ Dropbox
  ☐ Github
@@ -33,5 +34,6 @@ Save to
  ✔ tables @done (15-01-27 12:04)
  ✔ code @done (15-01-25 22:48)
  ✔ wylie blocks @done (15-01-27 12:04)
+ ☐ wylie blocks again sigh
  ☐ implement remaining wylie rules
  ☐ fix wylie blocks if last in text which fail to render

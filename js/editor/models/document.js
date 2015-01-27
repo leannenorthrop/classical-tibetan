@@ -13,6 +13,13 @@ define([
   var repositoryName = "classical-tibetan";
   var branch = "gh-pages";
   var markdown = Markdown;
+  function currentTime() {
+    var d = new Date();
+    var curr_date = d.getDate();
+    var curr_month = d.getMonth()+1;
+    var curr_year = d.getFullYear();
+    return curr_year + "-" + curr_month + "-" + curr_date;
+  }
 
   var DocumentModel = Backbone.Model.extend({
     defaults: {
@@ -21,12 +28,14 @@ define([
       tags: [],
       name: "",
       category: "",
-      file: ""
+      file: "",
+      created: currentTime()
     },
     toFormat: function(format,options) {
       var result = "";
       switch(format) {
-        case "html": return toHTML(options); break;
+        case "html": return this.toHTML(options); break;
+        case "article": return this.toArticle(options); break;
       }
       return result;
     },
@@ -41,6 +50,20 @@ define([
         var html = markdown.renderJsonML( jsonml );
 
         return html;
+    },
+    toArticle: function(options) {
+      var header = "---\n" + JsYaml.dump({"layout": this.get("category"),
+        "category": this.get("category"),
+        "tags": this.get("tags").join(","),
+        "title": this.get("name")
+      }) + "---\n\n\n";
+      var body = "";
+      var text = this.get("text");
+      var tree = markdown.parse(text, "ExtendedWylie");
+      var jsonml = markdown.toHTMLTree( tree );
+      body = markdown.renderJsonML( jsonml );
+
+      return header + body;
     },
     load: function(text) {
       // strip any yaml
@@ -78,10 +101,12 @@ define([
           password: $.cookie('gp'),
           auth: "basic"
         });
-        /* lib broken var repo = github.getRepo(uname, repositoryName);
-        repo.write(branch, '_drafts/'+options.name+".md", this.get("text"), 'updated by javascript api', function(err) {
-          console.log(err);
-        });*/
+        var repo = github.getRepo(uname, repositoryName);
+        if (repo) {
+          repo.write(branch, '_posts/'+options.name+".md", this.toFormat("article"), 'updated via javascript api', function(err) {
+            console.log(err);
+          });
+        }
       }
     }
   });
