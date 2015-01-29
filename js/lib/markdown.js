@@ -5,7 +5,7 @@
  * Copyright (c) 2009-2010 Ash Berlin
  * Copyright (c) 2011 Christoph Dorn <christoph@christophdorn.com> (http://www.christophdorn.com)
  * Version: 0.6.0-beta1
- * Date: 2015-01-27T11:59Z
+ * Date: 2015-01-29T13:51Z
  */
 
 (function(expose) {
@@ -529,13 +529,15 @@
       break;
     case "uchen_block":
       jsonml[ 0 ] = "p";
-      i = attrs ? 2 : 1;
-      var uchen = [ "uchen" ];
-      uchen.push.apply( uchen, jsonml.splice( i, jsonml.length - i ) );
-      jsonml[ i ] = uchen;
+      var wylie = attrs.wylie;
+      delete attrs.wylie;
+      attrs["data-wylie"] = wylie.trim();
       break;
     case "uchen":
       jsonml[ 0 ] = "span";
+      var wylie = attrs.wylie;
+      delete attrs.wylie;
+      attrs["data-wylie"] = wylie;
       break;
     case "inlinecode":
       jsonml[ 0 ] = "code";
@@ -2439,28 +2441,28 @@
     block: {
       wylie: function wylie(block, next) {
         var ret = [],
-            re = /^(:::\n)(.*\n)(([\s\S\W\w\n\r]*?)\1)/,
-            reStartBlock = /^(:::\n)(.*\n)(([\s\S\W\w\n\r]*?))/,
-            reEndBlock = /(.*)(:::$)/;
+            re = /^(:::\n*)([\s\S\W\w\n\r]*?)(\1)/,
+            reStartBlock = /^:::\n*/,
+            reEndBlock = /([\s\S\W\w\n\r]*?)(\n*:::)(.*)/;
 
         if ( !block.match( reStartBlock ) )
           return undefined;
 
-        var content = "";
-        if ( block.match( re ) ) {
-          content = uChenMap.toUnicode(block.match( re )[4]);
+        var wylie = "";
+        var groups = block.match( re );
+        if ( groups ) {
+          wylie = groups[2];
         } else {
-          content = "";
           var seen = false;
-          var b = block;
+          var b = block.replace(":::", "");
           while ( next.length && !seen) {
             seen = b.match(reEndBlock);
-            content += uChenMap.toUnicode(b.replace(/(:::|:::\n)/g,"") + (seen ? "" : "\n\n"));
+            wylie += seen ? seen[1] : b;
             b = seen ? "" : next.shift();
           }
         }
 
-        return [ [ "uchen", { class: "uchen" }, content ] ];
+        return wylie.length > 0 ? [ [ "uchen_block", { "class": "uchen", "wylie": wylie }, uChenMap.toUnicode(wylie) ] ] : [];
       },
       para: function para( block ) {
         // everything's a para!
@@ -2540,7 +2542,7 @@
 
         if ( m && m[2] ) {
           var txt = uChenMap.toUnicode(m[2]);
-          return [ (m[1].length*2) + m[2].length, [ "uchen", { class: "uchen"}, txt ] ];
+          return [ (m[1].length*2) + m[2].length, [ "uchen", { "class": "uchen", "wylie": m[2]}, txt ] ];
         }
         else {
           // TODO: No matching end code found - warn!
@@ -2563,7 +2565,7 @@
 
         if ( m && m[2] ) {
           var txt = uChenMap.toUnicode(m[2]);
-          return [ (m[1].length*2) + m[2].length, [ "uchen", { class: "uchen"}, txt ] ];
+          return [ (m[1].length*2) + m[2].length, [ "uchen", { "class": "uchen", "wylie": m[2]}, txt ] ];
         }
         else {
           // TODO: No matching end code found - warn!
@@ -2573,28 +2575,28 @@
 
   ExtendedWylie.block.wylie = function(block, next) {
         var ret = [],
-            re = /^(:::\n)(.*\n)(([\s\S\W\w\n\r]*?)\1)/,
-            reStartBlock = /^(:::\n)(.*\n)(([\s\S\W\w\n\r]*?))/,
-            reEndBlock = /(.*)(:::$)/;
+            re = /^(:::\n*)([\s\S\W\w\n\r]*?)(\1)/,
+            reStartBlock = /^:::\n*/,
+            reEndBlock = /([\s\S\W\w\n\r]*?)(\n*:::)(.*)/;
 
         if ( !block.match( reStartBlock ) )
           return undefined;
 
-        var content = "";
-        if ( block.match( re ) ) {
-          content = uChenMap.toUnicode(block.match( re )[4]);
+        var wylie = "";
+        var groups = block.match( re );
+        if ( groups ) {
+          wylie = groups[2];
         } else {
-          content = "";
           var seen = false;
-          var b = block;
+          var b = block.replace(":::", "");
           while ( next.length && !seen) {
             seen = b.match(reEndBlock);
-            content += uChenMap.toUnicode(b.replace(/(:::|:::\n)/g,"") + (seen ? "" : "\n\n"));
+            wylie += seen ? seen[1] : b;
             b = seen ? "" : next.shift();
           }
         }
 
-        return [ [ "uchen", { class: "uchen" }, content ] ];
+        return wylie.length > 0 ? [ [ "uchen_block", { "class": "uchen", "wylie": wylie }, uChenMap.toUnicode(wylie) ] ] : [];
       };
 
   Markdown.dialects.ExtendedWylie = ExtendedWylie;

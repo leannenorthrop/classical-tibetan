@@ -4,9 +4,8 @@ define([
   'jquery',
   'github',
   'js-yaml',
-  'cookies',
   "markdown"
-], function(_, Backbone, $, GitHub, JsYaml, Cookies, Markdown){
+], function(_, Backbone, $, GitHub, JsYaml, Markdown){
 
   var token = "2b0eb792116e96b059744ffdb21ab03a125625d3";
   var uname = "leannenorthrop";
@@ -26,23 +25,32 @@ define([
       text: "",
       description: "",
       tags: [],
-      name: "",
+      name: "New",
       category: "",
-      file: "",
+      file: '_posts/' + currentTime() + "-New.md",
       created: currentTime()
+    },
+    initialize: function(options) {
+      this.listenTo(this, "change:name", function(event){
+        this.set("file", '_posts/' + event.get("created") + "-" + event.get("name")+".md");
+      });
+      if (options && options.name && !options.file) {
+        this.set("file", '_posts/' + currentTime() + "-" + options.name+".md");
+      }
     },
     toFormat: function(format,options) {
       var result = "";
       switch(format) {
         case "html": return this.toHTML(options); break;
         case "article": return this.toArticle(options); break;
+        case "raw": return this.get("text");
       }
       return result;
     },
     toHTML: function(options) {
         var text = this.get("text");
         if (options.isWylieOnly === true) {
-          text = "(alpha mode)\n\n:::\n" + text + ":::\n\n(end)";
+          text = ":::\n" + text + ":::";
         }
 
         var tree = markdown.parse(text, "ExtendedWylie");
@@ -54,12 +62,13 @@ define([
     toArticle: function(options) {
       var header = "---\n" + JsYaml.dump({"layout": this.get("category"),
         "category": this.get("category"),
-        "tags": this.get("tags").join(","),
-        "title": this.get("name")
+        "tags": this.get("tags") ? this.get("tags").join(" ") : "",
+        "title": this.get("name"),
+        "description": this.get("description")
       }) + "---\n\n\n";
       var body = "";
       var text = this.get("text");
-      var tree = markdown.parse(text, "ExtendedWylie");
+      var tree = markdown.parse(text, "Wylie");
       var jsonml = markdown.toHTMLTree( tree );
       body = markdown.renderJsonML( jsonml );
 
@@ -93,22 +102,23 @@ define([
         }
       });
     },
-    close: function(options) {
-      if (options && options.save) {
+    save: function(options) {
+      if (options) {
         var me = this;
         var github = new Github({
-          username: $.cookie('gu'),
-          password: $.cookie('gp'),
+          username: options.username,
+          password: options.password,
           auth: "basic"
         });
-        var repo = github.getRepo(uname, repositoryName);
+        var repo = github.getRepo(options.uname, options.repositoryName);
         if (repo) {
-          repo.write(branch, '_posts/'+options.name+".md", this.toFormat("article"), 'updated via javascript api', function(err) {
+          repo.write(branch, me.get("file"), me.toFormat(options.format), 'Tibetan Wylie Markdown Editor', function(err) {
             console.log(err);
           });
         }
       }
-    }
+    },
+    close: function() {}
   });
 
   return DocumentModel;

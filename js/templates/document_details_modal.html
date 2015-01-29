@@ -10,8 +10,10 @@
         <form class="form-document-details" autocomplete="on" style="margin-top: 1.2em">
           <label for="documentName" class="sr-only">Name</label>
           <input autocomplete="on" type="text" id="documentName" class="form-control" placeholder="Name" autofocus>
+          <label for="documentCategory" class="sr-only">Category</label>
+          <input autocomplete="on" type="text" id="documentCategory" class="form-control" placeholder="Category" autofocus>
           <label for="documentDetails" class="sr-only">Description</label>
-          <input autocomplete="on" type="password" id="documentDetails" class="form-control" placeholder="Details">
+          <textarea id="documentDetails" class="form-control" rows="5" placeholder="Details" required></textarea>
         </form>
       </div>
       <div class="modal-footer">

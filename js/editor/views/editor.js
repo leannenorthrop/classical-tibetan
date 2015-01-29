@@ -30,7 +30,7 @@ function($, Backbone, Marionette, AceView, ToolbarView,
     },
     initialize: function(options) {
       if (!this.model) {
-        this.model = new EditorModel({currentDocument: new DocumentModel({name: "New.md"})});
+        this.model = new EditorModel({currentDocument: new DocumentModel()});
       }
       this.app = options.app;
     },

@@ -4,7 +4,7 @@
  ☐ Editor resizing
  ✔ Mode selector @done (15-01-27 14:44)
  ☐ Save to github
- ☐ Wylie modes
+ ✔ Wylie modes @done (15-01-28 17:55)
  ☐ Restore bootstrap theme
  ☐ Wylie theme
  ☐ Beautify forms http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-forms.php
@@ -34,6 +34,6 @@ Save to
  ✔ tables @done (15-01-27 12:04)
  ✔ code @done (15-01-25 22:48)
  ✔ wylie blocks @done (15-01-27 12:04)
- ☐ wylie blocks again sigh
+ ✔ wylie blocks again sigh @done (15-01-28 17:55)
  ☐ implement remaining wylie rules
- ☐ fix wylie blocks if last in text which fail to render
+ ✔ fix wylie blocks if last in text which fail to render @done (15-01-28 17:55)

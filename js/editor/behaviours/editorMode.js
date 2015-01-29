@@ -24,7 +24,7 @@ define(['jquery',
           this.options.doc = model.get("currentDocument");
           this.open();
         } else {
-          model.set("currentDocument", new DocumentModel({name: "New"}));
+          model.set("currentDocument", new DocumentModel());
           view.getRegion('editor').currentView.setText(model.get("currentDocument").get("text"));
         }
       }
