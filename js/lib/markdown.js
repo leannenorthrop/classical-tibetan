@@ -5,7 +5,7 @@
  * Copyright (c) 2009-2010 Ash Berlin
  * Copyright (c) 2011 Christoph Dorn <christoph@christophdorn.com> (http://www.christophdorn.com)
  * Version: 0.6.0-beta1
- * Date: 2015-01-29T13:51Z
+ * Date: 2015-01-29T15:23Z
  */
 
 (function(expose) {
@@ -469,6 +469,8 @@
     // be careful about adding whitespace here for inline elements
     if ( tag === "img" || tag === "br" || tag === "hr" )
       return "<"+ tag + tag_attrs + "/>";
+    else if (tag === "")
+      return content.join( "" );
     else
       return "<"+ tag + tag_attrs + ">" + content.join( "" ) + "</" + tag + ">";
   }
@@ -513,7 +515,10 @@
       jsonml[ 0 ] = "li";
       break;
     case "para":
-      jsonml[ 0 ] = "p";
+      if (options.skipParas)
+        jsonml[ 0 ] = "";
+      else
+        jsonml[ 0 ] = "p";
       break;
     case "markdown":
       jsonml[ 0 ] = "html";
@@ -528,16 +533,14 @@
       jsonml[ i ] = code;
       break;
     case "uchen_block":
-      jsonml[ 0 ] = "p";
-      var wylie = attrs.wylie;
-      delete attrs.wylie;
-      attrs["data-wylie"] = wylie.trim();
+      jsonml[ 0 ] = options.skipParas ? "span" : "p";
+      i = attrs ? 2 : 1;
+      var uchen = [ "uchen" ];
+      uchen.push.apply( uchen, jsonml.splice( i, jsonml.length - i ) );
+      jsonml[ i ] = uchen;
       break;
     case "uchen":
       jsonml[ 0 ] = "span";
-      var wylie = attrs.wylie;
-      delete attrs.wylie;
-      attrs["data-wylie"] = wylie;
       break;
     case "inlinecode":
       jsonml[ 0 ] = "code";

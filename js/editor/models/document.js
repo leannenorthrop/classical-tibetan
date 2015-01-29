@@ -68,9 +68,10 @@ define([
       }) + "---\n\n\n";
       var body = "";
       var text = this.get("text");
-      var tree = markdown.parse(text, "Wylie");
-      var jsonml = markdown.toHTMLTree( tree );
-      body = markdown.renderJsonML( jsonml );
+      var dialect = "Wylie";
+      var tree = markdown.parse(text, dialect);
+      var jsonml = markdown.toHTMLTree(tree, dialect, {skipParas:true});
+      body = markdown.renderJsonML(jsonml);
 
       return header + body;
     },
