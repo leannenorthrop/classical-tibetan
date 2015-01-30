@@ -28,6 +28,7 @@ me.addEventListener('message', function(e) {
             var yaml = contents.substring(4,endIndex);
             var json = window.jsyaml.load(yaml);
             entries.push({"file": json.permalink ? json.permalink : file,
+                          "gitFile": file,
                           "tags": json.tags ? json.tags.split(",") : [],
                           "title": json.title,
                           "category": json.category});
@@ -41,10 +42,20 @@ me.addEventListener('message', function(e) {
       });
       break;
     case 'postIndexesAndStop':
-      var index = createJSONIndex(entries);
-      repo.write(branch, 'post_index.json', index, 'Updated by editor', function(err) {
-        me.close();
-        e.postMessage('Update to post_index.' + fileFormats[i] + '?' + err);
+      repo.read(branch, "post_index.md", function(err, data) {
+        if (!err) {
+          me.postMessage('Update to post_index.md?' + err);
+          var contents = data.replace(/<span id="lastupdated" style="display:none">\d+<\/span>/, '<span id="lastupdated" style="display:none">' + new Date().getTime() + '</span>');
+          repo.write(branch, 'post_index.md', contents, 'Updated by editor', function(err) {
+            repo.write(branch, 'post_index.json', JSON.stringify(entries, null, "  "), 'Updated by editor', function(err) {
+              me.close();
+              me.postMessage('Update to post_index.json?' + err);
+            });
+          });
+        } else {
+          me.postMessage('Update to post_index.md?' + err);
+          me.close();
+        }
       });
       break;
     case 'stop':

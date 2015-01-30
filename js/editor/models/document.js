@@ -66,12 +66,15 @@ define([
         "title": this.get("name"),
         "description": this.get("description")
       }) + "---\n\n\n";
-      var body = "";
-      var text = this.get("text");
-      var dialect = "Wylie";
-      var tree = markdown.parse(text, dialect);
-      var jsonml = markdown.toHTMLTree(tree, dialect, {skipParas:true});
-      body = markdown.renderJsonML(jsonml);
+
+      var body = this.get("text");
+      if (!options || options && !options.parse) {
+        var text = this.get("text");
+        var dialect = "Wylie";
+        var tree = markdown.parse(text, dialect);
+        var jsonml = markdown.toHTMLTree(tree, dialect, {skipParas:true});
+        body = markdown.renderJsonML(jsonml);
+      }
 
       return header + body;
     },
@@ -97,9 +100,16 @@ define([
       var repo = github.getRepo(uname, repositoryName);
       repo.read(branch, me.get("file"), function(err, data) {
         if (!err) {
-          me.load(data);
+          if (!options || options && options.parse)
+            me.load(data);
+          else
+            me.set("text", data);
+          if (options && options.onSuccess)
+            options.onSuccess();
         } else {
           console.log(err);
+          if (options && options.onError)
+            options.onError();
         }
       });
     },
@@ -113,7 +123,14 @@ define([
         });
         var repo = github.getRepo(options.uname, options.repositoryName);
         if (repo) {
-          repo.write(branch, me.get("file"), me.toFormat(options.format), 'Tibetan Wylie Markdown Editor', function(err) {
+          repo.write(branch, me.get("file"), me.toFormat(options.format), options.msg, function(err) {
+            if (!err) {
+              if (options && options.onSuccess)
+                options.onSuccess();
+            } else {
+              if (options && options.onError)
+                options.onError();
+            }
             console.log(err);
           });
         }

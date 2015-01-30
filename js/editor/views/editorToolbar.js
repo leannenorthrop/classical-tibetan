@@ -41,8 +41,8 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
         this.help.fetch({
           success: function(collection, response, options) {
             collection.forEach(function(model,index){
-              if (model.get("categories").indexOf("help") >= 0) {
-                me.collection.add({value: "help-file-"+model.get("name"),
+              if (model.get("category") && model.get("category").indexOf("help") >= 0) {
+                me.collection.add({value: "help-file-"+model.get("gitFile"),
                                   name: model.get("title"),
                                   icon: "glyphicon-info-sign",
                                   file: model.get("name")});

@@ -15,18 +15,8 @@ title: Posts
   <p class="lead blog-description">Collection of materials.</p>
 </div>
 
-{% assign posts = site.posts | sort: "date" %}
-
 <div class="row">
 <div class="list-group">
-{% for post in posts %}
-<div class="{{post.category}} {{post.tags}}" style="display:none">
-<a href="{{site.url}}{{ post.url }}" class="list-group-item">
-  <h4 class="list-group-item-heading">{{ post.title }}</h4>
-  <p class="list-group-item-text">{{ post.excerpt }}</p>
-</a>
-</div>
-{% endfor %}
 </div>
 <div class="row notfound" style="display:none">
 <div class="jumbotron">
@@ -52,25 +42,38 @@ function GetURLParameter(sParam)
     }
 }
 
-var type = GetURLParameter("type");
-var tag = GetURLParameter("tag");
-if (type) {
-  if (!tag) {
-    $('div[class*=' + type + ']').show();
-  } else {
-    $('div[class*=' + type + ']').filter('.' + tag).show();
-  }
-}
-if ($('div.row div:visible').length === 0) {
-  $('div.notfound').show();
-}
-
 function capitalize(text) {
+  if (text)
     return text.substr(0,1).toUpperCase() + text.substr(1);
+  else
+    return "";
 }
 
-var title = capitalize(tag) + " " + capitalize(type) + " Posts";
-$('h1.blog-title small').text(title);
-$('li.active').text(capitalize(type) + " Posts");
-document.title = document.title.replace("Posts", title);
+$.getJSON( "post_index.json", function( data ) {
+  var items = [];
+  $.each( data, function( key, val ) {
+    items.push('<div class="' + val.category + ' ' + val.tags.join(" ") + ' style="display:none"><a href="' + val.file + '" class="list-group-item"><h4 class="list-group-item-heading">' + val.title + '</h4><p class="list-group-item-text">' + val.description + '</p></a></div>');
+  });
+
+  $(".list-group").html(items.join(""));
+
+  var type = GetURLParameter("type");
+  var tag = GetURLParameter("tag");
+
+  var title = capitalize(tag) + " " + capitalize(type) + " Posts";
+  $('h1.blog-title small').text(title);
+  $('li.active').text(capitalize(type) + " Posts");
+  document.title = document.title.replace("Posts", title);
+
+  if (type) {
+    if (!tag) {
+      $('div[class*=' + type + ']').show();
+    } else {
+      $('div[class*=' + type + ']').filter('.' + tag).show();
+    }
+  }
+  if ($('div.row div:visible').length === 0) {
+    $('div.notfound').show();
+  }
+});
 </script>

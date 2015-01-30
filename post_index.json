@@ -1,12 +1,165 @@
----
-layout: none
-title: Json Posts
----
-{% assign posts = site.posts | sort: "date" %}
-[{% for post in posts %}{
-    "name": "{{post.path}}",
-    "tags": "{{post.tags}}",
-    "title": "{{post.title}}",
-    "categories": "{{post.category}}"
-  } {% if forloop.last == false %}, {% endif %}
-{% endfor %}]
+[
+  {
+    "file": "/help/getting-started.html",
+    "gitFile": "_posts/2015-01-01-gettingstarted.md",
+    "tags": [],
+    "title": "Getting Started",
+    "category": "help"
+  },
+  {
+    "file": "/help/extended-wylie.html",
+    "gitFile": "_posts/2015-01-01-wylie.md",
+    "tags": [],
+    "title": "Extended Wylie A Guide",
+    "category": "help"
+  },
+  {
+    "file": "/help/markdown.html",
+    "gitFile": "_posts/2015-01-01-markdown.md",
+    "tags": [],
+    "title": "Markdown Guide",
+    "category": "help"
+  },
+  {
+    "file": "/lessons/stage1/dd.html",
+    "gitFile": "_posts/2015-01-12.A.md",
+    "tags": [
+      "stage1"
+    ],
+    "title": "Getting Started",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-01-09-Hello.md",
+    "gitFile": "_posts/2015-01-09-Hello.md",
+    "tags": []
+  },
+  {
+    "file": "_posts/2015-01-26-New.md",
+    "gitFile": "_posts/2015-01-26-New.md",
+    "tags": [
+      "stage0",
+      "something"
+    ],
+    "title": "New",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-1-28-Mixed wylie test.md",
+    "gitFile": "_posts/2015-1-28-Mixed wylie test.md",
+    "tags": [
+      "stage0",
+      "something"
+    ],
+    "title": "Mixed wylie test",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-01-08-Testing.md",
+    "gitFile": "_posts/2015-01-08-Testing.md",
+    "tags": []
+  },
+  {
+    "file": "_posts/2015-1-27-Hi.md",
+    "gitFile": "_posts/2015-1-27-Hi.md",
+    "tags": [
+      "stage0",
+      "something"
+    ],
+    "title": "Hi",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-1-28-Wylie test.md",
+    "gitFile": "_posts/2015-1-28-Wylie test.md",
+    "tags": [
+      "stage0",
+      "something"
+    ],
+    "title": "Wylie test",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-1-29-Another New Day.md",
+    "gitFile": "_posts/2015-1-29-Another New Day.md",
+    "tags": [
+      "tag"
+    ],
+    "title": "Another New Day",
+    "category": "For Wylie"
+  },
+  {
+    "file": "_posts/2015-1-29-New Document.md",
+    "gitFile": "_posts/2015-1-29-New Document.md",
+    "tags": [],
+    "title": "New Document",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-1-29-New File.md",
+    "gitFile": "_posts/2015-1-29-New File.md",
+    "tags": [
+      "tag1 tag2"
+    ],
+    "title": "New File",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-1-29-Blah.md",
+    "gitFile": "_posts/2015-1-29-Blah.md",
+    "tags": [],
+    "title": "Blah",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-1-29-Wylie.md",
+    "gitFile": "_posts/2015-1-29-Wylie.md",
+    "tags": [
+      "stage0 something"
+    ],
+    "title": "Wylie",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-1-30-My New File.md",
+    "gitFile": "_posts/2015-1-30-My New File.md",
+    "tags": [
+      "stage0"
+    ],
+    "title": "My New File",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-1-29-New.md",
+    "gitFile": "_posts/2015-1-29-New.md",
+    "tags": [],
+    "title": "New",
+    "category": ""
+  },
+  {
+    "file": "_posts/2015-1-30-New.md",
+    "gitFile": "_posts/2015-1-30-New.md",
+    "tags": [],
+    "title": "New",
+    "category": ""
+  },
+  {
+    "file": "_posts/2015-1-30-New File.md",
+    "gitFile": "_posts/2015-1-30-New File.md",
+    "tags": [
+      "stage0 leanne"
+    ],
+    "title": "New File",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015_01_12.A.md",
+    "gitFile": "_posts/2015_01_12.A.md",
+    "tags": [
+      "stage0",
+      "something"
+    ],
+    "title": "New",
+    "category": "lesson"
+  }
+]
