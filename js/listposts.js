@@ -42,20 +42,9 @@ me.addEventListener('message', function(e) {
       });
       break;
     case 'postIndexesAndStop':
-      repo.read(branch, "post_index.md", function(err, data) {
-        if (!err) {
-          me.postMessage('Update to post_index.md?' + err);
-          var contents = data.replace(/<span id="lastupdated" style="display:none">\d+<\/span>/, '<span id="lastupdated" style="display:none">' + new Date().getTime() + '</span>');
-          repo.write(branch, 'post_index.md', contents, 'Updated by editor', function(err) {
-            repo.write(branch, 'post_index.json', JSON.stringify(entries, null, "  "), 'Updated by editor', function(err) {
-              me.close();
-              me.postMessage('Update to post_index.json?' + err);
-            });
-          });
-        } else {
-          me.postMessage('Update to post_index.md?' + err);
-          me.close();
-        }
+      repo.write(branch, 'post_index.json', JSON.stringify(entries, null, "  "), 'Updated by editor', function(err) {
+        me.postMessage('Update to post_index.json?' + err);
+        me.close();
       });
       break;
     case 'stop':

@@ -1,5 +1,5 @@
 ---
-layout: plain
+layout: plain_no_cache
 title: Posts
 ---
 
