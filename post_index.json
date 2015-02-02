@@ -7,20 +7,6 @@
     "category": "help"
   },
   {
-    "file": "/help/markdown.html",
-    "gitFile": "_posts/2015-01-01-markdown.md",
-    "tags": [],
-    "title": "Markdown Guide",
-    "category": "help"
-  },
-  {
-    "file": "_posts/2015-1-30-New.md",
-    "gitFile": "_posts/2015-1-30-New.md",
-    "tags": [],
-    "title": "New",
-    "category": ""
-  },
-  {
     "file": "/help/extended-wylie.html",
     "gitFile": "_posts/2015-01-01-wylie.md",
     "tags": [],
@@ -33,6 +19,36 @@
     "tags": []
   },
   {
+    "file": "/help/markdown.html",
+    "gitFile": "_posts/2015-01-01-markdown.md",
+    "tags": [],
+    "title": "Markdown Guide",
+    "category": "help"
+  },
+  {
+    "file": "_posts/2015-01-09-Hello.md",
+    "gitFile": "_posts/2015-01-09-Hello.md",
+    "tags": []
+  },
+  {
+    "file": "_posts/2015-2-2-Bye.md",
+    "gitFile": "_posts/2015-2-2-Bye.md",
+    "tags": [
+      "stage0"
+    ],
+    "title": "Bye",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-1-30-Leanne.md",
+    "gitFile": "_posts/2015-1-30-Leanne.md",
+    "tags": [
+      "stage0"
+    ],
+    "title": "Leanne",
+    "category": "lesson"
+  },
+  {
     "file": "_posts/2015-1-30-My New Document.md",
     "gitFile": "_posts/2015-1-30-My New Document.md",
     "tags": [
@@ -40,11 +56,6 @@
     ],
     "title": "My New Document",
     "category": "lesson"
-  },
-  {
-    "file": "_posts/2015-01-09-Hello.md",
-    "gitFile": "_posts/2015-01-09-Hello.md",
-    "tags": []
   },
   {
     "file": "/lessons/stage1/dd.html",
@@ -56,12 +67,10 @@
     "category": "lesson"
   },
   {
-    "file": "_posts/2015-1-30-Leanne.md",
-    "gitFile": "_posts/2015-1-30-Leanne.md",
-    "tags": [
-      "stage0"
-    ],
-    "title": "Leanne",
-    "category": "lesson"
+    "file": "_posts/2015-1-30-New.md",
+    "gitFile": "_posts/2015-1-30-New.md",
+    "tags": [],
+    "title": "New",
+    "category": ""
   }
 ]
