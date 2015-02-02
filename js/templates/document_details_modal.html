@@ -7,17 +7,63 @@
         <h4 class="modal-title" id="myModalLabel">Current Document</h4>
       </div>
       <div class="modal-body">
-        <form class="form-document-details" autocomplete="on" style="margin-top: 1.2em">
-          <label for="documentName" class="sr-only">Name</label>
-          <input autocomplete="on" type="text" id="documentName" class="form-control" placeholder="Name" autofocus>
-          <label for="documentCategory" class="sr-only">Category</label>
-          <input autocomplete="on" type="text" id="documentCategory" class="form-control" placeholder="Category" autofocus>
-          <label for="documentDetails" class="sr-only">Description</label>
-          <textarea id="documentDetails" class="form-control" rows="5" placeholder="Details" required></textarea>
+        <form action="#" class="form-horizontal ws-validate" autocomplete="on">
+          <div class="form-group">
+            <label for="documentName" class="control-label">Name</label>
+            <input autocomplete="on" type="text" id="documentName" class="form-control" placeholder="Name" required pattern="[a-zA-Z \-_]+" title="Please use a name with only letters, space, hypen (-) or underscore (_) characters.">
+          </div>
+          <div class="form-group">
+            <label for="documentCategory" class="control-label">Category</label>
+            <select id="documentCategory" class="selectpicker show-tick" data-header="Select Category">
+              <option value="lesson">Lesson</option>
+              <option value="reading">Reading</option>
+              <option value="help">Help</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="documentDetails" class="control-label">
+              <a data-toggle="collapse" href="#description" aria-expanded="false" aria-controls="description">
+                <span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+              </a>
+              Description
+            </label>
+            <div id="description" class="collapse">
+              <textarea id="documentDetails" class="form-control" rows="5" placeholder="Details"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="documentTags" class="control-label">
+              <a data-toggle="collapse" href="#tt" aria-expanded="false" aria-controls="tt">
+                <span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+              </a>
+              Tags
+            </label>
+            <div id="tt" class="collapse">
+              <textarea id="documentTags" class="form-control" rows="5"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label ght">
+              <a data-toggle="collapse" href="#ghf" aria-expanded="false" aria-controls="ghf">
+                <span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+              </a>
+              Git Hub Account Details
+            </label>
+            <div id="ghf" class="collapse" action="#" class="form-horizontal ws-validate" autocomplete="on">
+              <div class="form-group">
+                <label for="inputUserName" class="control-label">User Name</label>
+                <input autocomplete="on" type="email" id="inputUserName" class="form-control" placeholder="User Name">
+              </div>
+              <div class="form-group">
+                <label for="inputPassword" class="control-label">Password</label>
+                <input autocomplete="on" type="password" id="inputPassword" class="form-control" placeholder="Password">
+              </div>
+            </div>
+          </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-primary">Save</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
       </div>
     </div>

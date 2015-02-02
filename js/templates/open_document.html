@@ -9,8 +9,8 @@
       <div class="modal-body">
         <select id="documentSelector" class="selectpicker show-tick" data-width="15em" data-header="Select Editor Mode">
           <% _.each( obj.items, function( item ){ %>
-            <% if(item.categories.indexOf("help") < 0) { %>
-              <option value="<%= item.name %>" ><%= item.title %></option>
+            <% if(item && item.category && item.category.indexOf("help") < 0) { %>
+              <option value="<%= item.gitFile %>" ><%= item.title %></option>
             <% } %>
           <% }); %>
         </select>

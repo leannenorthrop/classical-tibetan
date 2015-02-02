@@ -13,7 +13,8 @@ requirejs.config({
         'backbone.wreqr': 'backbone/wreqr',
         'backbone.babysitter': 'backbone/babysitter',
         'cookies': 'jquery/cookies',
-        'bootstrap.tagsinput': 'bootstrap/bootstrap-tagsinput'
+        'bootstrap.tagsinput': 'bootstrap/bootstrap-tagsinput',
+        'jquery.webshim': 'webshim/polyfiller'
     },
     shim: {
         'underscore': {
@@ -39,6 +40,9 @@ requirejs.config({
             deps: ['jquery', 'bootstrap']
         },
         'cookies': {
+            deps: ['jquery']
+        },
+        'jquery.webshim': {
             deps: ['jquery']
         }
     }

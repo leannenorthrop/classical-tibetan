@@ -26,7 +26,7 @@ define([
       description: "",
       tags: [],
       name: "New",
-      category: "",
+      category: "lesson",
       file: '_posts/' + currentTime() + "-New.md",
       created: currentTime()
     },
@@ -89,7 +89,7 @@ define([
         this.set("tags", json.tags ? json.tags : "");
         text = text.substring(endIndex+4);
       }
-      this.set("text", text);
+      this.set("text", text.trim());
     },
     open: function(options) {
       var me = this;
@@ -129,9 +129,10 @@ define([
                 options.onSuccess();
             } else {
               if (options && options.onError)
-                options.onError();
+                options.onError(err);
+              else
+                console.log(err);
             }
-            console.log(err);
           });
         }
       }

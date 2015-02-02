@@ -3,46 +3,34 @@ define(["jquery",
         "marionette",
         "editor/views/layout",
         "editor/views/editor",
-        "editor/views/preview"],
+        "editor/views/preview",
+        "editor/views/alert"],
 
   function($, Backbone, Marionette, Layout,
-           EditorView, PreviewView) {
+           EditorView, PreviewView, AlertView) {
     var EditorApp = new Backbone.Marionette.Application({});
+
+    // Behaviours
     EditorApp.behaviours = {};
     Marionette.Behaviors.behaviorsLookup = function() {
         return EditorApp.behaviours;
     }
 
-    EditorApp.addInitializer(function(options){
-      /*
-      EditorApp.alert = new AlertView();
-      EditorApp.alert.render();
-      $("body").append(EditorApp.alert.el);
-define(['jquery', 'bootstrap'], function(Jquery, Bootstrap){
-  var Alert = (function(jq, bs){
-    return function(options) {
-      return {
-        execute: function() {
-          if (!options.mode) {
-            options.mode = "info";
-          }
-          jq("div.modal-content").attr( "class", "modal-content panel-" + options.mode);
-          jq("div.modal-body").html(options.msg);
-          if (options.title) {
-            jq("h4.modal-title").html(options.title);
-          }
-          jq("div.modal").modal(options);
-          jq("div.modal").modal('show');
-        }
+    // Utilities
+    EditorApp.alert = function(msg, type, heading) {
+      var c, strong;
+      switch(type) {
+        case "info": c = "alert-info"; strong = "Information"; break;
+        case "warning": c = "alert-warning"; strong = "Warning!"; break;
+        case "danger": c = "alert-danger"; strong = "Error!"; break;
+        case "success": default: c = "alert-success";strong = "Success!";break;
       }
+      var alertView = new AlertView({c: c, message: msg, title: (heading?heading:strong)});
+      alertView.show();
     };
-  })(Jquery, Bootstrap);
 
-  return Alert;
-});
-
-      */
-
+    // Initalizer
+    EditorApp.addInitializer(function(options){
       // Render the layout and get it on the screen, first
       var layout = new Layout();
       EditorApp.layout = layout;
@@ -56,6 +44,7 @@ define(['jquery', 'bootstrap'], function(Jquery, Bootstrap){
       layout.getRegion('leftColumn').show(editor);
       layout.getRegion('rightColumn').show(preview);
       editor.mode("help-file-_posts/2015-01-01-markdown.md");
+
       // This kicks off the rest of the app, through the router
       /*layoutRender.done(function(){
         Backbone.history.start();

@@ -34,11 +34,14 @@ define(['jquery', 'bootstrap', 'marionette', "editor/models/document", "fileSave
     this.read(this.options.doc.get("file"));
   };
 
-  OpenDocumentBehavior.load = function() {
+  OpenDocumentBehavior.load = function(options) {
     var doc = this.options.doc;
     var view = this.options.view;
     if (doc) {
-      this.listenToOnce(doc, "change:text", function() {
+      if (options && options.refresh) {
+        doc.set("text","");
+      }
+      doc.listenToOnce(doc, "change:text", function() {
         view.getRegion('editor').currentView.setText(doc.get("text"));
       });
       return doc;

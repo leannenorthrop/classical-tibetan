@@ -1,27 +1,46 @@
-define(['jquery', 'bootstrap', 'marionette', 'cookies', 'editor/models/document', 'underscore', 'github'],
-  function(Jquery, Bootstrap, Marionette, Cookies, DocumentModel, _, GitHub){
+define(['jquery',
+        'bootstrap',
+        'marionette',
+        'cookies',
+        'editor/models/document',
+        'underscore',
+        'github',
+        'editor/views/configDocument'],
+function(Jquery, Bootstrap, Marionette, Cookies, DocumentModel, _, GitHub, ConfigDocumentView){
 
   var OnCloseBehavior = Backbone.Marionette.Behavior.extend({
     onClose: function(event) {
       console.log("Do editor close");
 
-      var view = this.view;
-      var model = this.view.model;
       if (event.save) {
-        var doc = model.get("currentDocument");
-        var callback = this.onSaveSuccess.bind(this);
-        doc.save({name: doc.get("name"),
-                  username: $.cookie('gu'),
-                  password: $.cookie('gp'),
-                  uname: "leannenorthrop",
-                  repositoryName: "classical-tibetan",
-                  format: "article",
-                  msg: "Saved by editor.",
-                  onSuccess: callback});
+        var modalView = new ConfigDocumentView({model:this.view.model, app: this.options.app});
+        this.listenToOnce(modalView, "saved", this.doClose);
+        modalView.render();
       } else {
         model.set("currentDocument", new DocumentModel({name: "New"}));
         view.getRegion('editor').currentView.setText(model.get("currentDocument").get("text"));
       }
+    },
+    doClose: function() {
+      var view = this.view;
+      var model = this.view.model;
+      var doc = model.get("currentDocument");
+      var onSave = this.onSaveSuccess.bind(this);
+      var onError = this.onSaveError.bind(this);
+      doc.save({name: doc.get("name"),
+                username: $.cookie('gu'),
+                password: $.cookie('gp'),
+                uname: "leannenorthrop",
+                repositoryName: "classical-tibetan",
+                format: "article",
+                msg: "Saved by editor.",
+                onSuccess: onSave,
+                onError: onError});
+    },
+    onSaveError: function(err) {
+      require(["editor/app"], function(App){
+        App.alert("Failed to save document error (code:"+err.error+")", "danger", "Save Error!");
+      });
     },
     onSaveSuccess: function() {
       var gh = new Github({token: "2b0eb792116e96b059744ffdb21ab03a125625d3", auth: "oauth"});
