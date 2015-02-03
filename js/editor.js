@@ -14,7 +14,8 @@ requirejs.config({
         'backbone.babysitter': 'backbone/babysitter',
         'cookies': 'jquery/cookies',
         'bootstrap.tagsinput': 'bootstrap/bootstrap-tagsinput',
-        'jquery.webshim': 'webshim/polyfiller'
+        'jquery.webshim': 'webshim/polyfiller',
+        'cm': '../lib/cmirror'
     },
     shim: {
         'underscore': {

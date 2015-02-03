@@ -4,78 +4,36 @@ function($, Bootstrap, Marionette, Markdown){
     modelEvents: {
       "change:theme": "onThemeChange",
       "change:wrap": "onWrapChange",
-      "change:hightlightActiveLine": "onHightlightActiveLineChange",
-      "change:showMargin": "onShowMarginChange",
-      "change:fontSize": "onFontSizeChange",
       "change:mode": "onModeChange",
-      "change:blockScrolling" : "onBlockScrollingChange",
       "change:showGutter" : "onGutterChange"
     },
-
     onThemeChange: function() {
-      if (this.view.markdownEditor) {
-        var ace = this.view.markdownEditor;
-        var model = this.view.model;
-        ace.setTheme(model.get("theme"));
-      }
+      this.doChange("theme", "theme");
     },
     onWrapChange: function() {
-      if (this.view.markdownEditor) {
-        var ace = this.view.markdownEditor;
-        var model = this.view.model;
-        ace.getSession().setUseWrapMode(model.get("wrap"));
-      }
-    },
-    onHightlightActiveLineChange: function() {
-      if (this.view.markdownEditor) {
-        var ace = this.view.markdownEditor;
-        var model = this.view.model;
-        ace.setHighlightActiveLine(model.get("hightlightActiveLine"));
-      }
-    },
-    onShowMarginChange: function() {
-      if (this.view.markdownEditor) {
-        var ace = this.view.markdownEditor;
-        var model = this.view.model;
-        ace.setShowPrintMargin(model.get("showMargin"));
-      }
-    },
-    onShowMarginChange: function() {
-      if (this.view.markdownEditor) {
-        var ace = this.view.markdownEditor;
-        var model = this.view.model;
-        ace.setShowPrintMargin(model.get("showMargin"));
-      }
-    },
-    onFontSizeChange: function() {
-      if (this.view.markdownEditor) {
-        var ace = this.view.markdownEditor;
-        var model = this.view.model;
-        //ace.setFontSize(Number size);
-        $('#editor').attr("style", "font-size:"+model.get("fontSize"));
-      }
+      this.doChange("lineWrapping", "wrap");
     },
     onModeChange: function() {
-      if (this.view.markdownEditor) {
-        var ace = this.view.markdownEditor;
-        var model = this.view.model;
-        var session = ace.getSession();
-        session.setMode(model.get("mode"));
-      }
-    },
-    onBlockScrollingChange: function() {
-      if (this.view.markdownEditor) {
-        var ace = this.view.markdownEditor;
-        var model = this.view.model;
-        ace.$blockScrolling = model.get("blockScrolling");
-      }
+      this.doChange("mode", "mode");
     },
     onGutterChange: function() {
-      if (this.view.markdownEditor) {
-        var ace = this.view.markdownEditor;
+      this.doChange("lineNumbers", "showGutter");
+    },
+    doChange: function(name, key) {
+      if (this.view.textEditor) {
+        var editor = this.view.textEditor;
         var model = this.view.model;
-        ace.renderer.setShowGutter(model.get("showGutter"));
+        editor.setOption(name, model.get(key));
+        if (key === "theme")
+          this.loadCss('../css/theme/'+model.get(key)+'.css');
       }
+    },
+   loadCss: function(url) {
+      var link = document.createElement("link");
+      link.type = "text/css";
+      link.rel = "stylesheet";
+      link.href = url;
+      document.getElementsByTagName("head")[0].appendChild(link);
     }
   });
 

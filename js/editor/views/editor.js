@@ -1,26 +1,24 @@
 define(["jquery",
         "backbone",
         "marionette",
-        "editor/views/ace",
+        "editor/views/texteditor",
         "editor/views/editorToolbar",
         "editor/models/editor",
-        "editor/models/ace",
+        "editor/models/texteditor",
         "editor/models/document",
         "text!templates/editor_layout.html",
         "editor/behaviours/editorToolbar",
-        "editor/behaviours/process",
-        ],
-
-function($, Backbone, Marionette, AceView, ToolbarView,
-         EditorModel, AceModel, DocumentModel, Template,
+        "editor/behaviours/process"],
+function($, Backbone, Marionette, CodeMirrorView, ToolbarView,
+         EditorModel, CodeMirrorModel, DocumentModel, Template,
          Behaviours, Process) {
   var template = Template;
   var EditorView = Backbone.Marionette.LayoutView.extend({
     modelEvents: {
       "change:editor": function() {
-        var aceModel = this.model.get("editor");
-        this.listenTo(aceModel, "change:text", function() {
-          this.model.get("currentDocument").set("text", this.model.get("editor").get("text"));
+        var textModel = this.model.get("editor");
+        this.listenTo(textModel, "change:text", function() {
+          this.model.get("currentDocument").set("text", textModel.get("text"));
         });
       },
       "change:currentDocument": function() {
@@ -42,9 +40,9 @@ function($, Backbone, Marionette, AceView, ToolbarView,
       editor: "#editor-area"
     },
     onShow: function() {
-      this.model.set("editor", new AceModel());
+      this.model.set("editor", new CodeMirrorModel());
       this.getRegion('toolbar').show(new ToolbarView({editorModel: this.model, parent: this}));
-      this.getRegion('editor').show(new AceView({model: this.model.get("editor"), app: this.app}));
+      this.getRegion('editor').show(new CodeMirrorView({model: this.model.get("editor"), app: this.app}));
     },
     mode: function(name) {
       var vals = name.split("-");

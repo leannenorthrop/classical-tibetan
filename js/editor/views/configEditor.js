@@ -27,17 +27,15 @@ function($, Backbone, Marionette, Template) {
           mobile: true,
           showSubtext: true
         });
-        var aceModel = view.model.get("editor");
-        view.originalTheme = aceModel.get("theme");
+        var editorModel = view.model.get("editor");
+        view.originalTheme = editorModel.get("theme");
         $('#themeSelector').selectpicker('val', view.originalTheme);
         $("#themeSelector").change(function(e){
           var selectedTheme = $('#themeSelector option:selected').val();
-          aceModel.set("theme", selectedTheme);
+          editorModel.set("theme", selectedTheme);
         });
-        $('#fontSize').selectpicker('val', aceModel.get("fontSize"));
-        $('#wrap').prop('checked', aceModel.get("wrap"));
-        $('#showMargin').prop('checked', aceModel.get("showMargin"));
-        $('#showCurrentLine').prop('checked', aceModel.get("hightlightActiveLine"));
+        $('#wrap').prop('checked', editorModel.get("wrap"));
+        $('#showGutter').prop('checked', editorModel.get("showGutter"));
       }catch(e){
         console.log(e);
       }
@@ -46,17 +44,15 @@ function($, Backbone, Marionette, Template) {
       event.data.view.destroy();
     },
     onCancel: function(e) {
-      var aceModel = this.model.get("editor");
-      aceModel.set("theme", this.originalTheme);
+      var editorModel = this.model.get("editor");
+      editorModel.set("theme", this.originalTheme);
     },
     onSave: function(e) {
       try {
-        var aceModel = this.model.get("editor");
-        aceModel.set("theme", $('#themeSelector option:selected').val());
-        aceModel.set("fontSize", $('#fontSize option:selected').val());
-        aceModel.set("wrap", $('#wrap').is(':checked'));
-        aceModel.set("showMargin", $('#showMargin').is(':checked'));
-        aceModel.set("hightlightActiveLine", $('#showCurrentLine').is(':checked'));
+        var editorModel = this.model.get("editor");
+        editorModel.set("theme", $('#themeSelector option:selected').val());
+        editorModel.set("wrap", $('#wrap').is(':checked'));
+        editorModel.set("showGutter", $('#showGutter').is(':checked'));
       } catch(e) {
         console.log(e);
       }

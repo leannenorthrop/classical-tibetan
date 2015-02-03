@@ -1,9 +1,4 @@
-define([
-  'underscore',
-  'backbone',
-  'editor/models/ace',
-  'editor/models/document'
-], function(_, Backbone, AceModel, Document){
+define(['underscore','backbone'], function(_, Backbone){
 
   var EditorModel = Backbone.Model.extend({
     defaults: {
