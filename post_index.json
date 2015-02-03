@@ -16,6 +16,36 @@
     "category": "lesson"
   },
   {
+    "file": "_posts/2015-1-30-New.md",
+    "gitFile": "_posts/2015-1-30-New.md",
+    "tags": [],
+    "title": "New",
+    "category": ""
+  },
+  {
+    "file": "/lessons/stage1/dd.html",
+    "gitFile": "_posts/2015-01-12.A.md",
+    "tags": [
+      "stage1"
+    ],
+    "title": "Getting Started",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-1-30-My New Document.md",
+    "gitFile": "_posts/2015-1-30-My New Document.md",
+    "tags": [
+      "stage0"
+    ],
+    "title": "My New Document",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-01-09-Hello.md",
+    "gitFile": "_posts/2015-01-09-Hello.md",
+    "tags": []
+  },
+  {
     "file": "/help/markdown.html",
     "gitFile": "_posts/2015-01-01-markdown.md",
     "tags": [],
@@ -35,42 +65,12 @@
     "tags": []
   },
   {
-    "file": "_posts/2015-1-30-My New Document.md",
-    "gitFile": "_posts/2015-1-30-My New Document.md",
+    "file": "_posts/2015-2-2-Mobile phone test.md",
+    "gitFile": "_posts/2015-2-2-Mobile phone test.md",
     "tags": [
-      "stage0"
+      "Stage0"
     ],
-    "title": "My New Document",
+    "title": "Mobile phone test",
     "category": "lesson"
-  },
-  {
-    "file": "/lessons/stage1/dd.html",
-    "gitFile": "_posts/2015-01-12.A.md",
-    "tags": [
-      "stage1"
-    ],
-    "title": "Getting Started",
-    "category": "lesson"
-  },
-  {
-    "file": "_posts/2015-1-30-New.md",
-    "gitFile": "_posts/2015-1-30-New.md",
-    "tags": [],
-    "title": "New",
-    "category": ""
-  },
-  {
-    "file": "_posts/2015-2-2-Bye.md",
-    "gitFile": "_posts/2015-2-2-Bye.md",
-    "tags": [
-      "stage0"
-    ],
-    "title": "Bye",
-    "category": "lesson"
-  },
-  {
-    "file": "_posts/2015-01-09-Hello.md",
-    "gitFile": "_posts/2015-01-09-Hello.md",
-    "tags": []
   }
 ]
