@@ -43,6 +43,7 @@ function(Jquery, Bootstrap, Marionette, Cookies, DocumentModel, _, GitHub, Confi
       });
     },
     onSaveSuccess: function() {
+      console.log("Document saved");
       var gh = new Github({token: "2b0eb792116e96b059744ffdb21ab03a125625d3", auth: "oauth"});
       var repo = gh.getRepo("leannenorthrop", "classical-tibetan");
       repo.contents("gh-pages", "_posts", function(err, contents) {
@@ -58,7 +59,19 @@ function(Jquery, Bootstrap, Marionette, Cookies, DocumentModel, _, GitHub, Confi
               console.log("Read file " + data.file + "? " + !data.fail);
               if (seen == dirList.length) {
                 worker.postMessage({'cmd': 'postIndexesAndStop'});
+                console.log("Posts read. Generating index");
               }
+            break;
+            case 'done':
+              console.log(data);
+              var e = data.error;
+              require(["editor/app"], function(App){
+                if (!e) {
+                    App.alert("Save completed.", "info", "Saved");
+                } else {
+                    App.alert("Save partially successful. Document saved but update to post_index.json failed. (Error = " + e + ")", "warning", "Saved");
+                }
+              });
             break;
             default:
               console.log(data);

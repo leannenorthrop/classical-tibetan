@@ -43,7 +43,7 @@ me.addEventListener('message', function(e) {
       break;
     case 'postIndexesAndStop':
       repo.write(branch, 'post_index.json', JSON.stringify(entries, null, "  "), 'Updated by editor', function(err) {
-        me.postMessage('Update to post_index.json?' + err);
+        me.postMessage({'cmd': 'done', 'msg': 'Updated post_index.json.', 'error': err});
         me.close();
       });
       break;
