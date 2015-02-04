@@ -7,11 +7,18 @@
     "category": "help"
   },
   {
-    "file": "/help/markdown.html",
-    "gitFile": "_posts/2015-01-01-markdown.md",
-    "tags": [],
-    "title": "Markdown Guide",
-    "category": "help"
+    "file": "_posts/2015-01-09-Hello.md",
+    "gitFile": "_posts/2015-01-09-Hello.md",
+    "tags": []
+  },
+  {
+    "file": "_posts/2015-1-30-My New Document.md",
+    "gitFile": "_posts/2015-1-30-My New Document.md",
+    "tags": [
+      "stage0"
+    ],
+    "title": "My New Document",
+    "category": "lesson"
   },
   {
     "file": "/help/extended-wylie.html",
@@ -21,23 +28,18 @@
     "category": "help"
   },
   {
+    "file": "_posts/2015-2-2-Mobile phone test.md",
+    "gitFile": "_posts/2015-2-2-Mobile phone test.md",
+    "tags": [
+      "Stage0"
+    ],
+    "title": "Mobile phone test",
+    "category": "lesson"
+  },
+  {
     "file": "_posts/2015-01-08-Testing.md",
     "gitFile": "_posts/2015-01-08-Testing.md",
     "tags": []
-  },
-  {
-    "file": "_posts/2015-01-09-Hello.md",
-    "gitFile": "_posts/2015-01-09-Hello.md",
-    "tags": []
-  },
-  {
-    "file": "/lessons/stage1/dd.html",
-    "gitFile": "_posts/2015-01-12.A.md",
-    "tags": [
-      "stage1"
-    ],
-    "title": "Getting Started",
-    "category": "lesson"
   },
   {
     "file": "_posts/2015-1-30-Leanne.md",
@@ -49,13 +51,20 @@
     "category": "lesson"
   },
   {
-    "file": "_posts/2015-1-30-My New Document.md",
-    "gitFile": "_posts/2015-1-30-My New Document.md",
+    "file": "/lessons/stage1/dd.html",
+    "gitFile": "_posts/2015-01-12.A.md",
     "tags": [
-      "stage0"
+      "stage1"
     ],
-    "title": "My New Document",
+    "title": "Getting Started",
     "category": "lesson"
+  },
+  {
+    "file": "/help/markdown.html",
+    "gitFile": "_posts/2015-01-01-markdown.md",
+    "tags": [],
+    "title": "Markdown Guide",
+    "category": "help"
   },
   {
     "file": "_posts/2015-1-30-New.md",
@@ -71,6 +80,15 @@
       "stage0"
     ],
     "title": "Test ",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-2-4-Wylie .md",
+    "gitFile": "_posts/2015-2-4-Wylie .md",
+    "tags": [
+      "stage0"
+    ],
+    "title": "Wylie ",
     "category": "lesson"
   },
   {
@@ -92,26 +110,8 @@
     "category": "reading"
   },
   {
-    "file": "_posts/2015-2-2-Mobile phone test.md",
-    "gitFile": "_posts/2015-2-2-Mobile phone test.md",
-    "tags": [
-      "Stage0"
-    ],
-    "title": "Mobile phone test",
-    "category": "lesson"
-  },
-  {
     "file": "_posts/2015-2-3-Wylie .md",
     "gitFile": "_posts/2015-2-3-Wylie .md",
-    "tags": [
-      "stage0"
-    ],
-    "title": "Wylie ",
-    "category": "lesson"
-  },
-  {
-    "file": "_posts/2015-2-4-Wylie .md",
-    "gitFile": "_posts/2015-2-4-Wylie .md",
     "tags": [
       "stage0"
     ],
