@@ -1,5 +1,12 @@
 [
   {
+    "file": "/help/markdown.html",
+    "gitFile": "_posts/2015-01-01-markdown.md",
+    "tags": [],
+    "title": "Markdown Guide",
+    "category": "help"
+  },
+  {
     "file": "/help/getting-started.html",
     "gitFile": "_posts/2015-01-01-gettingstarted.md",
     "tags": [],
@@ -7,11 +14,9 @@
     "category": "help"
   },
   {
-    "file": "/help/markdown.html",
-    "gitFile": "_posts/2015-01-01-markdown.md",
-    "tags": [],
-    "title": "Markdown Guide",
-    "category": "help"
+    "file": "_posts/2015-01-09-Hello.md",
+    "gitFile": "_posts/2015-01-09-Hello.md",
+    "tags": []
   },
   {
     "file": "_posts/2015-01-08-Testing.md",
@@ -26,30 +31,12 @@
     "category": "help"
   },
   {
-    "file": "_posts/2015-1-30-My New Document.md",
-    "gitFile": "_posts/2015-1-30-My New Document.md",
-    "tags": [
-      "stage0"
-    ],
-    "title": "My New Document",
-    "category": "lesson"
-  },
-  {
     "file": "/lessons/stage1/dd.html",
     "gitFile": "_posts/2015-01-12.A.md",
     "tags": [
       "stage1"
     ],
     "title": "Getting Started",
-    "category": "lesson"
-  },
-  {
-    "file": "_posts/2015-2-2-Bye.md",
-    "gitFile": "_posts/2015-2-2-Bye.md",
-    "tags": [
-      "stage0"
-    ],
-    "title": "Bye",
     "category": "lesson"
   },
   {
@@ -69,9 +56,22 @@
     "category": ""
   },
   {
-    "file": "_posts/2015-01-09-Hello.md",
-    "gitFile": "_posts/2015-01-09-Hello.md",
-    "tags": []
+    "file": "_posts/2015-1-30-My New Document.md",
+    "gitFile": "_posts/2015-1-30-My New Document.md",
+    "tags": [
+      "stage0"
+    ],
+    "title": "My New Document",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-2-2-Bye.md",
+    "gitFile": "_posts/2015-2-2-Bye.md",
+    "tags": [
+      "stage0"
+    ],
+    "title": "Bye",
+    "category": "lesson"
   },
   {
     "file": "_posts/2015-2-2-Mobile phone test.md",
@@ -83,21 +83,21 @@
     "category": "lesson"
   },
   {
-    "file": "_posts/2015-2-2-Test .md",
-    "gitFile": "_posts/2015-2-2-Test .md",
-    "tags": [
-      "stage0"
-    ],
-    "title": "Test ",
-    "category": "lesson"
-  },
-  {
     "file": "_posts/2015-2-3-Hi.md",
     "gitFile": "_posts/2015-2-3-Hi.md",
     "tags": [
       "Stage0"
     ],
     "title": "Hi",
+    "category": "reading"
+  },
+  {
+    "file": "_posts/2015-2-2-Test .md",
+    "gitFile": "_posts/2015-2-2-Test .md",
+    "tags": [
+      "stage0"
+    ],
+    "title": "Test ",
     "category": "lesson"
   }
 ]
