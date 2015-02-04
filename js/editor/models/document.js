@@ -28,7 +28,8 @@ define([
       name: "New",
       category: "lesson",
       file: '_posts/' + currentTime() + "-New.md",
-      created: currentTime()
+      created: currentTime(),
+      format: ""
     },
     initialize: function(options) {
       this.listenTo(this, "change:name", function(event){

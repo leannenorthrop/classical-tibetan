@@ -1,22 +1,47 @@
 define(["jquery",
         "backbone",
         "marionette",
-        "editor/models/document"],
-function($, Backbone, Marionette, DocumentModel) {
-  var PreviewView = Backbone.Marionette.ItemView.extend({
-    model: new DocumentModel(),
-    template: false,
-    id: "preview",
+        "editor/views/previewToolbar",
+        "editor/models/document",
+        "text!templates/preview_layout.html",
+        "editor/behaviours/editorToolbar"],
+function($, Backbone, Marionette, ToolbarView, DocumentModel, Template, Behaviours) {
+  var template = Template;
+  var PreviewView = Backbone.Marionette.LayoutView.extend({
+    initialize: function(options) {
+      if (!this.model) {
+        this.model = new DocumentModel();
+      }
+      this.app = options.app;
+    },
+    getTemplate: function(){
+      return template;
+    },
+    regions: {
+      toolbar: "#preview-toolbar",
+      preview: "#preview-area"
+    },
+    onShow: function() {
+      this.getRegion('toolbar').show(new ToolbarView({parent: this}));
+    },
+    format: function(name) {
+      this.model.set("format", name);
+    },
     modelEvents: {
       "change:text": function() {
         var text = this.model.get("text");
-        this.$el.html(text);
-        this.$el.find('pre code').each(function(i, block) {
+        $('#preview-area').html(text);
+        $('#preview-area').find('pre code').each(function(i, block) {
             hljs.highlightBlock(block);
         });
       },
+      "change:format": function() {
+        this.getRegion('toolbar').currentView.updateFormat(this.model.get("format"));
+      }
     }
   });
+
+  _.extend( PreviewView.prototype, Behaviours);
 
   return PreviewView;
 });

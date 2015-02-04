@@ -109,7 +109,7 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
         },
         "click @ui.saveBtn": function() {
           var file = "";
-          this.fire("Close", {file: file, save: true});
+          this.fire("Close", {file: file, save: true, preview: false});
         },
         "click @ui.deleteBtn": function() {
           this.fire("Delete", {});
@@ -135,8 +135,6 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
         "saveBtn": ".save",
         "deleteBtn": ".delete",
         "configBtn": ".config",
-        "descriptionBtn": ".description",
-        "tagsBtn": ".tags",
         "screenBtn": ".screen",
       }
   });

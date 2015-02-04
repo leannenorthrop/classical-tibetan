@@ -1,9 +1,9 @@
  ☐ Build
  ☐ Tests
  ☐ Tidy up marionette view-model binding
- ☐ Editor resizing
+ ✔ Editor resizing @done (15-02-03 18:42)
  ✔ Mode selector @done (15-01-27 14:44)
- ☐ Save to github
+ ✔ Save to github @done (15-02-03 18:42)
  ✔ Wylie modes @done (15-01-28 17:55)
  ☐ Restore bootstrap theme
  ☐ Wylie theme
@@ -20,7 +20,7 @@
  ☐ help pages
  ☐ zen mode
  ✔ fullscreen toggle icon @done (15-01-27 12:25)
- ☐ use ace documents and session
+ ✔ use ace documents and session @done (15-02-03 18:42)
  ✔ code highlighting @done (15-01-25 22:49)
  ☐ file open should use editor state and mode
 Save to
