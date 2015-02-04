@@ -26,6 +26,11 @@
     "tags": []
   },
   {
+    "file": "_posts/2015-01-09-Hello.md",
+    "gitFile": "_posts/2015-01-09-Hello.md",
+    "tags": []
+  },
+  {
     "file": "/lessons/stage1/dd.html",
     "gitFile": "_posts/2015-01-12.A.md",
     "tags": [
@@ -33,11 +38,6 @@
     ],
     "title": "Getting Started",
     "category": "lesson"
-  },
-  {
-    "file": "_posts/2015-01-09-Hello.md",
-    "gitFile": "_posts/2015-01-09-Hello.md",
-    "tags": []
   },
   {
     "file": "_posts/2015-1-30-Leanne.md",
@@ -49,13 +49,6 @@
     "category": "lesson"
   },
   {
-    "file": "_posts/2015-1-30-New.md",
-    "gitFile": "_posts/2015-1-30-New.md",
-    "tags": [],
-    "title": "New",
-    "category": ""
-  },
-  {
     "file": "_posts/2015-1-30-My New Document.md",
     "gitFile": "_posts/2015-1-30-My New Document.md",
     "tags": [
@@ -65,13 +58,11 @@
     "category": "lesson"
   },
   {
-    "file": "_posts/2015-2-3-Hi.md",
-    "gitFile": "_posts/2015-2-3-Hi.md",
-    "tags": [
-      "Stage0"
-    ],
-    "title": "Hi",
-    "category": "reading"
+    "file": "_posts/2015-1-30-New.md",
+    "gitFile": "_posts/2015-1-30-New.md",
+    "tags": [],
+    "title": "New",
+    "category": ""
   },
   {
     "file": "_posts/2015-2-2-Test .md",
@@ -92,28 +83,30 @@
     "category": "lesson"
   },
   {
+    "file": "_posts/2015-2-3-Hi.md",
+    "gitFile": "_posts/2015-2-3-Hi.md",
+    "tags": [
+      "Stage0"
+    ],
+    "title": "Hi",
+    "category": "reading"
+  },
+  {
+    "file": "_posts/2015-2-2-Mobile phone test.md",
+    "gitFile": "_posts/2015-2-2-Mobile phone test.md",
+    "tags": [
+      "Stage0"
+    ],
+    "title": "Mobile phone test",
+    "category": "lesson"
+  },
+  {
     "file": "_posts/2015-2-3-Wylie .md",
     "gitFile": "_posts/2015-2-3-Wylie .md",
     "tags": [
       "stage0"
     ],
     "title": "Wylie ",
-    "category": "lesson"
-  },
-  {
-    "file": "_posts/2015-2-4-New.md",
-    "gitFile": "_posts/2015-2-4-New.md",
-    "tags": [],
-    "title": "New",
-    "category": "lesson"
-  },
-  {
-    "file": "_posts/2015-2-4-ABC.md",
-    "gitFile": "_posts/2015-2-4-ABC.md",
-    "tags": [
-      "stage0"
-    ],
-    "title": "ABC",
     "category": "lesson"
   },
   {
@@ -126,12 +119,19 @@
     "category": "lesson"
   },
   {
-    "file": "_posts/2015-2-2-Mobile phone test.md",
-    "gitFile": "_posts/2015-2-2-Mobile phone test.md",
+    "file": "_posts/2015-2-4-ABC.md",
+    "gitFile": "_posts/2015-2-4-ABC.md",
     "tags": [
-      "Stage0"
+      "stage0"
     ],
-    "title": "Mobile phone test",
+    "title": "ABC",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-2-4-New.md",
+    "gitFile": "_posts/2015-2-4-New.md",
+    "tags": [],
+    "title": "New",
     "category": "lesson"
   }
 ]
