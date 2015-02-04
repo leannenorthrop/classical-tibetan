@@ -1,10 +1,8 @@
 [
   {
-    "file": "/help/extended-wylie.html",
-    "gitFile": "_posts/2015-01-01-wylie.md",
-    "tags": [],
-    "title": "Extended Wylie A Guide",
-    "category": "help"
+    "file": "_posts/2015-01-08-Testing.md",
+    "gitFile": "_posts/2015-01-08-Testing.md",
+    "tags": []
   },
   {
     "file": "/help/markdown.html",
@@ -14,9 +12,16 @@
     "category": "help"
   },
   {
-    "file": "_posts/2015-01-08-Testing.md",
-    "gitFile": "_posts/2015-01-08-Testing.md",
+    "file": "_posts/2015-01-09-Hello.md",
+    "gitFile": "_posts/2015-01-09-Hello.md",
     "tags": []
+  },
+  {
+    "file": "/help/extended-wylie.html",
+    "gitFile": "_posts/2015-01-01-wylie.md",
+    "tags": [],
+    "title": "Extended Wylie A Guide",
+    "category": "help"
   },
   {
     "file": "/help/getting-started.html",
@@ -26,13 +31,20 @@
     "category": "help"
   },
   {
-    "file": "_posts/2015-1-30-Leanne.md",
-    "gitFile": "_posts/2015-1-30-Leanne.md",
+    "file": "_posts/2015-2-2-Mobile phone test.md",
+    "gitFile": "_posts/2015-2-2-Mobile phone test.md",
     "tags": [
-      "stage0"
+      "Stage0"
     ],
-    "title": "Leanne",
+    "title": "Mobile phone test",
     "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-1-30-New.md",
+    "gitFile": "_posts/2015-1-30-New.md",
+    "tags": [],
+    "title": "New",
+    "category": ""
   },
   {
     "file": "_posts/2015-2-2-Bye.md",
@@ -41,6 +53,15 @@
       "stage0"
     ],
     "title": "Bye",
+    "category": "lesson"
+  },
+  {
+    "file": "/lessons/stage1/dd.html",
+    "gitFile": "_posts/2015-01-12.A.md",
+    "tags": [
+      "stage1"
+    ],
+    "title": "Getting Started",
     "category": "lesson"
   },
   {
@@ -53,12 +74,12 @@
     "category": "lesson"
   },
   {
-    "file": "_posts/2015-2-2-Mobile phone test.md",
-    "gitFile": "_posts/2015-2-2-Mobile phone test.md",
+    "file": "_posts/2015-1-30-Leanne.md",
+    "gitFile": "_posts/2015-1-30-Leanne.md",
     "tags": [
-      "Stage0"
+      "stage0"
     ],
-    "title": "Mobile phone test",
+    "title": "Leanne",
     "category": "lesson"
   },
   {
@@ -71,25 +92,13 @@
     "category": "lesson"
   },
   {
-    "file": "_posts/2015-1-30-New.md",
-    "gitFile": "_posts/2015-1-30-New.md",
-    "tags": [],
-    "title": "New",
-    "category": ""
-  },
-  {
-    "file": "/lessons/stage1/dd.html",
-    "gitFile": "_posts/2015-01-12.A.md",
+    "file": "_posts/2015-2-4-Wylie .md",
+    "gitFile": "_posts/2015-2-4-Wylie .md",
     "tags": [
-      "stage1"
+      "stage0"
     ],
-    "title": "Getting Started",
+    "title": "Wylie ",
     "category": "lesson"
-  },
-  {
-    "file": "_posts/2015-01-09-Hello.md",
-    "gitFile": "_posts/2015-01-09-Hello.md",
-    "tags": []
   },
   {
     "file": "_posts/2015-2-3-Hi.md",
