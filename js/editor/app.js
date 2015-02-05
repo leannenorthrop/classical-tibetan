@@ -3,31 +3,17 @@ define(["jquery",
         "marionette",
         "editor/views/layout",
         "editor/views/editor",
-        "editor/views/preview",
-        "editor/views/alert"],
+        "editor/views/preview"],
 
   function($, Backbone, Marionette, Layout,
-           EditorView, PreviewView, AlertView) {
-    var EditorApp = new Backbone.Marionette.Application({});
+           EditorView, PreviewView) {
+    var EditorApp = new Backbone.Marionette.Application({channelName: "editor"});
 
     // Behaviours
     EditorApp.behaviours = {};
     Marionette.Behaviors.behaviorsLookup = function() {
         return EditorApp.behaviours;
     }
-
-    // Utilities
-    EditorApp.alert = function(msg, type, heading) {
-      var c, strong;
-      switch(type) {
-        case "info": c = "alert-info"; strong = "Information"; break;
-        case "warning": c = "alert-warning"; strong = "Warning!"; break;
-        case "danger": c = "alert-danger"; strong = "Error!"; break;
-        case "success": default: c = "alert-success";strong = "Success!";break;
-      }
-      var alertView = new AlertView({c: c, message: msg, title: (heading?heading:strong)});
-      alertView.show();
-    };
 
     EditorApp.on("start", function(options){
       // Render the layout and get it on the screen, first
@@ -49,6 +35,8 @@ define(["jquery",
         Backbone.history.start();
       }
     });
+
+    require(['editor/commands'], function(Commands){});
 
     return EditorApp;
 });

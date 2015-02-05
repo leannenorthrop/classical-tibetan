@@ -24,6 +24,7 @@ function($, Backbone, Marionette, Template, Cookies, Tags) {
     },
     initialize: function(options) {
       this.doc = this.model.get("currentDocument");
+      this.onBeforeDestroy = options.onSave;
     },
     getTemplate: function(){
       return _.template(template);
@@ -67,8 +68,8 @@ function($, Backbone, Marionette, Template, Cookies, Tags) {
       this.destroy();
     },
     onSave: function(e) {
+      var doc = this.doc;
       try {
-        var doc = this.doc;
         doc.set("name", this.ui.name.val());
         doc.set("description", this.ui.details.val());
         var selected = $("#documentCategory option:selected");
@@ -88,7 +89,7 @@ function($, Backbone, Marionette, Template, Cookies, Tags) {
       finally {
         if ($('#documentConfigModal form').checkValidity()) {
           $(this.selector).modal('hide');
-          this.trigger("saved");
+          this.onBeforeDestroy(doc);
           this.destroy();
         }
       }
