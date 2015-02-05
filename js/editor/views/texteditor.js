@@ -50,6 +50,7 @@ function($, Backbone, Marionette, TextEditorModel, ProcessText, EditorOptions) {
     setText: function(text){
       if (this.textEditor) {
         this.textEditor.setValue(text);
+        this.model.set("text", text);
       }
     },
     setOption: function(name, key) {
