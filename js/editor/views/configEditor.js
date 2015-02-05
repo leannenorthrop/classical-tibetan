@@ -17,6 +17,10 @@ function($, Backbone, Marionette, Template) {
     getTemplate: function(){
       return _.template(template);
     },
+    onRender: function() {
+      $("body").append(this.el);
+      $('#editorConfigModal').on('show.bs.modal', {view: this}, this.onDisplay);
+    },
     onDisplay: function(event) {
       try {
         var view = event.data.view;

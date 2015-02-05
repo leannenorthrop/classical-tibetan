@@ -20,20 +20,7 @@ function($, Bootstrap, Marionette, Markdown){
       this.doChange("lineNumbers", "showGutter");
     },
     doChange: function(name, key) {
-      if (this.view.textEditor) {
-        var editor = this.view.textEditor;
-        var model = this.view.model;
-        editor.setOption(name, model.get(key));
-        if (key === "theme")
-          this.loadCss('../css/theme/'+model.get(key)+'.css');
-      }
-    },
-   loadCss: function(url) {
-      var link = document.createElement("link");
-      link.type = "text/css";
-      link.rel = "stylesheet";
-      link.href = url;
-      document.getElementsByTagName("head")[0].appendChild(link);
+      Backbone.Wreqr.radio.commands.execute( 'editor', 'config', name, this.view.model.get(key));
     }
   });
 

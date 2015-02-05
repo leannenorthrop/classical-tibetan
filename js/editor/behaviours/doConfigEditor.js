@@ -5,8 +5,6 @@ define(['jquery', 'bootstrap', 'marionette', "editor/views/configEditor"],
       console.log("Do editor config");
       var modalView = new ConfigEditorView({model:this.view.model});
         modalView.render();
-        $("body").append(modalView.el);
-        $('#editorConfigModal').on('show.bs.modal', {view: modalView}, modalView.onDisplay);
         $('#editorConfigModal').modal({
           show: true,
           keyboard: true

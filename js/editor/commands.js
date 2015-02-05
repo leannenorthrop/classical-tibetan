@@ -4,7 +4,8 @@ define(['backbone.wreqr',
          "editor/commands/updatePreview",
          "editor/commands/process",
          "editor/commands/updateIndex",
-         "editor/commands/save"],
+         "editor/commands/save",
+         "editor/commands/configEditor"],
 function(Wreqr,
          App) {
   App.commands.setHandler("alert", function(msg, type, heading){
@@ -25,6 +26,10 @@ function(Wreqr,
 
   App.commands.setHandler("save", function(doc, options){
     App.save(doc, options);
+  });
+
+  App.commands.setHandler("config", function(name, value){
+    App.editor.setOption(name, value);
   });
 
 });

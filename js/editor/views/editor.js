@@ -50,6 +50,12 @@ function($, Backbone, Marionette, CodeMirrorView, ToolbarView,
       var mode = vals.join("-");
       this.model.set("state", state);
       this.model.set("mode", mode);
+    },
+    option: function(name, key) {
+      this.getRegion('editor').currentView.setOption(name, key);
+    },
+    text: function(text) {
+      this.getRegion('editor').currentView.setText(text);
     }
   });
 
