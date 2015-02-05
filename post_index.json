@@ -26,42 +26,12 @@
     "category": "help"
   },
   {
-    "file": "_posts/2015-01-08-Testing.md",
-    "gitFile": "_posts/2015-01-08-Testing.md",
-    "tags": []
-  },
-  {
-    "file": "_posts/2015-1-30-New.md",
-    "gitFile": "_posts/2015-1-30-New.md",
-    "tags": [],
-    "title": "New",
-    "category": ""
-  },
-  {
-    "file": "_posts/2015-1-30-My New Document.md",
-    "gitFile": "_posts/2015-1-30-My New Document.md",
-    "tags": [
-      "stage0"
-    ],
-    "title": "My New Document",
-    "category": "lesson"
-  },
-  {
     "file": "/lessons/stage1/dd.html",
     "gitFile": "_posts/2015-01-12.A.md",
     "tags": [
       "stage1"
     ],
     "title": "Getting Started",
-    "category": "lesson"
-  },
-  {
-    "file": "_posts/2015-2-3-Wylie .md",
-    "gitFile": "_posts/2015-2-3-Wylie .md",
-    "tags": [
-      "stage0"
-    ],
-    "title": "Wylie ",
     "category": "lesson"
   },
   {
@@ -74,30 +44,42 @@
     "category": "lesson"
   },
   {
-    "file": "_posts/2015-2-2-Bye.md",
-    "gitFile": "_posts/2015-2-2-Bye.md",
+    "file": "_posts/2015-1-30-My New Document.md",
+    "gitFile": "_posts/2015-1-30-My New Document.md",
     "tags": [
       "stage0"
     ],
-    "title": "Bye",
+    "title": "My New Document",
     "category": "lesson"
   },
   {
-    "file": "_posts/2015-2-4-Wylie .md",
-    "gitFile": "_posts/2015-2-4-Wylie .md",
-    "tags": [
-      "stage0"
-    ],
-    "title": "Wylie ",
-    "category": "lesson"
+    "file": "_posts/2015-01-08-Testing.md",
+    "gitFile": "_posts/2015-01-08-Testing.md",
+    "tags": []
   },
   {
-    "file": "_posts/2015-2-2-Test .md",
-    "gitFile": "_posts/2015-2-2-Test .md",
+    "file": "_posts/2015-1-30-New.md",
+    "gitFile": "_posts/2015-1-30-New.md",
+    "tags": [],
+    "title": "New",
+    "category": ""
+  },
+  {
+    "file": "_posts/2015-2-3-Hi.md",
+    "gitFile": "_posts/2015-2-3-Hi.md",
     "tags": [
-      "stage0"
+      "Stage0"
     ],
-    "title": "Test ",
+    "title": "Hi",
+    "category": "reading"
+  },
+  {
+    "file": "_posts/2015-2-2-Mobile phone test.md",
+    "gitFile": "_posts/2015-2-2-Mobile phone test.md",
+    "tags": [
+      "Stage0"
+    ],
+    "title": "Mobile phone test",
     "category": "lesson"
   },
   {
@@ -110,35 +92,30 @@
     "category": "lesson"
   },
   {
-    "file": "_posts/2015-2-4-New.md",
-    "gitFile": "_posts/2015-2-4-New.md",
-    "tags": [],
-    "title": "New",
+    "file": "_posts/2015-2-2-Test .md",
+    "gitFile": "_posts/2015-2-2-Test .md",
+    "tags": [
+      "stage0"
+    ],
+    "title": "Test ",
     "category": "lesson"
   },
   {
-    "file": "_posts/2015-2-2-Mobile phone test.md",
-    "gitFile": "_posts/2015-2-2-Mobile phone test.md",
+    "file": "_posts/2015-2-3-Wylie .md",
+    "gitFile": "_posts/2015-2-3-Wylie .md",
     "tags": [
-      "Stage0"
+      "stage0"
     ],
-    "title": "Mobile phone test",
+    "title": "Wylie ",
     "category": "lesson"
   },
   {
-    "file": "_posts/2015-2-3-Hi.md",
-    "gitFile": "_posts/2015-2-3-Hi.md",
+    "file": "_posts/2015-2-4-Wylie .md",
+    "gitFile": "_posts/2015-2-4-Wylie .md",
     "tags": [
-      "Stage0"
+      "stage0"
     ],
-    "title": "Hi",
-    "category": "reading"
-  },
-  {
-    "file": "_posts/2015-2-4-Saved.md",
-    "gitFile": "_posts/2015-2-4-Saved.md",
-    "tags": [],
-    "title": "Saved",
+    "title": "Wylie ",
     "category": "lesson"
   },
   {
@@ -148,6 +125,38 @@
       "stage0"
     ],
     "title": "Hello",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-2-2-Bye.md",
+    "gitFile": "_posts/2015-2-2-Bye.md",
+    "tags": [
+      "stage0"
+    ],
+    "title": "Bye",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-2-5-Example of Wylie.md",
+    "gitFile": "_posts/2015-2-5-Example of Wylie.md",
+    "tags": [
+      "stage0"
+    ],
+    "title": "Example of Wylie",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-2-4-Saved.md",
+    "gitFile": "_posts/2015-2-4-Saved.md",
+    "tags": [],
+    "title": "Saved",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-2-4-New.md",
+    "gitFile": "_posts/2015-2-4-New.md",
+    "tags": [],
+    "title": "New",
     "category": "lesson"
   }
 ]
