@@ -22,8 +22,11 @@ function(App, WebShim) {
   });
   webshim.polyfill('filereader forms');
 
+  window.editorApp = App;
+
   $(function(){
-    window.editorApp = App;
-    App.start({});
+    var options = {};
+
+    App.start(options);
   });
 });

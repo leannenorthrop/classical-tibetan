@@ -29,8 +29,7 @@ define(["jquery",
       alertView.show();
     };
 
-    // Initalizer
-    EditorApp.addInitializer(function(options){
+    EditorApp.on("start", function(options){
       // Render the layout and get it on the screen, first
       var layout = new Layout();
       EditorApp.layout = layout;
@@ -46,10 +45,9 @@ define(["jquery",
       editor.mode("help-file-_posts/2015-01-01-markdown.md");
       preview.format("html");
 
-      // This kicks off the rest of the app, through the router
-      /*layoutRender.done(function(){
+      if (Backbone.history){
         Backbone.history.start();
-      });*/
+      }
     });
 
     return EditorApp;
