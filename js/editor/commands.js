@@ -7,7 +7,8 @@ define(['backbone.wreqr',
          "editor/commands/save",
          "editor/commands/configEditor",
          "editor/commands/clear",
-         "editor/commands/updateEditor"],
+         "editor/commands/updateEditor",
+         "editor/commands/export"],
 function(Wreqr,
          App) {
   App.commands.setHandler("alert", function(msg, type, heading){
@@ -40,6 +41,11 @@ function(Wreqr,
 
   App.commands.setHandler("update-editor", function(text){
     App.editor.update(text);
+  });
+
+  App.commands.setHandler("export-editor", function(text){
+    var doc = App.editor.model.get("currentDocument");
+    App.export(doc);
   });
 
 });

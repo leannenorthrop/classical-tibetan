@@ -70,7 +70,7 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
           showSubtext: true
         });
         try {
-          var isFileSaverSupported = !!new Blob;
+          var isFileSaverSupported = !!new FileReader();
           if (isFileSaverSupported) {
             $("button.export").addClass("disabled");
           }

@@ -1,18 +1,11 @@
-define(['jquery', 'bootstrap', 'marionette', 'editor/behaviours/openDocument'],
-  function(Jquery, Bootstrap, Marionette, OpenDocument){
+define(['jquery', 'bootstrap', 'marionette'],
+  function(Jquery, Bootstrap, Marionette){
   var ExportBehavior = Backbone.Marionette.Behavior.extend({
     onExport: function() {
       console.log("Do editor export");
-      var doc = this.view.model.get("currentDocument");
-      var name = doc.get("name");
-      if (name.indexOf("/") >= 0) {
-        name = name.substr(name.lastIndexOf("/")+1);
-      }
-      this.write(name, doc.get("text"));
+      Backbone.Wreqr.radio.commands.execute( 'editor', 'export-editor');
     }
   });
-
-  _.extend(ExportBehavior.prototype, OpenDocument);
 
   return ExportBehavior;
 });

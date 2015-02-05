@@ -23,13 +23,13 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect, Template) {
         mobile: true,
         showSubtext: true
       });
-      try {
+      /*try {
         var isFileSaverSupported = !!new Blob;
         if (isFileSaverSupported) {
           $("button.export").addClass("disabled");
         }
       } catch (e) {}
-      this.updateFormat(this.parentView.model.get("format"));
+      this.updateFormat(this.parentView.model.get("format"));*/
     },
     currentFormat: function() {
         var formatSelect = $("#formatSelector option:selected");
