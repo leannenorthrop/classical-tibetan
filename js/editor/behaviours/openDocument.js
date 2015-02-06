@@ -2,21 +2,17 @@ define(['jquery', 'bootstrap', 'marionette', "editor/models/document", "fileSave
   function(Jquery, Bootstrap, Marionette, DocumentModel, FileSaver){
   var OpenDocumentBehavior = Backbone.Marionette.Behavior.extend({});
 
-  OpenDocumentBehavior.read = function(file) {
+  OpenDocumentBehavior.read = function(file, cb) {
     var textType = /text.*/;
 
     if (file.type.match(textType)) {
       var reader = new FileReader();
-      var me = this;
       reader.onload = function(e) {
-        var txt = reader.result;
-        // should save current document but for now simply overwrite
-        me.options.doc.load(txt);
+        cb(reader.result, null);
       }
-
       reader.readAsText(file);
     } else {
-      fileDisplayArea.innerText = "File not supported!"
+      cb(null, "File not supported!");
     }
   };
 
@@ -27,11 +23,6 @@ define(['jquery', 'bootstrap', 'marionette', "editor/models/document", "fileSave
 
   OpenDocumentBehavior.open = function() {
     this.load().open();
-  };
-
-  OpenDocumentBehavior.import = function() {
-    this.load();
-    this.read(this.options.doc.get("file"));
   };
 
   OpenDocumentBehavior.load = function(options) {
