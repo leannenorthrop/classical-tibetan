@@ -1,6 +1,16 @@
-define(['editor/app','editor/behaviours/openDocument'],
-function(App, DocumentHandler) {
+define(['editor/app'],
+function(App) {
   App.read = function(file, onRead) {
-    DocumentHandler.read(file, onRead);
+    var textType = /text.*/;
+
+    if (file.type.match(textType)) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        onRead(reader.result, null);
+      }
+      reader.readAsText(file);
+    } else {
+      onRead(null, "File not supported!");
+    }
   };
 });

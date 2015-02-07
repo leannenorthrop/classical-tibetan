@@ -1,9 +1,7 @@
 define(['jquery',
         'bootstrap',
-        'marionette',
-        "editor/models/document",
-        "editor/behaviours/openDocument"],
-  function(Jquery, Bootstrap, Marionette, DocumentModel, OpenDocument){
+        'marionette'],
+  function(Jquery, Bootstrap, Marionette){
   var EditorModeChangeBehavior = Backbone.Marionette.Behavior.extend({
     __name__: 'EditorModeChangeBehaviour',
     toString: function() {
@@ -22,20 +20,13 @@ define(['jquery',
 
         if (editorState === "help") {
           var file = editorMode.substr(5);
-          model.set("currentDocument", new DocumentModel({name: file, file: file, category: "help"}));
-          this.options.model = model;
-          this.options.view = view;
-          this.options.doc = model.get("currentDocument");
-          this.open();
+          Backbone.Wreqr.radio.commands.execute( 'editor', 'open', file);
         } else {
-          model.set("currentDocument", new DocumentModel());
-          view.getRegion('editor').currentView.setText(model.get("currentDocument").get("text"));
+          Backbone.Wreqr.radio.commands.execute( 'editor', 'new');
         }
       }
     }
   });
-
-  _.extend( EditorModeChangeBehavior.prototype, OpenDocument);
 
   return EditorModeChangeBehavior;
 });

@@ -4,9 +4,8 @@ define(["jquery",
         "text!templates/open_document.html",
         "bootstrap",
         "bootstrap.select",
-        'editor/behaviours/openDocument',
         'editor/models/document'],
-function($, Backbone, Marionette, Template, Bootstrap, BootstrapSelect, OpenDocument, DocumentModel) {
+function($, Backbone, Marionette, Template, Bootstrap, BootstrapSelect, DocumentModel) {
   var template = Template;
   var OpenDocumentModalView = Backbone.Marionette.ItemView.extend({
     __name__: 'OpenDialogView',

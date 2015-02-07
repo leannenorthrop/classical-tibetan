@@ -1,5 +1,5 @@
 define(['jquery', 'bootstrap', 'marionette'],
-  function(Jquery, Bootstrap, Marionette, OpenDocument){
+  function(Jquery, Bootstrap, Marionette){
   var ImportBehavior = Backbone.Marionette.Behavior.extend({
     __name__: 'ImportBehaviour',
     toString: function() {
