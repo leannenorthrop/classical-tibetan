@@ -4,7 +4,7 @@ define(['jquery', 'bootstrap', 'marionette'], function(Jquery, Bootstrap, Marion
     modelEvents: {
       "change:text": "onTextChange"
     },
-    onTextChange: function() {
+    onTextChange: function(e) {
       Backbone.Wreqr.radio.commands.execute( 'editor', 'preview-doc');
     }
   });

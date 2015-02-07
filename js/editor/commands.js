@@ -9,7 +9,8 @@ define(['backbone.wreqr',
          "editor/commands/clear",
          "editor/commands/updateEditor",
          "editor/commands/export",
-         "editor/commands/import"],
+         "editor/commands/import",
+         "editor/commands/open"],
 function(Wreqr,
          App) {
   App.commands.setHandler("alert", function(msg, type, heading){
@@ -55,6 +56,10 @@ function(Wreqr,
         App.editor.update(text);
       }
     });
+  });
+
+  App.commands.setHandler("open", function(file){
+    App.editor.open(file);
   });
 
 });

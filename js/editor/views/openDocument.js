@@ -24,6 +24,11 @@ function($, Backbone, Marionette, Template, Bootstrap, BootstrapSelect, OpenDocu
     getTemplate: function(){
       return _.template(template)
     },
+    onRender: function() {
+      $("body").append(this.el);
+      $(this.elId).on('show.bs.modal', {}, this.onDisplay);
+      $(this.elId).modal({show: true,keyboard: true});
+    },
     onDisplay: function(event) {
       try {
         $("#documentSelector").selectpicker({
@@ -43,15 +48,7 @@ function($, Backbone, Marionette, Template, Bootstrap, BootstrapSelect, OpenDocu
       try {
         var selected = $("#documentSelector option:selected");
         var file = selected.val();
-        var doc = new DocumentModel({file: file});
-        this.options.model.set("currentDocument", doc);
-        this.options.doc = doc;
-        this.options.onError = function(err) {
-          if (window && window.editorApp) {
-            window.editorApp.alert("Unable to open file '" + file + "' from GitHub. Lost internet connection?<br/>(" + err + ")", "danger", "Error");
-          }
-        };
-        this.open();
+        Backbone.Wreqr.radio.commands.execute( 'editor', 'open', file);
       } catch(e) {
         console.log(e);
       }
@@ -61,8 +58,6 @@ function($, Backbone, Marionette, Template, Bootstrap, BootstrapSelect, OpenDocu
       }
     }
   });
-
-  _.extend( OpenDocumentModalView.prototype, OpenDocument);
 
   return OpenDocumentModalView;
 });

@@ -1,5 +1,5 @@
-define(['editor/app', "editor/views/alert"],
-function(App, AlertView) {
+define(['editor/app'],
+function(App) {
 
   App.editor.clear = function() {
     App.editor.text("");

@@ -7,11 +7,10 @@ define(["jquery",
         "editor/models/texteditor",
         "editor/models/document",
         "text!templates/editor_layout.html",
-        "editor/behaviours/editorToolbar",
-        "editor/behaviours/process"],
+        "editor/behaviours/editorToolbar"],
 function($, Backbone, Marionette, CodeMirrorView, ToolbarView,
          EditorModel, CodeMirrorModel, DocumentModel, Template,
-         Behaviours, Process) {
+         Behaviours) {
   var template = Template;
   var EditorView = Backbone.Marionette.LayoutView.extend({
     modelEvents: {
@@ -22,8 +21,10 @@ function($, Backbone, Marionette, CodeMirrorView, ToolbarView,
         });
       },
       "change:currentDocument": function() {
-        var options = {view: this};
-        this.triggerMethod("TextChange", options);
+        var doc = this.model.get("currentDocument");
+        this.listenTo(doc, "change:text", function() {
+          this.text(doc.get("text"));
+        });
       }
     },
     initialize: function(options) {
@@ -60,7 +61,6 @@ function($, Backbone, Marionette, CodeMirrorView, ToolbarView,
   });
 
   _.extend( EditorView.prototype, Behaviours);
-  _.extend( EditorView.prototype, Process);
 
   return EditorView;
 });
