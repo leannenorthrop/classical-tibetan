@@ -27,7 +27,12 @@ function($, Backbone, Marionette, CodeMirrorView, ToolbarView,
       "change:currentDocument": function() {
         var doc = this.model.get("currentDocument");
         this.listenTo(doc, "change:text", function() {
-          this.text(doc.get("text"));
+          var shownText = this.getRegion('editor').currentView.getText();
+          var currentText = doc.get("text");
+          if (shownText != currentText) {
+            this.text(currentText);
+          }
+          this.triggerMethod("TextChange");
         });
       }
     },

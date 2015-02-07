@@ -3,9 +3,8 @@ define(["jquery",
         "marionette",
         "editor/views/previewToolbar",
         "editor/models/document",
-        "text!templates/preview_layout.html",
-        "editor/behaviours/editorToolbar"],
-function($, Backbone, Marionette, ToolbarView, DocumentModel, Template, Behaviours) {
+        "text!templates/preview_layout.html"],
+function($, Backbone, Marionette, ToolbarView, DocumentModel, Template) {
   var template = Template;
   var PreviewView = Backbone.Marionette.LayoutView.extend({
     __name__: 'PreviewView',
@@ -45,7 +44,7 @@ function($, Backbone, Marionette, ToolbarView, DocumentModel, Template, Behaviou
     }
   });
 
-  _.extend( PreviewView.prototype, Behaviours);
+  //_.extend( PreviewView.prototype, Behaviours);
 
   return PreviewView;
 });

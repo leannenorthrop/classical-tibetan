@@ -2,9 +2,8 @@ define(["jquery",
         "backbone",
         "marionette",
         "editor/models/texteditor",
-        "editor/behaviours/process",
         "editor/behaviours/editorOptions"],
-function($, Backbone, Marionette, TextEditorModel, ProcessText, EditorOptions) {
+function($, Backbone, Marionette, TextEditorModel, EditorOptions) {
   var View = Backbone.Marionette.ItemView.extend({
     __name__: 'TextEditorView',
     toString: function() {
@@ -15,10 +14,6 @@ function($, Backbone, Marionette, TextEditorModel, ProcessText, EditorOptions) {
       return _.template('<textarea id="text" style="height: 900px;overflow: visible;width:100%"></textarea>')({});
     },
     behaviors: {
-      Preview: {
-        behaviorClass: ProcessText,
-        app: this.app
-      },
       EditorOptions: {
         behaviorClass: EditorOptions,
         app: this.app
@@ -50,6 +45,12 @@ function($, Backbone, Marionette, TextEditorModel, ProcessText, EditorOptions) {
 
         me.textEditor.getWrapperElement().setAttribute("style", "width:100%;height:100%");
       });
+    },
+    getText: function(text){
+      if (this.textEditor) {
+        return this.textEditor.getValue();
+      }
+      return "";
     },
     setText: function(text){
       if (this.textEditor) {
