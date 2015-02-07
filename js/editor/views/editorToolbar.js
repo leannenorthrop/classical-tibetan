@@ -16,6 +16,10 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
                        {value: "mode-plain-mixed",icon: "glyphicon-pencil",name: "Mixed Wylie/English/etc..",cmd: {name: "setEditorMode", options: {mode: "plain-mixed"}}}];
 
   var EditorToolbarView = Backbone.Marionette.ItemView.extend({
+    __name__: 'EditorToolbarView',
+    toString: function() {
+      return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
+    },
     getTemplate: function(){
       return _.template(template);
     },

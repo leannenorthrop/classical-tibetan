@@ -6,6 +6,10 @@ define(["jquery",
 function($, Backbone, Marionette, Template) {
   var template = Template;
   var Layout = Backbone.Marionette.LayoutView.extend({
+    __name__: 'ApplicationLayout',
+    toString: function() {
+      return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
+    },
     className: "container-fluid",
     id: "content",
     getTemplate: function(){

@@ -8,6 +8,10 @@ define(["jquery",
 function($, Backbone, Marionette, ToolbarView, DocumentModel, Template, Behaviours) {
   var template = Template;
   var PreviewView = Backbone.Marionette.LayoutView.extend({
+    __name__: 'PreviewView',
+    toString: function() {
+      return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
+    },
     initialize: function(options) {
       if (!this.model) {
         this.model = new DocumentModel();

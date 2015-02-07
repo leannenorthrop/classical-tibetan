@@ -9,6 +9,10 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect, Template) {
   var template = Template;
 
   var PreviewToolbarView = Backbone.Marionette.ItemView.extend({
+    __name__: 'PreviewToolbarView',
+    toString: function() {
+      return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
+    },
     getTemplate: function(){
       return _.template(template);
     },

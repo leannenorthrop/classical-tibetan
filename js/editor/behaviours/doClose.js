@@ -9,6 +9,10 @@ define(['jquery',
 function(Jquery, Bootstrap, Marionette, Cookies, DocumentModel, _, GitHub, ConfigDocumentView){
 
   var OnCloseBehavior = Backbone.Marionette.Behavior.extend({
+    __name__: 'OnCloseBehaviour',
+    toString: function() {
+      return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
+    },
     onClose: function(event) {
       console.log("Do editor close");
       if (event.save) {

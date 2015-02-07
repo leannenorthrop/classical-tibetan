@@ -7,6 +7,10 @@ define(["jquery",
 function($, Backbone, Marionette, Template, Cookies, Tags) {
   var template = Template;
   var ConfigDocumentModalView = Backbone.Marionette.ItemView.extend({
+    __name__: 'ConfigDocumentView',
+    toString: function() {
+      return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
+    },
     ui: {
       cancelBtn: '#documentConfigModal button.btn-default',
       saveBtn: '#documentConfigModal button.btn-primary',

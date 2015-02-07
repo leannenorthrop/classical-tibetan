@@ -1,5 +1,9 @@
 define(['jquery', 'bootstrap', 'marionette'], function($, Bootstrap, Marionette){
   var OnToggleColumnSizeBehavior = Backbone.Marionette.Behavior.extend({
+    __name__: 'ToggleColumnSizeBehaviour',
+    toString: function() {
+      return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
+    },
     onToggleColumnSize: function(event) {
       console.log("Do editor toggle column size");
       var col = event.col === "leftColumn" ? "left-col" : "right-col";

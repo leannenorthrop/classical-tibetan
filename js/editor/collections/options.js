@@ -4,7 +4,11 @@ define([
 ], function(Backbone, OptionModel){
 
   var Options = Backbone.Collection.extend({
-    model: OptionModel
+    model: OptionModel,
+    __name__: 'Options',
+    toString: function() {
+      return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
+    }
   });
 
   return Options;

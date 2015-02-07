@@ -17,6 +17,10 @@ function($, Bootstrap, Marionette, OpenDocumentView, DocumentModel, HelpFiles){
   };
 
   var OnOpenBehavior = Backbone.Marionette.Behavior.extend({
+    __name__: 'OpenBehaviour',
+    toString: function() {
+      return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
+    },
     onOpen: function(event) {
       console.log("Do editor open");
 

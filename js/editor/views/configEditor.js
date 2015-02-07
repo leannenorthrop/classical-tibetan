@@ -6,6 +6,10 @@ define(["jquery",
 function($, Backbone, Marionette, Template) {
   var template = Template;
   var ConfigEditorModalView = Backbone.Marionette.ItemView.extend({
+    __name__: 'ConfigEditorView',
+    toString: function() {
+      return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
+    },
     ui: {
       cancelBtn: '#editorConfigModal button.btn-default',
       saveBtn: '#editorConfigModal button.btn-primary'

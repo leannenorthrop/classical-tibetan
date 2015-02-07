@@ -1,6 +1,11 @@
 define(['jquery', 'bootstrap', 'marionette', "editor/models/document", "fileSaver"],
   function(Jquery, Bootstrap, Marionette, DocumentModel, FileSaver){
-  var OpenDocumentBehavior = Backbone.Marionette.Behavior.extend({});
+  var OpenDocumentBehavior = Backbone.Marionette.Behavior.extend({
+    __name__: 'OpenDocumentBehaviour',
+    toString: function() {
+      return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
+    },
+  });
 
   OpenDocumentBehavior.read = function(file, cb) {
     var textType = /text.*/;

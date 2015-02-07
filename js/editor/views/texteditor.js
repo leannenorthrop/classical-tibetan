@@ -6,6 +6,10 @@ define(["jquery",
         "editor/behaviours/editorOptions"],
 function($, Backbone, Marionette, TextEditorModel, ProcessText, EditorOptions) {
   var View = Backbone.Marionette.ItemView.extend({
+    __name__: 'TextEditorView',
+    toString: function() {
+      return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
+    },
     id: 'editor',
     template : function(json_model) {
       return _.template('<textarea id="text" style="height: 900px;overflow: visible;width:100%"></textarea>')({});

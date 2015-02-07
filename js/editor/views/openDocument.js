@@ -9,6 +9,10 @@ define(["jquery",
 function($, Backbone, Marionette, Template, Bootstrap, BootstrapSelect, OpenDocument, DocumentModel) {
   var template = Template;
   var OpenDocumentModalView = Backbone.Marionette.ItemView.extend({
+    __name__: 'OpenDialogView',
+    toString: function() {
+      return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
+    },
     elId: "#openDocumentModal",
     ui: {
       cancelBtn: '#openDocumentModal button.btn-default',

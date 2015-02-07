@@ -2,7 +2,12 @@ define([
   'backbone'
 ], function(Backbone){
 
-  var HelpModel = Backbone.Model.extend({});
+  var PostModel = Backbone.Model.extend({
+    __name__: 'PostModel',
+    toString: function() {
+      return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
+    }
+  });
 
-  return HelpModel;
+  return PostModel;
 });

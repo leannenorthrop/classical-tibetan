@@ -1,6 +1,10 @@
 define(['jquery', 'bootstrap', 'marionette'],
 function($, Bootstrap, Marionette, Markdown){
   var ChangeThemeBehavior = Backbone.Marionette.Behavior.extend({
+    __name__: 'ChangeThemeBehaviour',
+    toString: function() {
+      return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
+    },
     modelEvents: {
       "change:theme": "onThemeChange",
       "change:wrap": "onWrapChange",

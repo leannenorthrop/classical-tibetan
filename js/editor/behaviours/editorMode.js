@@ -5,6 +5,10 @@ define(['jquery',
         "editor/behaviours/openDocument"],
   function(Jquery, Bootstrap, Marionette, DocumentModel, OpenDocument){
   var EditorModeChangeBehavior = Backbone.Marionette.Behavior.extend({
+    __name__: 'EditorModeChangeBehaviour',
+    toString: function() {
+      return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
+    },
     modelEvents: {
       "change:mode": "onModeChange"
     },

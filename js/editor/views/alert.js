@@ -7,6 +7,10 @@ define(["jquery",
 function($, Backbone, Marionette, Template, _) {
   var template = Template;
   var AlertView = Backbone.Marionette.ItemView.extend({
+    __name__: 'AlertView',
+    toString: function() {
+      return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
+    },
     ui: {
       closeBtn: 'button.close'
     },

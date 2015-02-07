@@ -21,6 +21,10 @@ define([
   }
 
   var DocumentModel = Backbone.Model.extend({
+    __name__: 'DocumentModel',
+    toString: function() {
+      return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
+    },
     defaults: {
       text: "",
       description: "",

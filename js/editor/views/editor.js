@@ -13,6 +13,10 @@ function($, Backbone, Marionette, CodeMirrorView, ToolbarView,
          Behaviours) {
   var template = Template;
   var EditorView = Backbone.Marionette.LayoutView.extend({
+    __name__: 'EditorView',
+    toString: function() {
+      return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
+    },
     modelEvents: {
       "change:editor": function() {
         var textModel = this.model.get("editor");
