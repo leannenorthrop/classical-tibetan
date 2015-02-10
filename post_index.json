@@ -7,18 +7,6 @@
     "category": "help"
   },
   {
-    "file": "/help/extended-wylie.html",
-    "gitFile": "_posts/2015-01-01-wylie.md",
-    "tags": [],
-    "title": "Extended Wylie A Guide",
-    "category": "help"
-  },
-  {
-    "file": "_posts/2015-01-09-Hello.md",
-    "gitFile": "_posts/2015-01-09-Hello.md",
-    "tags": []
-  },
-  {
     "file": "/help/markdown.html",
     "gitFile": "_posts/2015-01-01-markdown.md",
     "tags": [],
@@ -26,22 +14,11 @@
     "category": "help"
   },
   {
-    "file": "/lessons/stage1/dd.html",
-    "gitFile": "_posts/2015-01-12.A.md",
-    "tags": [
-      "stage1"
-    ],
-    "title": "Getting Started",
-    "category": "lesson"
-  },
-  {
-    "file": "_posts/2015-1-30-Leanne.md",
-    "gitFile": "_posts/2015-1-30-Leanne.md",
-    "tags": [
-      "stage0"
-    ],
-    "title": "Leanne",
-    "category": "lesson"
+    "file": "/help/extended-wylie.html",
+    "gitFile": "_posts/2015-01-01-wylie.md",
+    "tags": [],
+    "title": "Extended Wylie A Guide",
+    "category": "help"
   },
   {
     "file": "_posts/2015-1-30-My New Document.md",
@@ -65,66 +42,12 @@
     "category": ""
   },
   {
-    "file": "_posts/2015-2-3-Hi.md",
-    "gitFile": "_posts/2015-2-3-Hi.md",
+    "file": "/lessons/stage1/dd.html",
+    "gitFile": "_posts/2015-01-12.A.md",
     "tags": [
-      "Stage0"
+      "stage1"
     ],
-    "title": "Hi",
-    "category": "reading"
-  },
-  {
-    "file": "_posts/2015-2-2-Mobile phone test.md",
-    "gitFile": "_posts/2015-2-2-Mobile phone test.md",
-    "tags": [
-      "Stage0"
-    ],
-    "title": "Mobile phone test",
-    "category": "lesson"
-  },
-  {
-    "file": "_posts/2015-2-4-ABC.md",
-    "gitFile": "_posts/2015-2-4-ABC.md",
-    "tags": [
-      "stage0"
-    ],
-    "title": "ABC",
-    "category": "lesson"
-  },
-  {
-    "file": "_posts/2015-2-2-Test .md",
-    "gitFile": "_posts/2015-2-2-Test .md",
-    "tags": [
-      "stage0"
-    ],
-    "title": "Test ",
-    "category": "lesson"
-  },
-  {
-    "file": "_posts/2015-2-3-Wylie .md",
-    "gitFile": "_posts/2015-2-3-Wylie .md",
-    "tags": [
-      "stage0"
-    ],
-    "title": "Wylie ",
-    "category": "lesson"
-  },
-  {
-    "file": "_posts/2015-2-4-Wylie .md",
-    "gitFile": "_posts/2015-2-4-Wylie .md",
-    "tags": [
-      "stage0"
-    ],
-    "title": "Wylie ",
-    "category": "lesson"
-  },
-  {
-    "file": "_posts/2015-2-5-Hello.md",
-    "gitFile": "_posts/2015-2-5-Hello.md",
-    "tags": [
-      "stage0"
-    ],
-    "title": "Hello",
+    "title": "Getting Started",
     "category": "lesson"
   },
   {
@@ -137,12 +60,76 @@
     "category": "lesson"
   },
   {
-    "file": "_posts/2015-2-5-Example of Wylie.md",
-    "gitFile": "_posts/2015-2-5-Example of Wylie.md",
+    "file": "_posts/2015-01-09-Hello.md",
+    "gitFile": "_posts/2015-01-09-Hello.md",
+    "tags": []
+  },
+  {
+    "file": "_posts/2015-2-10-Leanne.md",
+    "gitFile": "_posts/2015-2-10-Leanne.md",
+    "tags": [],
+    "title": "Leanne",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-2-2-Mobile phone test.md",
+    "gitFile": "_posts/2015-2-2-Mobile phone test.md",
+    "tags": [
+      "Stage0"
+    ],
+    "title": "Mobile phone test",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-2-10-Test.md",
+    "gitFile": "_posts/2015-2-10-Test.md",
+    "tags": [],
+    "title": "Test",
+    "category": "help"
+  },
+  {
+    "file": "_posts/2015-2-2-Test .md",
+    "gitFile": "_posts/2015-2-2-Test .md",
     "tags": [
       "stage0"
     ],
-    "title": "Example of Wylie",
+    "title": "Test ",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-1-30-Leanne.md",
+    "gitFile": "_posts/2015-1-30-Leanne.md",
+    "tags": [
+      "stage0"
+    ],
+    "title": "Leanne",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-2-3-Hi.md",
+    "gitFile": "_posts/2015-2-3-Hi.md",
+    "tags": [
+      "Stage0"
+    ],
+    "title": "Hi",
+    "category": "reading"
+  },
+  {
+    "file": "_posts/2015-2-3-Wylie .md",
+    "gitFile": "_posts/2015-2-3-Wylie .md",
+    "tags": [
+      "stage0"
+    ],
+    "title": "Wylie ",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-2-4-ABC.md",
+    "gitFile": "_posts/2015-2-4-ABC.md",
+    "tags": [
+      "stage0"
+    ],
+    "title": "ABC",
     "category": "lesson"
   },
   {
@@ -153,10 +140,37 @@
     "category": "lesson"
   },
   {
+    "file": "_posts/2015-2-4-Wylie .md",
+    "gitFile": "_posts/2015-2-4-Wylie .md",
+    "tags": [
+      "stage0"
+    ],
+    "title": "Wylie ",
+    "category": "lesson"
+  },
+  {
     "file": "_posts/2015-2-4-New.md",
     "gitFile": "_posts/2015-2-4-New.md",
     "tags": [],
     "title": "New",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-2-5-Example of Wylie.md",
+    "gitFile": "_posts/2015-2-5-Example of Wylie.md",
+    "tags": [
+      "stage0"
+    ],
+    "title": "Example of Wylie",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-2-5-Hello.md",
+    "gitFile": "_posts/2015-2-5-Hello.md",
+    "tags": [
+      "stage0"
+    ],
+    "title": "Hello",
     "category": "lesson"
   }
 ]
