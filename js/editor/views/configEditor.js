@@ -2,7 +2,6 @@ define(["jquery",
         "backbone",
         "marionette",
         "text!templates/editor_config_modal.html"],
-
 function($, Backbone, Marionette, Template) {
   var template = Template;
   var ConfigEditorModalView = Backbone.Marionette.ItemView.extend({
@@ -24,6 +23,10 @@ function($, Backbone, Marionette, Template) {
     onRender: function() {
       $("body").append(this.el);
       $('#editorConfigModal').on('show.bs.modal', {view: this}, this.onDisplay);
+      $('#editorConfigModal').modal({
+        show: true,
+        keyboard: true
+      });
     },
     onDisplay: function(event) {
       try {

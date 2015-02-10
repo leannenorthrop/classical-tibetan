@@ -1,50 +1,60 @@
 define(["jquery",
         "backbone",
         "marionette",
-        "editor/views/previewToolbar",
-        "editor/models/document",
         "text!templates/preview_layout.html"],
-function($, Backbone, Marionette, ToolbarView, DocumentModel, Template) {
+function($, Backbone, Marionette, Template) {
   var template = Template;
   var PreviewView = Backbone.Marionette.LayoutView.extend({
     __name__: 'PreviewView',
     toString: function() {
       return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
     },
-    initialize: function(options) {
-      if (!this.model) {
-        this.model = new DocumentModel();
-      }
-      this.app = options.app;
-    },
-    getTemplate: function(){
-      return template;
-    },
     regions: {
       toolbar: "#preview-toolbar",
       preview: "#preview-area"
     },
-    onShow: function() {
-      this.getRegion('toolbar').show(new ToolbarView({parent: this}));
-    },
-    format: function(name) {
-      this.model.set("format", name);
-    },
+
+    // Events
     modelEvents: {
-      "change:text": function() {
-        var text = this.model.get("text");
-        $('#preview-area').html(text);
-        $('#preview-area').find('pre code').each(function(i, block) {
-            hljs.highlightBlock(block);
-        });
-      },
-      "change:format": function() {
-        this.getRegion('toolbar').currentView.updateFormat(this.model.get("format"));
+      "change:text": "onTextChange",
+      "change:format": "onFormatChange",
+    },
+    onFormatChange: function() {
+      this.getRegion('toolbar').currentView.updateFormat(this.model.get("format"));
+    },
+    onTextChange: function() {
+      var text = this.model.get("text");
+      $('#preview-area').html(text);
+      $('#preview-area').find('pre code').each(function(i, block) {
+          hljs.highlightBlock(block);
+      });
+    },
+    onShow: function() {
+      var view = this;
+      require(["editor/views/previewToolbar"], function(ToolbarView){
+        view.getRegion('toolbar').show(new ToolbarView({parent: view}));
+      });
+    },
+
+    format: function(name) {
+      if (this.model) {
+        this.model.set("format", name);
       }
+    },
+    initialize: function(options) {
+      if (!this.model) {
+        var view = this;
+        require(["editor/models/document"], function(DocumentModel){
+          view.model = new DocumentModel();
+          view.listenTo(view.model, "change:text", view.onTextChange);
+          view.listenTo(view.model, "change:format", view.onFormatChange);
+        });
+      }
+    },
+    getTemplate: function(){
+      return template;
     }
   });
-
-  //_.extend( PreviewView.prototype, Behaviours);
 
   return PreviewView;
 });

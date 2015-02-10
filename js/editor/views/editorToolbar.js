@@ -4,12 +4,9 @@ define(["jquery",
         "bootstrap",
         "bootstrap.select",
         "text!templates/editor_toolbar.html",
-        "text!templates/editor_mode_options.html",
-        "editor/collections/options",
-        "editor/collections/help"],
+        "text!templates/editor_mode_options.html"],
 
-function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
-         Template, ModesTemplate, Options, HelpFiles) {
+function($, Backbone, Marionette, Bootstrap, BootstrapSelect, Template, ModesTemplate) {
   var template = Template;
   var modeTemplate = ModesTemplate;
   var selectOptions = [{value: "mode-plain-wylie",icon: "glyphicon-pencil",name: "Wylie",cmd: {name: "setEditorMode", options: {mode: "plain-wylie"}}},
@@ -30,33 +27,39 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
         this.parentView = options.parent;
         this.editorModel = options.editorModel;
 
-        // modes
-        this.collection = new Options(selectOptions);
-        this.listenTo(this.collection, "add", this.renderSelect);
-        this.listenTo(this.collection, "change", this.renderSelect);
-        this.listenTo(this.editorModel, "change:mode", this.updateMode);
-        this.fetchHelpModes();
+        var view = this;
+        require(["editor/collections/options"], function(Options) {
+          // modes
+          var options = new Options(selectOptions);
+          view.collection = options;
+          view.listenTo(options, "add", view.renderSelect);
+          view.listenTo(options, "change", view.renderSelect);
+          view.listenTo(view.editorModel, "change:mode", view.updateMode);
+          view.fetchHelpModes();
+        });
       },
       fetchHelpModes: function() {
-        if (!this.help) {
-          this.help = new HelpFiles();
-        }
         var me = this;
-        this.help.fetch({
-          success: function(collection, response, options) {
-            collection.forEach(function(model,index){
-              if (model.get("category") && model.get("category").indexOf("help") >= 0) {
-                me.collection.add({value: "help-file-"+model.get("gitFile"),
-                                  name: model.get("title"),
-                                  icon: "glyphicon-info-sign",
-                                  file: model.get("name")});
-              }
-            });
-          },
-          error: function(collection, response, options) {
-            console.log(response);
-            me.cmds.execute("showAlert", {msg: "Unable to find help files. Lost internet connection?", title: "alert"})
+        require(["editor/collections/help"], function(HelpFiles) {
+          if (!me.help) {
+            me.help = new HelpFiles();
           }
+          me.help.fetch({
+            success: function(collection, response, options) {
+              collection.forEach(function(model,index){
+                if (model.get("category") && model.get("category").indexOf("help") >= 0) {
+                  me.collection.add({value: "help-file-"+model.get("gitFile"),
+                                    name: model.get("title"),
+                                    icon: "glyphicon-info-sign",
+                                    file: model.get("name")});
+                }
+              });
+            },
+            error: function(collection, response, options) {
+              console.log(response);
+              me.cmds.execute("showAlert", {msg: "Unable to find help files. Lost internet connection?", title: "alert"})
+            }
+          });
         });
       },
       renderSelect: function() {
@@ -89,10 +92,6 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
       updateMode: function() {
         $('#modeSelector').selectpicker('val', this.editorModel.get("state") + "-" + this.editorModel.get("mode"));
       },
-      fire: function(name, options) {
-        console.log("Editor toolbar trigger " + name + " " + options);
-        this.parentView.triggerMethod(name, options);
-      },
       events: {
         "change @ui.modeSelector": function(){
           var modeSelect = $("#modeSelector option:selected");
@@ -102,33 +101,33 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
           this.editorModel.set("mode", modes.slice(1).join("-"));
         },
         "change @ui.importBtn": function() {
-          this.fire("Import", {file: $(".import input[type=file]")[0].files[0]});
+          Backbone.Wreqr.radio.commands.execute( 'editor', 'import-editor', $(".import input[type=file]")[0].files[0]);
         },
         "click @ui.exportBtn": function() {
-          this.fire("Export", {});
+          Backbone.Wreqr.radio.commands.execute( 'editor', 'export-editor');
         },
         "click @ui.openBtn": function() {
-          var file = "";
-          this.fire("Open", {file: file});
+          Backbone.Wreqr.radio.commands.execute( 'editor', 'open');
         },
         "click @ui.saveBtn": function() {
-          var file = "";
-          this.fire("Close", {file: file, save: true, preview: false});
+          Backbone.Wreqr.radio.commands.execute( 'editor', 'config-editor-doc');
         },
         "click @ui.deleteBtn": function() {
-          this.fire("Delete", {});
+          Backbone.Wreqr.radio.commands.execute( 'editor', 'clear');
         },
         "click @ui.configBtn": function() {
-          this.fire("Config", {});
-        },
-        "click @ui.descriptionBtn": function() {
-          this.fire("SetDescription", {});
-        },
-        "click @ui.tagsBtn": function() {
-          this.fire("SetTags", {});
+          var view = this;
+          require(['editor/views/configEditor'], function(ConfigEditorView) {
+            var modalView = new ConfigEditorView({model:view.editorModel});
+            modalView.render();
+          });
         },
         "click @ui.screenBtn": function() {
-          this.fire("ToggleColumnSize", {col: "leftColumn"});
+          if ($("#right-col").width() === 0) {
+            Backbone.Wreqr.radio.commands.execute( 'editor', 'editor-normalsize');
+          } else {
+            Backbone.Wreqr.radio.commands.execute( 'editor', 'editor-fullsize');
+          }
         },
       },
       ui: {
@@ -140,6 +139,9 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect,
         "deleteBtn": ".delete",
         "configBtn": ".config",
         "screenBtn": ".screen",
+      },
+      modelEvents: {
+        "change:mode": function() {Backbone.Wreqr.radio.commands.execute( 'editor', 'update-mode');}
       }
   });
 

@@ -1,11 +1,9 @@
 define([
   'underscore',
   'backbone',
-  'jquery',
-  'github',
   'js-yaml',
   "markdown"
-], function(_, Backbone, $, GitHub, JsYaml, Markdown){
+], function(_, Backbone, JsYaml, Markdown){
 
   var token = "2b0eb792116e96b059744ffdb21ab03a125625d3";
   var uname = "leannenorthrop";
@@ -98,48 +96,52 @@ define([
     },
     open: function(options) {
       var me = this;
-      var github = new Github({
-        token: token,
-        auth: "oauth"
-      });
-      var repo = github.getRepo(uname, repositoryName);
-      repo.read(branch, me.get("file"), function(err, data) {
-        if (!err) {
-          if (!options || options && options.parse)
-            me.load(data);
-          else
-            me.set("text", data);
-          if (options && options.onSuccess)
-            options.onSuccess();
-        } else {
-          console.log(err);
-          if (options && options.onError)
-            options.onError();
-        }
+      require(['github'], function() {
+        var github = new Github({
+          token: token,
+          auth: "oauth"
+        });
+        var repo = github.getRepo(uname, repositoryName);
+        repo.read(branch, me.get("file"), function(err, data) {
+          if (!err) {
+            if (!options || options && options.parse)
+              me.load(data);
+            else
+              me.set("text", data);
+            if (options && options.onSuccess)
+              options.onSuccess();
+          } else {
+            console.log(err);
+            if (options && options.onError)
+              options.onError();
+          }
+        });
       });
     },
     save: function(options) {
       if (options) {
         var me = this;
-        var github = new Github({
-          username: options.username,
-          password: options.password,
-          auth: "basic"
-        });
-        var repo = github.getRepo(options.uname, options.repositoryName);
-        if (repo) {
-          repo.write(branch, me.get("file"), me.toFormat(options.format), options.msg, function(err) {
-            if (!err) {
-              if (options && options.onSuccess)
-                options.onSuccess();
-            } else {
-              if (options && options.onError)
-                options.onError(err);
-              else
-                console.log(err);
-            }
+        require(['github'], function() {
+          var github = new Github({
+            username: options.username,
+            password: options.password,
+            auth: "basic"
           });
-        }
+          var repo = github.getRepo(options.uname, options.repositoryName);
+          if (repo) {
+            repo.write(branch, me.get("file"), me.toFormat(options.format), options.msg, function(err) {
+              if (!err) {
+                if (options && options.onSuccess)
+                  options.onSuccess();
+              } else {
+                if (options && options.onError)
+                  options.onError(err);
+                else
+                  console.log(err);
+              }
+            });
+          }
+        });
       }
     },
     close: function() {}

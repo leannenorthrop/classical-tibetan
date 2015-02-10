@@ -1,10 +1,8 @@
 define(["jquery",
         "backbone",
         "marionette",
-        "text!templates/document_details_modal.html",
-        "cookies",
-        'bootstrap.tagsinput'],
-function($, Backbone, Marionette, Template, Cookies, Tags) {
+        "text!templates/document_details_modal.html"],
+function($, Backbone, Marionette, Template) {
   var template = Template;
   var ConfigDocumentModalView = Backbone.Marionette.ItemView.extend({
     __name__: 'ConfigDocumentView',
@@ -27,31 +25,34 @@ function($, Backbone, Marionette, Template, Cookies, Tags) {
       'hidden.bs.modal @ui.dialog': 'onHidden'
     },
     initialize: function(options) {
-      this.doc = this.model.get("currentDocument");
+      this.doc = this.model;
       this.onBeforeDestroy = options.onSave;
     },
     getTemplate: function(){
       return _.template(template);
     },
     onRender: function() {
-      var controls = [this.ui.name, this.ui.category, this.ui.gitHubUsername, this.ui.gitHubPassword];
-      for (var i = 0; i < controls.length; i++) {
-        controls[i].prop('required',true);
-      }
-      $("body").append(this.el);
-      this.$el.updatePolyfill();
-      $('#documentCategory').selectpicker({
-          style: 'btn-default',
-          size: 7,
-          mobile: true,
-          showSubtext: true
+      var me = this;
+      require(["cookies",'bootstrap.tagsinput'], function(){
+        var controls = [me.ui.name, me.ui.category, me.ui.gitHubUsername, me.ui.gitHubPassword];
+        for (var i = 0; i < controls.length; i++) {
+          controls[i].prop('required',true);
+        }
+        $("body").append(me.el);
+        me.$el.updatePolyfill();
+        $('#documentCategory').selectpicker({
+            style: 'btn-default',
+            size: 7,
+            mobile: true,
+            showSubtext: true
+          });
+        $('#documentTags').tagsinput({trimValue: true, tagClass: 'label label-primary'});
+        $(".collapse").on('shown.bs.collapse', me.onUncollapse);
+        $(".collapse").on('hidden.bs.collapse', me.onCollapse);
+        $('#documentConfigModal').modal({
+          show: true,
+          keyboard: true
         });
-      $('#documentTags').tagsinput({trimValue: true, tagClass: 'label label-primary'});
-      $(".collapse").on('shown.bs.collapse', this.onUncollapse);
-      $(".collapse").on('hidden.bs.collapse', this.onCollapse);
-      $('#documentConfigModal').modal({
-        show: true,
-        keyboard: true
       });
     },
     onDisplay: function(event) {

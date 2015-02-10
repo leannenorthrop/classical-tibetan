@@ -49,23 +49,23 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect, Template) {
         this.parentView.model.set("format", format);
       }
     },
-    fire: function(name, options) {
-      console.log("Preview toolbar trigger " + name + " " + options);
-      this.parentView.triggerMethod(name, options);
-    },
     events: {
       "change @ui.formatSelector": function(){
         var formatSelect = $("#formatSelector option:selected");
         this.parentView.model.set("format", formatSelect.val());
       },
       "change @ui.saveBtn": function() {
-        this.fire("Close", {preview: true, save: true});
+        //Backbone.Wreqr.radio.commands.execute( 'editor', 'config-editor-doc');
       },
       "click @ui.exportBtn": function() {
-        this.fire("Export", {});
+        Backbone.Wreqr.radio.commands.execute( 'editor', 'export-preview');
       },
       "click @ui.screenBtn": function() {
-        this.fire("ToggleColumnSize", {col: "rightColumn"});
+        if ($("#left-col").width() === 0) {
+          Backbone.Wreqr.radio.commands.execute( 'editor', 'preview-normalsize');
+        } else {
+          Backbone.Wreqr.radio.commands.execute( 'editor', 'preview-fullsize');
+        }
       },
     },
     ui: {

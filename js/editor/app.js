@@ -22,8 +22,8 @@ define(["jquery",
       var layoutRender = EditorApp.layout.render();
       $("body").append(EditorApp.layout.el);
 
-      var preview = new PreviewView({app: EditorApp});
-      var editor = new EditorView({app:EditorApp});
+      var preview = new PreviewView({});
+      var editor = new EditorView({});
       EditorApp.preview = preview;
       EditorApp.editor = editor;
       layout.getRegion('leftColumn').show(editor);

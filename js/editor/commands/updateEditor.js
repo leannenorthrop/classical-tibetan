@@ -1,5 +1,5 @@
 define(['editor/app'],
-function(App, AlertView) {
+function(App) {
 
   App.editor.update = function(text) {
     try {

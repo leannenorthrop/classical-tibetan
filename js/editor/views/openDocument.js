@@ -3,9 +3,8 @@ define(["jquery",
         "marionette",
         "text!templates/open_document.html",
         "bootstrap",
-        "bootstrap.select",
-        'editor/models/document'],
-function($, Backbone, Marionette, Template, Bootstrap, BootstrapSelect, DocumentModel) {
+        "bootstrap.select"],
+function($, Backbone, Marionette, Template, Bootstrap, BootstrapSelect) {
   var template = Template;
   var OpenDocumentModalView = Backbone.Marionette.ItemView.extend({
     __name__: 'OpenDialogView',
@@ -20,9 +19,6 @@ function($, Backbone, Marionette, Template, Bootstrap, BootstrapSelect, Document
     events: {
       'click @ui.cancelBtn': 'onCancel',
       'click @ui.saveBtn': 'onSave'
-    },
-    initialize: function(options) {
-      this.options = options.options;
     },
     getTemplate: function(){
       return _.template(template)
@@ -51,7 +47,7 @@ function($, Backbone, Marionette, Template, Bootstrap, BootstrapSelect, Document
       try {
         var selected = $("#documentSelector option:selected");
         var file = selected.val();
-        Backbone.Wreqr.radio.commands.execute( 'editor', 'open', file);
+        Backbone.Wreqr.radio.commands.execute( 'editor', 'open-file', file);
       } catch(e) {
         console.log(e);
       }

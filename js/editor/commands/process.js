@@ -1,5 +1,5 @@
 define(['editor/app'],
-function(App, AlertView) {
+function(App) {
 
   App.reqres.setHandler("convert", function(doc, srcFormat, dstFormat){
     var result = "";
@@ -25,7 +25,9 @@ function(App, AlertView) {
       var dstFormat = "html";
 
       var result = App.reqres.request("convert", doc, srcFormat, dstFormat);
-      App.preview.update(result);
+      require(["editor/commands/updatePreview"],function() {
+        App.preview.update(result);
+      });
     } catch (e) {
       console.log("Unable to update preview. Error:");
       console.log(e);

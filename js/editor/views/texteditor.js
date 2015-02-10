@@ -1,9 +1,7 @@
 define(["jquery",
         "backbone",
-        "marionette",
-        "editor/models/texteditor",
-        "editor/behaviours/editorOptions"],
-function($, Backbone, Marionette, TextEditorModel, EditorOptions) {
+        "marionette"],
+function($, Backbone, Marionette) {
   var View = Backbone.Marionette.ItemView.extend({
     __name__: 'TextEditorView',
     toString: function() {
@@ -12,15 +10,6 @@ function($, Backbone, Marionette, TextEditorModel, EditorOptions) {
     id: 'editor',
     template : function(json_model) {
       return _.template('<textarea id="text" style="height: 900px;overflow: visible;width:100%"></textarea>')({});
-    },
-    behaviors: {
-      EditorOptions: {
-        behaviorClass: EditorOptions,
-        app: this.app
-      }
-    },
-    initialize: function(options) {
-      this.app = options.app;
     },
     onShow: function() {
       var me = this;
@@ -59,7 +48,30 @@ function($, Backbone, Marionette, TextEditorModel, EditorOptions) {
       }
     },
     setOption: function(name, key) {
-      this.textEditor.setOption(name, key);
+      if (this.textEditor) {
+        this.textEditor.setOption(name, key);
+      }
+    },
+    modelEvents: {
+      "change:theme": "onThemeChange",
+      "change:wrap": "onWrapChange",
+      "change:mode": "onModeChange",
+      "change:showGutter" : "onGutterChange",
+    },
+    onThemeChange: function() {
+      this.config("theme", "theme");
+    },
+    onWrapChange: function() {
+      this.config("lineWrapping", "wrap");
+    },
+    onModeChange: function() {
+      this.config("mode", "mode");
+    },
+    onGutterChange: function() {
+      this.config("lineNumbers", "showGutter");
+    },
+    config: function(name, key) {
+      Backbone.Wreqr.radio.commands.execute( 'editor', 'config', name, this.model.get(key));
     }
   });
 
