@@ -45,6 +45,8 @@ define(["jquery",
             }});
 
           Backbone.history.start();
+          Backbone.Wreqr.radio.commands.execute( 'editor', 'navigate', "help", "2015-01-01-gettingstarted.md" );
+
         });
       }
     });

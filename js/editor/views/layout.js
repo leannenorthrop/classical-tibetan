@@ -10,7 +10,7 @@ function($, Backbone, Marionette, Template) {
     toString: function() {
       return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
     },
-    className: "container-fluid",
+    className: "editor-app",
     id: "content",
     getTemplate: function(){
       return template;

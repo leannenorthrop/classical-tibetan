@@ -2,10 +2,9 @@ define(["jquery",
         "backbone",
         "marionette",
         "bootstrap",
-        "bootstrap.select",
         "text!templates/preview_toolbar.html"],
 
-function($, Backbone, Marionette, Bootstrap, BootstrapSelect, Template) {
+function($, Backbone, Marionette, Bootstrap, Template) {
   var template = Template;
 
   var PreviewToolbarView = Backbone.Marionette.ItemView.extend({
@@ -20,42 +19,27 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect, Template) {
       this.parentView = options.parent;
     },
     onRender: function() {
-      var formatPicker = this.$el.find('.selectpicker');
-      formatPicker.selectpicker({
-        style: 'btn-default btn-sm',
-        size: 7,
-        mobile: true,
-        showSubtext: true
-      });
-      /*try {
-        var isFileSaverSupported = !!new Blob;
-        if (isFileSaverSupported) {
-          $("button.export").addClass("disabled");
-        }
-      } catch (e) {}
-      this.updateFormat(this.parentView.model.get("format"));*/
+      $('.dropdown-toggle').dropdown();
     },
     currentFormat: function() {
-        var formatSelect = $("#formatSelector option:selected");
-        var selectedFormat = formatSelect.val();
+        var selectedFormat = this.$el.find('#currentFormatLabel').attr("data-value");
         return selectedFormat;
     },
     updateFormat: function(format) {
-      var formatSelect = $("#formatSelector option:selected");
-      var selectedFormat = formatSelect.val();
-      if (selectedFormat != format) {
-        $('#formatSelector').selectpicker('val', format);
-        $('#formatSelector').selectpicker('render');
-        this.parentView.model.set("format", format);
-      }
+      try {
+        var selectedFormat = this.parentView.model.get("format");
+        var selectedText = this.$el.find('.dropdown-menu-item[data-value="'+selectedFormat+'"]').text().trim();
+        this.$el.find('#currentFormatLabel').html(selectedText).attr("data-value", selectedFormat);
+      } catch(e){console.log(e);}
     },
     events: {
-      "change @ui.formatSelector": function(){
-        var formatSelect = $("#formatSelector option:selected");
-        this.parentView.model.set("format", formatSelect.val());
+      "click .dropdown-menu-item": function(e){
+        var formatMenu = $(e.currentTarget);
+        var selectedFormat = formatMenu.attr("data-value");
+        this.parentView.model.set("format", selectedFormat);
         Backbone.Wreqr.radio.commands.execute( 'editor', 'preview-doc');
       },
-      "change @ui.saveBtn": function() {
+      "click @ui.saveBtn": function() {
         Backbone.Wreqr.radio.commands.execute( 'editor', 'save', this.model);
       },
       "click @ui.exportBtn": function() {
@@ -70,10 +54,10 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect, Template) {
       },
     },
     ui: {
-      "formatSelector": "#formatSelector",
-      "exportBtn": ".export",
-      "saveBtn": ".save",
-      "screenBtn": ".screen"
+      "formatSelector": "#format-menu",
+      "exportBtn": "#preview-export",
+      "saveBtn": "#preview-save",
+      "screenBtn": "#preview-resize"
     }
   });
 

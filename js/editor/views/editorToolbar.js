@@ -2,11 +2,10 @@ define(["jquery",
         "backbone",
         "marionette",
         "bootstrap",
-        "bootstrap.select",
         "text!templates/editor_toolbar.html",
         "text!templates/editor_mode_options.html"],
 
-function($, Backbone, Marionette, Bootstrap, BootstrapSelect, Template, ModesTemplate) {
+function($, Backbone, Marionette, Bootstrap, Template, ModesTemplate) {
   var template = Template;
   var modeTemplate = ModesTemplate;
   var selectOptions = [{value: "mode-plain-wylie",icon: "glyphicon-pencil",name: "Wylie",cmd: {name: "setEditorMode", options: {mode: "plain-wylie"}}},
@@ -64,40 +63,31 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect, Template, ModesTem
       },
       renderSelect: function() {
         var optionsHtml = this.getModeTemplate()({items:this.collection.toJSON()});
-        this.$el.find('#modeSelector').html(optionsHtml);
-        var mode = this.editorModel.get("state") + "-" + this.editorModel.get("mode");
-        this.$el.find('.selectpicker').val(mode);
-        this.$el.find('.selectpicker').selectpicker('render');
+        this.$el.find('#mode-menu ul').html(optionsHtml);
       },
       onRender: function() {
-        this.$el.find('.selectpicker').selectpicker({
-          style: 'btn-default btn-sm',
-          size: 7,
-          mobile: true,
-          showSubtext: true
-        });
-        try {
-          var isFileSaverSupported = !!new FileReader();
-          if (isFileSaverSupported) {
-            $("button.export").addClass("disabled");
-          }
-        } catch (e) {}
+        $('.dropdown-toggle').dropdown();
       },
       currentMode: function() {
-          var modeSelect = $("#modeSelector option:selected");
-          var selectedMode = modeSelect.val();
-          var modeModel = this.collection.find(function(model) { return model.get('value') === selectedMode; });;
+          var selectedMode = this.$el.find('#currentModeLabel').attr("data-value");
+          var modeModel = this.collection.find(function(model) { return model.get('value') === selectedMode; });
           return modeModel ? modeModel.toJSON() : modeModel;
       },
       updateMode: function() {
-        $('#modeSelector').selectpicker('val', this.editorModel.get("state") + "-" + this.editorModel.get("mode"));
+        try {
+          var selectedMode = this.editorModel.get("state") + "-" + this.editorModel.get("mode");
+          var modeModel = this.collection.find(function(model) { return model.get('value') === selectedMode; });
+          this.$el.find('#currentModeLabel').html(modeModel.get("name")).attr("data-value", selectedMode);
+        } catch(e){console.log(e);}
       },
       events: {
-        "change @ui.modeSelector": function(){
-          var modeSelect = $("#modeSelector option:selected");
-          var selectedMode = modeSelect.val();
+        "click .dropdown-menu-item": function(e){
+          var modeSelect = $(e.currentTarget);
+          var selectedMode = modeSelect.attr("data-value");
           var modes = selectedMode.split("-");
-          Backbone.Wreqr.radio.commands.execute( 'editor', 'navigate', modes[0] === "help" ? "help" : "open", modes.slice(2).join("-").replace("_posts/", ""));
+          var model = this.editorModel;
+          model.set("state", modes[0]);
+          model.set("mode", modes.splice(1).join("-"));
         },
         "change @ui.importBtn": function() {
           Backbone.Wreqr.radio.commands.execute( 'editor', 'import-editor', $(".import input[type=file]")[0].files[0]);
@@ -130,14 +120,14 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect, Template, ModesTem
         },
       },
       ui: {
-        "modeSelector": "#modeSelector",
-        "importBtn": "#importFile",
-        "exportBtn": ".export",
-        "openBtn": ".open",
-        "saveBtn": ".save",
-        "deleteBtn": ".delete",
-        "configBtn": ".config",
-        "screenBtn": ".screen",
+        "modeSelector": "#mode-menu",
+        "importBtn": "#editor-upload",
+        "exportBtn": "#editor-download",
+        "openBtn": "#editor-open",
+        "saveBtn": "#editor-save",
+        "deleteBtn": "#editor-reset",
+        "configBtn": "#editor-configure",
+        "screenBtn": "#editor-resize",
       },
       modelEvents: {
         "change:mode": function() {Backbone.Wreqr.radio.commands.execute( 'editor', 'update-mode');}

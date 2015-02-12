@@ -1,22 +1,15 @@
 define(["jquery",
         "backbone",
-        "marionette",
-        "text!templates/editor_layout.html"],
-function($, Backbone, Marionette, Template) {
-
-  var template = Template;
+        "marionette"],
+function($, Backbone, Marionette) {
 
   var EditorView = Backbone.Marionette.LayoutView.extend({
     __name__: 'EditorView',
     toString: function() {
       return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
     },
-
-    // Layout UI Regions
-    regions: {
-      toolbar: "#editor-toolbar",
-      editor: "#editor-area"
-    },
+    template: false,
+    id: 'editor-area',
 
     // Events
     onDocumentChange: function () {
@@ -42,14 +35,19 @@ function($, Backbone, Marionette, Template) {
       Backbone.Wreqr.radio.commands.execute( 'editor', 'update-mode');
     },
     onShow: function() {
-      var me = this;
-      require(["editor/models/texteditor", "editor/views/texteditor","editor/views/editorToolbar"],
-        function(CodeMirrorModel, CodeMirrorView, ToolbarView){
-          me.model.set("editor", new CodeMirrorModel());
-          me.getRegion('toolbar').show(new ToolbarView({editorModel: me.model, parent: me}));
-          me.getRegion('editor').show(new CodeMirrorView({model: me.model.get("editor")}));
+      var view = this;
+      require(["editor/models/texteditor", "editor/views/texteditor","editor/models/document", "editor/models/editor"],
+        function(CodeMirrorModel, CodeMirrorView){
+          view.addRegions({editor:{el: $("#editor-area")}});
+          view.model.set("editor", new CodeMirrorModel());
+          view.getRegion('editor').show(new CodeMirrorView({model: view.model.get("editor")}));
 
-          me.__editorView = me.getRegion('editor').currentView;
+          view.__editorView = view.getRegion('editor').currentView;
+      });
+      require(["editor/views/editorToolbar","editor/models/document", "editor/models/editor"],
+        function(ToolbarView){
+          view.addRegions({toolbar:{el: $("#editor-toolbar")}});
+          view.getRegion('toolbar').show(new ToolbarView({editorModel: view.model, parent: view}));
       });
     },
 
@@ -72,9 +70,6 @@ function($, Backbone, Marionette, Template) {
             view.onDocumentChange();
         });
       }
-    },
-    getTemplate: function(){
-      return template;
     },
     mode: function(name) {
       if (this.model) {

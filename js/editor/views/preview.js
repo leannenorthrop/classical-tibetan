@@ -1,19 +1,14 @@
 define(["jquery",
         "backbone",
-        "marionette",
-        "text!templates/preview_layout.html"],
-function($, Backbone, Marionette, Template) {
-  var template = Template;
+        "marionette"],
+function($, Backbone, Marionette) {
   var PreviewView = Backbone.Marionette.LayoutView.extend({
     __name__: 'PreviewView',
     toString: function() {
       return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
     },
-    regions: {
-      toolbar: "#preview-toolbar",
-      preview: "#preview-area"
-    },
-
+    template: false,
+    id: 'preview-area',
     // Events
     modelEvents: {
       "change:text": "onTextChange",
@@ -31,7 +26,9 @@ function($, Backbone, Marionette, Template) {
     },
     onShow: function() {
       var view = this;
+      view.addRegions({preview:{el: $("#preview-area")}});
       require(["editor/views/previewToolbar"], function(ToolbarView){
+        view.addRegions({toolbar:{el: $("#preview-toolbar")}});
         view.getRegion('toolbar').show(new ToolbarView({parent: view}));
       });
     },
@@ -50,9 +47,6 @@ function($, Backbone, Marionette, Template) {
           view.listenTo(view.model, "change:format", view.onFormatChange);
         });
       }
-    },
-    getTemplate: function(){
-      return template;
     }
   });
 

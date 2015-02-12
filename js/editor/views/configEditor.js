@@ -1,8 +1,10 @@
 define(["jquery",
         "backbone",
         "marionette",
+        "bootstrap",
+        "bootstrap.select",
         "text!templates/editor_config_modal.html"],
-function($, Backbone, Marionette, Template) {
+function($, Backbone, Marionette, BootStrap, BooostrapSelect, Template) {
   var template = Template;
   var ConfigEditorModalView = Backbone.Marionette.ItemView.extend({
     __name__: 'ConfigEditorView',
