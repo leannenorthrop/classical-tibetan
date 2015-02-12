@@ -12,8 +12,8 @@ function($, Backbone, Marionette, BootStrap, BooostrapSelect, Template) {
       return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
     },
     ui: {
-      cancelBtn: '#editorConfigModal button.btn-default',
-      saveBtn: '#editorConfigModal button.btn-primary'
+      cancelBtn: '#editorConfigModal button.btn-cancel',
+      saveBtn: '#editorConfigModal button.btn-save'
     },
     events: {
       'click @ui.cancelBtn': 'onCancel',

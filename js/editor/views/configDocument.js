@@ -10,8 +10,8 @@ function($, Backbone, Marionette, Template) {
       return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
     },
     ui: {
-      cancelBtn: '#documentConfigModal button.btn-default',
-      saveBtn: '#documentConfigModal button.btn-primary',
+      cancelBtn: '#documentConfigModal button.btn-cancel',
+      saveBtn: '#documentConfigModal button.btn-save',
       name: '#documentName',
       details: '#documentDetails',
       category: '#documentCategory',

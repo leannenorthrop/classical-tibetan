@@ -13,8 +13,8 @@ function($, Backbone, Marionette, Template, Bootstrap, BootstrapSelect) {
     },
     elId: "#openDocumentModal",
     ui: {
-      cancelBtn: '#openDocumentModal button.btn-default',
-      saveBtn: '#openDocumentModal button.btn-primary'
+      cancelBtn: '#openDocumentModal button.btn-cancel',
+      saveBtn: '#openDocumentModal button.btn-save'
     },
     events: {
       'click @ui.cancelBtn': 'onCancel',
