@@ -56,7 +56,7 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect, Template) {
         Backbone.Wreqr.radio.commands.execute( 'editor', 'preview-doc');
       },
       "change @ui.saveBtn": function() {
-        //Backbone.Wreqr.radio.commands.execute( 'editor', 'config-editor-doc');
+        Backbone.Wreqr.radio.commands.execute( 'editor', 'save', this.model);
       },
       "click @ui.exportBtn": function() {
         Backbone.Wreqr.radio.commands.execute( 'editor', 'export-preview');
