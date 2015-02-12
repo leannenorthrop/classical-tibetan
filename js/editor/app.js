@@ -20,6 +20,7 @@ define(["jquery",
             beforeSend: function(xhr) {
               xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
               xhr.setRequestHeader("Access-Control-Allow-Methods", "POST");
+              xhr.withCredentials = true;
             }
           }).always(function () {
             console.log(jqxhr);
