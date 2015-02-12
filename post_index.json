@@ -1,12 +1,5 @@
 [
   {
-    "file": "/help/getting-started.html",
-    "gitFile": "_posts/2015-01-01-gettingstarted.md",
-    "tags": [],
-    "title": "Getting Started",
-    "category": "help"
-  },
-  {
     "file": "/help/markdown.html",
     "gitFile": "_posts/2015-01-01-markdown.md",
     "tags": [],
@@ -14,11 +7,18 @@
     "category": "help"
   },
   {
-    "file": "/help/extended-wylie.html",
-    "gitFile": "_posts/2015-01-01-wylie.md",
+    "file": "/help/getting-started.html",
+    "gitFile": "_posts/2015-01-01-gettingstarted.md",
     "tags": [],
-    "title": "Extended Wylie A Guide",
+    "title": "Getting Started",
     "category": "help"
+  },
+  {
+    "file": "_posts/2015-2-12-New.md",
+    "gitFile": "_posts/2015-2-12-New.md",
+    "tags": [],
+    "title": "New",
+    "category": "lesson"
   },
   {
     "file": "_posts/2015-2-12-Test Wylie.md",
@@ -28,5 +28,12 @@
     ],
     "title": "New",
     "category": "lesson"
+  },
+  {
+    "file": "/help/extended-wylie.html",
+    "gitFile": "_posts/2015-01-01-wylie.md",
+    "tags": [],
+    "title": "Extended Wylie A Guide",
+    "category": "help"
   }
 ]
