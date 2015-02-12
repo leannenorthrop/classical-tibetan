@@ -14,6 +14,15 @@
     "category": "help"
   },
   {
+    "file": "_posts/2015-2-12-Test Wylie.md",
+    "gitFile": "_posts/2015-2-12-Test Wylie.md",
+    "tags": [
+      "stage0"
+    ],
+    "title": "Test Wylie",
+    "category": "lesson"
+  },
+  {
     "file": "/help/extended-wylie.html",
     "gitFile": "_posts/2015-01-01-wylie.md",
     "tags": [],
