@@ -112,6 +112,7 @@ define([
       this.set("text", body);
     },
     open: function(options) {
+      Backbone.Wreqr.radio.commands.execute( 'editor', 'wait', true);
       var me = this;
       require(['github'], function() {
         var github = new Github({
@@ -120,6 +121,7 @@ define([
         });
         var repo = github.getRepo(uname, repositoryName);
         repo.read(branch, me.get("file"), function(err, data) {
+          Backbone.Wreqr.radio.commands.execute( 'editor', 'wait', false);
           if (!err) {
             if (!options || options && options.parse)
               me.load(data);

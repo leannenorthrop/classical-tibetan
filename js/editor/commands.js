@@ -146,7 +146,11 @@ function(Wreqr,
     }
   });
 
-  App.commands.setHandler("layout", function(style) {
-    console.log("Set layout to " + style);
+  App.commands.setHandler("wait", function(doWait) {
+    if (doWait) {
+      $('.fa-spinner').show('slow');
+    } else {
+      $('.fa-spinner').hide('slow');
+    }
   });
 });

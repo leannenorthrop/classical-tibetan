@@ -3,11 +3,13 @@
 @import url('bootstrap-select.css');
 @import url('bootstrap-tagsinput.css');
 @import url('codemirror.css');
+@import url('font-awesome.css');
 body {
   padding-top:50px;
 }
 #preview-toolbar,#editor-toolbar {
   padding: 5px 15px;
+  padding-left:0px;
 }
 ul.nav li a {
     position: relative !important;
@@ -42,4 +44,12 @@ ul.nav li a input[type=file] {
 }
 .no-gutter [class*="-6"] {
     padding-left:0;
+}
+.navbar-brand
+{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin: auto;
 }
