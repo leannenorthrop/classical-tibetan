@@ -9,6 +9,10 @@ define(["jquery",
            EditorView, PreviewView) {
     var EditorApp = new Backbone.Marionette.Application({channelName: "editor"});
 
+    require(['editor/utils'], function() {
+      EditorApp.trigger("change:style", EditorApp.utils.getUrlParameter("layout"));
+    });
+
     // Behaviours
     EditorApp.behaviours = {};
     Marionette.Behaviors.behaviorsLookup = function() {
@@ -44,13 +48,15 @@ define(["jquery",
             }});
 
           Backbone.history.start();
+
+          $(".site-wrapper").remove();
+          $('link[rel=stylesheet][href~="../css/cover.css"]').remove();
+          EditorApp.utils.loadCss("../css/editor.css");
+
           Backbone.Wreqr.radio.commands.execute( 'editor', 'wait', false);
           Backbone.Wreqr.radio.commands.execute( 'editor', 'navigate', "help", "2015-01-01-gettingstarted.md" );
         });
       }
-      require(['editor/utils'], function() {
-        EditorApp.trigger("change:style", EditorApp.utils.getUrlParameter("layout"));
-      });
     });
     require(['editor/commands'], function(Commands){});
 
