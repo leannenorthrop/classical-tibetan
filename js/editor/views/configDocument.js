@@ -1,7 +1,9 @@
 define(["jquery",
         "backbone",
         "marionette",
-        "text!templates/document_details_modal.html"],
+        "text!templates/document_details_modal.html",
+        "bootstrap",
+        "bootstrap.select"],
 function($, Backbone, Marionette, Template) {
   var template = Template;
   var ConfigDocumentModalView = Backbone.Marionette.ItemView.extend({

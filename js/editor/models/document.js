@@ -68,7 +68,8 @@ define([
         "category": this.get("category"),
         "tags": this.get("tags") ? this.get("tags").join(" ") : "",
         "title": this.get("name"),
-        "description": this.get("description")
+        "description": this.get("description"),
+        "format": "md"
       }) + "---\n\n\n";
 
       var body = this.get("text");
@@ -103,7 +104,7 @@ define([
         this.set("description", json.description ? json.description : "");
         this.set("category", json.category ? json.category : "");
         this.set("tags", json.tags ? json.tags : "");
-        this.set("format", json.format ? json.format : "md");
+        this.set("format", json.format ? json.format : "raw");
         text = text.substring(endIndex+4);
       }
       var body = text.trim();
