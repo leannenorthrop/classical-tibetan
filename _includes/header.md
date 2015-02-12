@@ -48,7 +48,7 @@ ript>
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="typeset">Create Your Own <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="typeset">
                 <li><a href="{{site.baseurl}}/editor/?layout=private">Mixed Language Resources</a></li>
-                <li><a href="{{site.baseurl}}/editor/?layout=contrib">Resources and Share on this Site</a></li>
+                <li><a href="https://github.com/login/oauth/authorize?client_id=a471bea0e772edefb748&scope=user,public_repo&state=abc">Resources and Share on this Site</a></li>
               </ul>
             </li>
           </ul>

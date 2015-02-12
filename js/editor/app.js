@@ -10,6 +10,16 @@ define(["jquery",
     var EditorApp = new Backbone.Marionette.Application({channelName: "editor"});
 
     require(['editor/utils'], function() {
+      var gitHubCode = EditorApp.utils.getUrlParameter("code");
+      if (gitHubCode) {
+        $.ajax({
+          type: "POST",
+          url: "https://github.com/login/oauth/access_token?client_id=a471bea0e772edefb748&client_secret=42be7bfc553b8c95b1d8c94ec608fcb0366df10f&code="+code,
+          success: function(data, xhr) {
+            console.log(xhr);
+          }
+        });
+      }
       EditorApp.trigger("change:style", EditorApp.utils.getUrlParameter("layout"));
     });
 
