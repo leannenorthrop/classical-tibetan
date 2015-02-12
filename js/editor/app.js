@@ -14,10 +14,12 @@ define(["jquery",
       if (gitHubCode) {
         var jqxhr = $.ajax({
             type:"POST",
+            cross
             url: "http://github.com/login/oauth/access_token",
             data: {client_id:"a471bea0e772edefb748",client_secret:"42be7bfc553b8c95b1d8c94ec608fcb0366df10f",code:gitHubCode},
             beforeSend: function(xhr) {
               xhr.setRequestHeader("Access-Control-Allow-Origin", "'*'");
+              xhr.setRequestHeader("Access-Control-Allow-Methods", "POST")
             }
           }).always(function () {
             console.log(jqxhr);
