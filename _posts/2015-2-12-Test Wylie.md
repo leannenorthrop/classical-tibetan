@@ -1,8 +1,8 @@
 ---
 layout: lesson
 category: lesson
-tags: stage0
-title: Test Wylie
+tags: s t a g e 0
+title: New
 description: Wylie test
 ---
 
