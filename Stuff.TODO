@@ -14,15 +14,16 @@
  ☐ http://lostechies.com/derickbailey/2011/07/24/awesome-model-binding-for-backbone-js/
  ☐ local storage support http://diveintohtml5.info/storage.html
  ☐ preview toolbar
-     ☐ save
-     ☐ format
+     ✔ save @done (15-02-12 12:48)
+     ✔ format @done (15-02-12 12:48)
+     ☐ export
  ☐ acknowledgment page
  ☐ help pages
  ☐ zen mode
  ✔ fullscreen toggle icon @done (15-01-27 12:25)
  ✔ use ace documents and session @done (15-02-03 18:42)
  ✔ code highlighting @done (15-01-25 22:49)
- ☐ file open should use editor state and mode
+ ✔ file open should use editor state and mode @done (15-02-12 12:47)
 Save to
  ☐ Dropbox
  ☐ Github
