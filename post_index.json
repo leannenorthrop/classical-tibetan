@@ -1,5 +1,12 @@
 [
   {
+    "file": "/help/markdown.html",
+    "gitFile": "_posts/2015-01-01-markdown.md",
+    "tags": [],
+    "title": "Markdown Guide",
+    "category": "help"
+  },
+  {
     "file": "/help/getting-started.html",
     "gitFile": "_posts/2015-01-01-gettingstarted.md",
     "tags": [],
@@ -7,11 +14,20 @@
     "category": "help"
   },
   {
-    "file": "/help/markdown.html",
-    "gitFile": "_posts/2015-01-01-markdown.md",
+    "file": "_posts/2015-2-12-New.md",
+    "gitFile": "_posts/2015-2-12-New.md",
     "tags": [],
-    "title": "Markdown Guide",
-    "category": "help"
+    "title": "New",
+    "category": "lesson"
+  },
+  {
+    "file": "_posts/2015-2-12-Test Wylie.md",
+    "gitFile": "_posts/2015-2-12-Test Wylie.md",
+    "tags": [
+      "s t a g e 0"
+    ],
+    "title": "New",
+    "category": "lesson"
   },
   {
     "file": "/help/extended-wylie.html",
