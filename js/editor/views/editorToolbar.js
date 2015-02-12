@@ -8,8 +8,8 @@ define(["jquery",
 function($, Backbone, Marionette, Bootstrap, Template, ModesTemplate) {
   var template = Template;
   var modeTemplate = ModesTemplate;
-  var selectOptions = [{value: "mode-plain-wylie",icon: "glyphicon-pencil",name: "Wylie",cmd: {name: "setEditorMode", options: {mode: "plain-wylie"}}},
-                       {value: "mode-plain-mixed",icon: "glyphicon-pencil",name: "Mixed Wylie/English/etc..",cmd: {name: "setEditorMode", options: {mode: "plain-mixed"}}}];
+  var selectOptions = [{value: "mode-plain-wylie",icon: "glyphicon-file",name: "Wylie",cmd: {name: "setEditorMode", options: {mode: "plain-wylie"}}},
+                       {value: "mode-plain-mixed",icon: "glyphicon-file",name: "Mixed Wylie/English/etc..",cmd: {name: "setEditorMode", options: {mode: "plain-mixed"}}}];
 
   var EditorToolbarView = Backbone.Marionette.ItemView.extend({
     __name__: 'EditorToolbarView',
@@ -64,14 +64,15 @@ function($, Backbone, Marionette, Bootstrap, Template, ModesTemplate) {
       renderSelect: function() {
         var optionsHtml = this.getModeTemplate()({items:this.collection.toJSON()});
         this.$el.find('#mode-menu ul').html(optionsHtml);
+        this.updateMode();
       },
       onRender: function() {
         $('.dropdown-toggle').dropdown();
       },
       currentMode: function() {
-          var selectedMode = this.$el.find('#currentModeLabel').attr("data-value");
-          var modeModel = this.collection.find(function(model) { return model.get('value') === selectedMode; });
-          return modeModel ? modeModel.toJSON() : modeModel;
+        var selectedMode = this.$el.find('#currentModeLabel').attr("data-value");
+        var modeModel = this.collection.find(function(model) { return model.get('value') === selectedMode; });
+        return modeModel ? modeModel.toJSON() : modeModel;
       },
       updateMode: function() {
         try {
