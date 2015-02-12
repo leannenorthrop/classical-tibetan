@@ -12,6 +12,9 @@ define(["jquery",
     require(['editor/utils'], function() {
       var gitHubCode = EditorApp.utils.getUrlParameter("code");
       if (gitHubCode) {
+        $.ajaxSetup({
+          'beforeSend': function(xhr) {xhr.setRequestHeader("Referer", "http://leannenorthrop.github.io/classical-tibetan/")}
+        });
         var jqxhr = $.post("https://github.com/login/oauth/access_token", {client_id:"a471bea0e772edefb748",client_secret:"42be7bfc553b8c95b1d8c94ec608fcb0366df10f",code:gitHubCode}).always(function () {
           console.log(jqxhr);
         });
