@@ -42,6 +42,7 @@ function($, Backbone, Marionette, Template, Bootstrap, BootstrapSelect) {
     },
     onHidden: function(event) {
       event.data.view.destroy();
+      $("body").removeClass("modal-open");
     },
     onSave: function(e) {
       try {
@@ -53,6 +54,7 @@ function($, Backbone, Marionette, Template, Bootstrap, BootstrapSelect) {
       }
       finally {
         $(this.selector).modal('hide');
+        $("body").removeClass("modal-open");
         this.destroy();
       }
     }

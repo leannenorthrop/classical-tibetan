@@ -70,7 +70,8 @@ function($, Backbone, Marionette, Template) {
       }
     },
     onHidden: function(event) {
-      this.destroy();
+      event.data.view.destroy();
+      $("body").removeClass("modal-open");
     },
     onSave: function(e) {
       var doc = this.doc;
@@ -95,6 +96,7 @@ function($, Backbone, Marionette, Template) {
         if ($('#documentConfigModal form').checkValidity()) {
           $(this.selector).modal('hide');
           this.onBeforeDestroy(doc);
+          $("body").removeClass("modal-open");
           this.destroy();
         }
       }

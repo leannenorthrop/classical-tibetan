@@ -55,6 +55,7 @@ function($, Backbone, Marionette, BootStrap, BooostrapSelect, Template) {
     },
     onHidden: function(event) {
       event.data.view.destroy();
+      $("body").removeClass("modal-open");
     },
     onCancel: function(e) {
       var editorModel = this.model.get("editor");
@@ -71,6 +72,7 @@ function($, Backbone, Marionette, BootStrap, BooostrapSelect, Template) {
       }
       finally {
         $('#editorConfigModal').modal('hide');
+        $("body").removeClass("modal-open");
         this.destroy();
       }
     }

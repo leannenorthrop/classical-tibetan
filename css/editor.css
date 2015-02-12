@@ -40,3 +40,6 @@ ul.nav li a input[type=file] {
     margin-left: 15px;
     margin-right: 15px;
 }
+.no-gutter [class*="-6"] {
+    padding-left:0;
+}
