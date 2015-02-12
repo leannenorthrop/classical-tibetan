@@ -106,7 +106,9 @@ define([
         this.set("format", json.format ? json.format : "md");
         text = text.substring(endIndex+4);
       }
-      this.set("text", text.trim());
+      var body = text.trim();
+      body = body.replace(/<span class="uchen" wylie="([^"]*)\">([^>]*)<\/span>/g, "::$1::");
+      this.set("text", body);
     },
     open: function(options) {
       var me = this;
