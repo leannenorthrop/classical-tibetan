@@ -89,8 +89,8 @@ function($, Backbone, Marionette, Bootstrap, Template, ModesTemplate) {
           model.set("state", modes[0]);
           model.set("mode", modes.splice(1).join("-"));
         },
-        "change @ui.importBtn": function() {
-          Backbone.Wreqr.radio.commands.execute( 'editor', 'import-editor', $(".import input[type=file]")[0].files[0]);
+        "change @ui.importFile": function() {
+          Backbone.Wreqr.radio.commands.execute( 'editor', 'import-editor', $("input[type=file]")[0].files[0]);
         },
         "click @ui.exportBtn": function() {
           Backbone.Wreqr.radio.commands.execute( 'editor', 'export-editor');
@@ -121,6 +121,7 @@ function($, Backbone, Marionette, Bootstrap, Template, ModesTemplate) {
       },
       ui: {
         "modeSelector": "#mode-menu",
+        "importFile": "#importFile",
         "importBtn": "#editor-upload",
         "exportBtn": "#editor-download",
         "openBtn": "#editor-open",

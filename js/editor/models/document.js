@@ -103,6 +103,7 @@ define([
         this.set("description", json.description ? json.description : "");
         this.set("category", json.category ? json.category : "");
         this.set("tags", json.tags ? json.tags : "");
+        this.set("format", json.format ? json.format : "md");
         text = text.substring(endIndex+4);
       }
       this.set("text", text.trim());
