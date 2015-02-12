@@ -23,6 +23,7 @@ define(['editor/app'], function(App) {
       var doc = new DocumentModel({file: file});
       // Set new current document for triggering ui changes after opening
       App.editor.model.set("currentDocument", doc);
+      App.preview.format("html");
 
       // Open document
       doc.open();

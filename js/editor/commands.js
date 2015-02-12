@@ -129,4 +129,30 @@ function(Wreqr,
       App.preview.halfSize();
     });
   });
+
+  App.commands.setHandler("navigate", function(route, url) {
+    var r = App.Router;
+    switch(route) {
+      case "help":
+        r.navigate(App.context + 'help/'+url, {trigger: true, replace: true});
+        break;
+      case "open":
+        r.navigate(App.context + 'open/'+url, {trigger: true, replace: true});
+        break;
+      case "new":
+        var mode = !url ? url : "mode-plain-wylie";
+        r.navigate(App.context + 'new/'+mode, {trigger: true, replace: true});
+        break;
+      case "contribute":
+        r.navigate(App.context + 'contribute', {trigger: true, replace: true});
+        break;
+      case "private":
+        r.navigate(App.context + 'private', {trigger: true, replace: true});
+        break;
+    }
+  });
+
+  App.commands.setHandler("layout", function(style) {
+    console.log("Set layout to " + style);
+  });
 });

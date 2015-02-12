@@ -47,7 +47,7 @@ function($, Backbone, Marionette, Template, Bootstrap, BootstrapSelect) {
       try {
         var selected = $("#documentSelector option:selected");
         var file = selected.val();
-        Backbone.Wreqr.radio.commands.execute( 'editor', 'open-file', file);
+        Backbone.Wreqr.radio.commands.execute( 'editor', 'navigate', "open", file.replace("_posts/", ""));
       } catch(e) {
         console.log(e);
       }

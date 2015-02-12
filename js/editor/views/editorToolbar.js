@@ -97,8 +97,7 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect, Template, ModesTem
           var modeSelect = $("#modeSelector option:selected");
           var selectedMode = modeSelect.val();
           var modes = selectedMode.split("-");
-          this.editorModel.set("state", modes[0]);
-          this.editorModel.set("mode", modes.slice(1).join("-"));
+          Backbone.Wreqr.radio.commands.execute( 'editor', 'navigate', modes[0] === "help" ? "help" : "open", modes.slice(2).join("-").replace("_posts/", ""));
         },
         "change @ui.importBtn": function() {
           Backbone.Wreqr.radio.commands.execute( 'editor', 'import-editor', $(".import input[type=file]")[0].files[0]);

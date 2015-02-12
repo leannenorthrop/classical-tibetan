@@ -15,7 +15,7 @@ define(["jquery",
         return EditorApp.behaviours;
     }
 
-    EditorApp.on("start", function(options){
+    EditorApp.on("before:start", function(options){
       // Render the layout and get it on the screen, first
       var layout = new Layout();
       EditorApp.layout = layout;
@@ -28,14 +28,26 @@ define(["jquery",
       EditorApp.editor = editor;
       layout.getRegion('leftColumn').show(editor);
       layout.getRegion('rightColumn').show(preview);
-      editor.mode("help-file-_posts/2015-01-01-markdown.md");
-      preview.format("html");
-
-      if (Backbone.history){
-        Backbone.history.start();
-      }
     });
 
+    EditorApp.on("start", function(options){
+      if (Backbone.history){
+        require(['editor/controller'], function(appController) {
+          EditorApp.context = "";
+          EditorApp.Router = new Marionette.AppRouter({
+            controller: appController,
+            appRoutes: {
+              "help/:file": "help",
+              "open/:file": "open",
+              "new/:mode": "newDocument",
+              "contribute": "contribute",
+              "private": "personal"
+            }});
+
+          Backbone.history.start();
+        });
+      }
+    });
     require(['editor/commands'], function(Commands){});
 
     return EditorApp;
