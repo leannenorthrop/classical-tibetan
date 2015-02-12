@@ -45,6 +45,7 @@ define([
       var result = "";
       switch(format) {
         case "html": return this.toHTML(options); break;
+        case "md": return this.toMarkDown(options); break;
         case "article": return this.toArticle(options); break;
         case "raw": return this.get("text");
       }
@@ -80,6 +81,18 @@ define([
       }
 
       return header + body;
+    },
+    toMarkDown: function(options) {
+      var body = this.get("text");
+      if (!options || options && !options.parse) {
+        var text = this.get("text");
+        var dialect = "Wylie";
+        var tree = markdown.parse(text, dialect);
+        var jsonml = markdown.toHTMLTree(tree, dialect, {skipParas:true});
+        body = markdown.renderJsonML(jsonml);
+      }
+
+      return body;
     },
     load: function(text) {
       // strip any yaml

@@ -20,11 +20,14 @@ function(App) {
     try {
       var editorView = App.editor;
       var editorModel = editorView.model;
+      var previewView = App.preview;
+      var previewModel = previewView.model;
       var doc = editorModel.get("currentDocument");
       var srcFormat = editorModel.get("mode");
-      var dstFormat = "html";
+      var dstFormat = previewModel.get("format");
 
       var result = App.reqres.request("convert", doc, srcFormat, dstFormat);
+      result = dstFormat === "html" ? result : "<pre>" + result + "</pre>";
       require(["editor/commands/updatePreview"],function() {
         App.preview.update(result);
       });

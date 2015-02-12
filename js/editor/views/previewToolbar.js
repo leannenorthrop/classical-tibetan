@@ -53,6 +53,7 @@ function($, Backbone, Marionette, Bootstrap, BootstrapSelect, Template) {
       "change @ui.formatSelector": function(){
         var formatSelect = $("#formatSelector option:selected");
         this.parentView.model.set("format", formatSelect.val());
+        Backbone.Wreqr.radio.commands.execute( 'editor', 'preview-doc');
       },
       "change @ui.saveBtn": function() {
         //Backbone.Wreqr.radio.commands.execute( 'editor', 'config-editor-doc');
