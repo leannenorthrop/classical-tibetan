@@ -47,9 +47,8 @@ ript>
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="typeset">Create Your Own <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="typeset">
-                <li><a href="{{site.baseurl}}/editor/">Mixed Language Resources</a></li>
-                <li><a href="{{site.baseurl}}/editor/">Typeset Language Resources</a></li>
-                <li><a href="{{site.baseurl}}/editor/">Resources and Share on this Site</a></li>
+                <li><a href="{{site.baseurl}}/editor/?layout=private">Mixed Language Resources</a></li>
+                <li><a href="{{site.baseurl}}/editor/?layout=contrib">Resources and Share on this Site</a></li>
               </ul>
             </li>
           </ul>

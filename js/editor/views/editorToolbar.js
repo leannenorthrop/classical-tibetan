@@ -81,6 +81,9 @@ function($, Backbone, Marionette, Bootstrap, Template, ModesTemplate) {
           this.$el.find('#currentModeLabel').html(modeModel.get("name")).attr("data-value", selectedMode);
         } catch(e){console.log(e);}
       },
+      setStyle: function(style) {
+        this.__style = style;
+      },
       events: {
         "click .dropdown-menu-item": function(e){
           var modeSelect = $(e.currentTarget);
@@ -97,10 +100,18 @@ function($, Backbone, Marionette, Bootstrap, Template, ModesTemplate) {
           Backbone.Wreqr.radio.commands.execute( 'editor', 'export-editor');
         },
         "click @ui.openBtn": function() {
-          Backbone.Wreqr.radio.commands.execute( 'editor', 'open');
+          if (this.__style === "contrib") {
+            Backbone.Wreqr.radio.commands.execute( 'editor', 'open');
+          } else {
+            Backbone.Wreqr.radio.commands.execute( 'editor', 'alert', "Feature not enabled just yet. Coming soon.", "warning", "Sorry!" );
+          }
         },
         "click @ui.saveBtn": function() {
-          Backbone.Wreqr.radio.commands.execute( 'editor', 'config-editor-doc');
+          if (this.__style === "contrib") {
+            Backbone.Wreqr.radio.commands.execute( 'editor', 'config-editor-doc');
+          } else {
+            Backbone.Wreqr.radio.commands.execute( 'editor', 'alert', "Feature not enabled just yet. Coming soon.", "warning", "Sorry!" );
+          }
         },
         "click @ui.deleteBtn": function() {
           Backbone.Wreqr.radio.commands.execute( 'editor', 'clear');

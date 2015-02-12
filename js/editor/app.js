@@ -28,6 +28,7 @@ define(["jquery",
       EditorApp.editor = editor;
       layout.getRegion('leftColumn').show(editor);
       layout.getRegion('rightColumn').show(preview);
+      editor.listenTo(this, "change:style", editor.onSetStyle);
     });
 
     EditorApp.on("start", function(options){
@@ -39,16 +40,16 @@ define(["jquery",
             appRoutes: {
               "help/:file": "help",
               "open/:file": "open",
-              "new/:mode": "newDocument",
-              "contribute": "contribute",
-              "private": "personal"
+              "new/:mode": "newDocument"
             }});
 
           Backbone.history.start();
           Backbone.Wreqr.radio.commands.execute( 'editor', 'navigate', "help", "2015-01-01-gettingstarted.md" );
-
         });
       }
+      require(['editor/utils'], function() {
+        EditorApp.trigger("change:style", EditorApp.utils.getUrlParameter("layout"));
+      });
     });
     require(['editor/commands'], function(Commands){});
 

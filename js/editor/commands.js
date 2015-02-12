@@ -143,12 +143,6 @@ function(Wreqr,
         var mode = !url ? url : "mode-plain-wylie";
         r.navigate(App.context + 'new/'+mode, {trigger: true, replace: true});
         break;
-      case "contribute":
-        r.navigate(App.context + 'contribute', {trigger: true, replace: true});
-        break;
-      case "private":
-        r.navigate(App.context + 'private', {trigger: true, replace: true});
-        break;
     }
   });
 

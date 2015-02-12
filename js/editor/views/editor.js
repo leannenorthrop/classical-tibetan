@@ -48,7 +48,19 @@ function($, Backbone, Marionette) {
         function(ToolbarView){
           view.addRegions({toolbar:{el: $("#editor-toolbar")}});
           view.getRegion('toolbar').show(new ToolbarView({editorModel: view.model, parent: view}));
+          view.__toolbarView = view.getRegion('toolbar').currentView;
+          if (view.__style) {
+            view.__toolbarView.setStyle(view.__style);
+            delete view.__style;
+          }
       });
+    },
+    onSetStyle: function(e) {
+      if (this.__toolbarView) {
+        this.__toolbarView.setStyle(e);
+      } else {
+        this.__style = e;
+      }
     },
 
     initialize: function(options) {
