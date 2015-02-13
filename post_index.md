@@ -16,8 +16,18 @@ title: Posts
 </div>
 
 <div class="row">
+
 <div class="list-group">
+{% assign posts = site.posts %}
+{% for post in posts %}
+    <a href="{{site.baseurl}}{{ post.url }}" class="list-group-item">
+      <h4 class="list-group-item-heading">{{ post.title }}</h4>
+      <p class="list-group-item-text">{{ post.tags }}</p>
+    </a>
+{% endfor %}
 </div>
+</div>
+
 <div class="row notfound" style="display:none">
 <div class="jumbotron">
   <h1>Sorry!</h1>
@@ -26,7 +36,7 @@ title: Posts
 </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="{{site.baseurl}}/js/lib/jquery-1.11.2.js"></script>
 <script>
 var baseurl = {{site.baseurl}};
 function GetURLParameter(sParam)

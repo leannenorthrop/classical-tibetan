@@ -1,5 +1,5 @@
     </div>
-    <script src="{{site.baseurl}}/js/jquery-1.11.2"></script>
+    <script src="{{site.baseurl}}/js/lib/jquery-1.11.2.js"></script>
     <script src="{{site.baseurl}}/js/bootstrap.js"></script>
 {% if site.google_analytics %}
   <!-- Google Analytics -->
