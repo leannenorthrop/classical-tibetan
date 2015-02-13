@@ -28,6 +28,7 @@ title: Posts
 
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script>
+var baseurl = {{site.baseurl}};
 function GetURLParameter(sParam)
 {
     var sPageURL = window.location.search.substring(1);
@@ -52,7 +53,7 @@ function capitalize(text) {
 $.getJSON( "post_index.json", function( data ) {
   var items = [];
   $.each( data, function( key, val ) {
-    items.push('<div class="' + val.category + ' ' + val.tags.join(" ") + ' style="display:none"><a href="' + val.file + '" class="list-group-item"><h4 class="list-group-item-heading">' + val.title + '</h4><p class="list-group-item-text">' + val.description + '</p></a></div>');
+    items.push('<div class="' + val.category + ' ' + val.tags.join(" ") + ' style="display:none"><a href="' + baseurl + val.file + '" class="list-group-item"><h4 class="list-group-item-heading">' + val.title + '</h4><p class="list-group-item-text">' + val.description + '</p></a></div>');
   });
 
   $(".list-group").html(items.join(""));
