@@ -11,8 +11,8 @@ title: Blog
 {% assign posts = site.posts | where: "category","blog" %}
 {% for post in posts %}
     <a href="{{site.baseurl}}{{ post.url }}" class="list-group-item">
-      <h4 class="list-group-item-heading">{{ post.title }} <small>{{ post.url }}</small></h4>
-      <p class="list-group-item-text">{{ post.excerpt }} {{ post.url }}</p>
+      <h4 class="list-group-item-heading">{{ post.title }}</h4>
+      <p class="list-group-item-text">{{ post.tags }}</p>
     </a>
 {% endfor %}
 </div>
