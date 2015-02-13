@@ -13,6 +13,7 @@ title: Blog
     <a href="{{ post.url }}" class="list-group-item">
       <h4 class="list-group-item-heading">{{ post.title }}</h4>
       <p class="list-group-item-text">{{ post.excerpt }}</p>
+      {{ post.url }}
     </a>
 {% endfor %}
 </div>

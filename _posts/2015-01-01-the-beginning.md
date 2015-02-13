@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Blog
+title: New Year Ideas: Classical Tibetan CodePen Style Editor?
 category: blog
 tags: wylie editor tibetan uchen
 ---
