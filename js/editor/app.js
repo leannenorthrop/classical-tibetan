@@ -10,22 +10,6 @@ define(["jquery",
     var EditorApp = new Backbone.Marionette.Application({channelName: "editor"});
 
     require(['editor/utils'], function() {
-      var gitHubCode = EditorApp.utils.getUrlParameter("code");
-      if (gitHubCode) {
-        var jqxhr = $.ajax({
-            type:"POST",
-            crossDomain: true,
-            url: "http://github.com/login/oauth/access_token",
-            data: {client_id:"a471bea0e772edefb748",client_secret:"42be7bfc553b8c95b1d8c94ec608fcb0366df10f",code:gitHubCode},
-            beforeSend: function(xhr) {
-              xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-              xhr.setRequestHeader("Access-Control-Allow-Methods", "POST");
-              xhr.withCredentials = true;
-            }
-          }).always(function () {
-            console.log(jqxhr);
-          });
-      }
       EditorApp.trigger("change:style", EditorApp.utils.getUrlParameter("layout"));
     });
 

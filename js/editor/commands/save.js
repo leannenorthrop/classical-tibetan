@@ -13,11 +13,12 @@ function(App) {
   App.save= function(doc, options) {
     require(['cookies'], function() {
       try {
+        var token = Backbone.Wreqr.radio.reqres.request("editor", "token");
         doc.save({name: options && options.name ? options.name : doc.get("name"),
                   username: options && options.un ? options.un : $.cookie('gu'),
                   password: options && options.pw ? options.pw : $.cookie('gp'),
                   uname: options && options.account ? options.account : "leannenorthrop",
-                  token: options && options.token ? options.token : "2b0eb792116e96b059744ffdb21ab03a125625d3",
+                  token: options && options.token ? options.token : token,
                   repositoryName: options && options.repo ? options.repo :"classical-tibetan",
                   format: options && options.format ? options.format : "article",
                   msg: options && options.msg ? options.msg : "Saved by editor.",

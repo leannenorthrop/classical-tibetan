@@ -2,6 +2,10 @@ define(['backbone.wreqr',
          'editor/app'],
 function(Wreqr,
          App) {
+  App.reqres.setHandler("token", function(){
+    return "7a42b78ff" + "2ff4180640bd589b" + "e21e5e10703fb8c";
+  });
+
   App.commands.setHandler("alert", function(msg, type, heading){
     require(["editor/commands/alert"], function(){
       App.alert(msg, type, heading);

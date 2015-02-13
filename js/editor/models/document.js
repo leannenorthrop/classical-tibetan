@@ -4,8 +4,6 @@ define([
   'js-yaml',
   "markdown"
 ], function(_, Backbone, JsYaml, Markdown){
-
-  var token = "2b0eb792116e96b059744ffdb21ab03a125625d3";
   var uname = "leannenorthrop";
   var repositoryName = "classical-tibetan";
   var branch = "gh-pages";
@@ -34,6 +32,7 @@ define([
       format: ""
     },
     initialize: function(options) {
+      this.__token = Backbone.Wreqr.radio.reqres.request("editor", "token");
       this.listenTo(this, "change:name", function(event){
         this.set("file", '_posts/' + event.get("created") + "-" + event.get("name")+".md");
       });
@@ -116,7 +115,7 @@ define([
       var me = this;
       require(['github'], function() {
         var github = new Github({
-          token: token,
+          token: me.__token,
           auth: "oauth"
         });
         var repo = github.getRepo(uname, repositoryName);
