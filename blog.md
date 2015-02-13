@@ -18,7 +18,7 @@ hi
 <div class="list-group">
 {% assign posts = site.posts | where: "category","blog" %}
 {% for post in posts %}
-    <a href="{{ post.url }}" class="list-group-item">
+    <a href="{{site.baseurl}}{{ post.url }}" class="list-group-item">
       <h4 class="list-group-item-heading">{{ post.title }} <small>{{ post.url }}</small></h4>
       <p class="list-group-item-text">{{ post.excerpt }} {{ post.url }}</p>
     </a>
