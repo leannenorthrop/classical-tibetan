@@ -85,9 +85,11 @@
         - [ ] reading mode and correct formats
 - [ ] vocab list option  ☐ 
     - [ ] simple markdown table e.g
-        |wylie |root letter|english|phonetics|categegory|notes|
-        |------|-----------|-------|---------|----------|-----|
-        |rdorje|d.         |sceptre|Dorjay.  |noun.     |blah |
+
+|wylie |root letter|english|phonetics|categegory|notes|
+|------|-----------|-------|---------|----------|-----|
+|rdorje|d          |sceptre|Dor-jay   |noun      |blah |
+
     - [ ] pre-process table to generate json vocab list
     - [ ] post-process as template of two bootstrab tabs one for table and other for dictionary list and hidden div to hold json
 - [ ] reading option ☐ 
