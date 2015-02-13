@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: plain_no_cache
 title: Blog
 ---
 <div class="blog-header">
