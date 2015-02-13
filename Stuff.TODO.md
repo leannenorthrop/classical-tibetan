@@ -84,14 +84,15 @@
         - [ ] vocab mode and correct formats
         - [ ] reading mode and correct formats
 - [ ] vocab list option  ☐ 
+    - [ ] pre-process table to generate json vocab list
+    - [ ] post-process as template of two bootstrab tabs one for table and other for dictionary list and hidden div to hold json
     - [ ] simple markdown table e.g
 
 |wylie |root letter|english|phonetics|categegory|notes|
 |------|-----------|-------|---------|----------|-----|
 |rdorje|d          |sceptre|Dor-jay   |noun      |blah |
 
-    - [ ] pre-process table to generate json vocab list
-    - [ ] post-process as template of two bootstrab tabs one for table and other for dictionary list and hidden div to hold json
+    
 - [ ] reading option ☐ 
     - [ ] add additional editors for each of wylie,translation,notes,and vocab with toggle button bar to flip view. update of resoective editor updates main editor using template of various div sections. hidden divs for wylie, word list, enhanced marked up u- [ ][ ]en
 - [ ] process wylie for enhanced markup ☐ 
