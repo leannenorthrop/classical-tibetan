@@ -8,10 +8,11 @@ title: Blog
 </div>
 
 <div class="list-group">
-  {% for post in site.posts %}
+{% assign posts = site.posts | where: "category","blog" %}
+{% for post in posts %}
     <a href="{{ post.url }}" class="list-group-item">
       <h4 class="list-group-item-heading">{{ post.title }}</h4>
       <p class="list-group-item-text">{{ post.excerpt }}</p>
     </a>
-  {% endfor %}
+{% endfor %}
 </div>
