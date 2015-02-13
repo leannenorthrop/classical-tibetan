@@ -29,7 +29,7 @@
 - [ ] preview toolbar ☐ 
     - [x] save @done (15-02-12 12:48)
     - [x] format @done (15-02-12 12:48)
-    - [ ] export
+    - [ ] export ☐
 - [ ] acknowledgment page ☐ 
 - [ ] help pages ☐ 
 - [ ] zen mode ☐ 
@@ -47,7 +47,7 @@
 - [x] wylie blocks @done (15-01-27 12:04) ✔ 
 - [x] wylie blocks again sigh @done (15-01-28 17:55) ✔ 
 - [ ] implement remaining wylie rules ☐ 
-- [x] fix wylie blocks if last in text whi- [ ][ ] fail to render @done (15-01-28 17:55) ✔ 
+- [x] fix wylie blocks if last in text which fail to render @done (15-01-28 17:55) ✔ 
 - [ ] format to show help/doc icon instead of Format label ☐ 
 
 ### Private Mode
@@ -61,12 +61,12 @@
 #### Formats
 - [ ] open word doc ☐ 
 - [ ] Peche pdf (zeLaTex and pdf preview) ☐ 
-    - [ ] 1 column
-    - [ ] 2 column
-    - [ ] 3 column
+    - [ ] 1 column ☐
+    - [ ] 2 column ☐
+    - [ ] 3 column ☐
 - [ ] simple pdf (zeLaTex and pdf preview) ☐ 
-    - [ ] mixed
-    - [ ] page by page dual language
+    - [ ] mixed ☐ 
+    - [ ] page by page dual language ☐ 
 - [ ] book pdf (zeLaTex and pdf preview and xml) ☐ 
 
 ### Contrib Mode
@@ -74,19 +74,19 @@
 - [ ] lesson pdf format ☐ 
 - [ ] vocab list pdf format ☐ 
 - [ ] add attribute for contrib/private mode and hide or display as whole in top level view ☐ 
-    - [ ] hide 
-        - [ ] export
-        - [ ] import
-        - [ ] wylie mode
-        - [ ] mixed mode
-    - [ ] show
-        - [ ] lesson mode and correct formats
-        - [ ] vocab mode and correct formats
-        - [ ] reading mode and correct formats
+    - [ ] hide ☐
+        - [ ] export ☐
+        - [ ] import ☐
+        - [ ] wylie mode ☐
+        - [ ] mixed mode ☐
+    - [ ] show ☐
+        - [ ] lesson mode and correct formats ☐
+        - [ ] vocab mode and correct formats ☐
+        - [ ] reading mode and correct formats ☐
 - [ ] vocab list option  ☐ 
-    - [ ] pre-process table to generate json vocab list
-    - [ ] post-process as template of two bootstrab tabs one for table and other for dictionary list and hidden div to hold json
-    - [ ] simple markdown table e.g
+    - [ ] pre-process table to generate json vocab list ☐
+    - [ ] post-process as template of two bootstrab tabs one for table and other for dictionary list and hidden div to hold json ☐
+    - [ ] ☐ simple markdown table e.g
 
 |wylie |root letter|english|phonetics|categegory|notes|
 |------|-----------|-------|---------|----------|-----|
@@ -94,11 +94,11 @@
 
     
 - [ ] reading option ☐ 
-    - [ ] add additional editors for each of wylie,translation,notes,and vocab with toggle button bar to flip view. update of resoective editor updates main editor using template of various div sections. hidden divs for wylie, word list, enhanced marked up u- [ ][ ]en
+    - [ ] add additional editors for each of wylie,translation,notes,and vocab with toggle button bar to flip view. update of resoective editor updates main editor using template of various div sections. hidden divs for wylie, word list, enhanced marked up uchen ☐
 - [ ] process wylie for enhanced markup ☐ 
-    - [ ] split on space, iterate array pushing all possible word matches from site dictionary
-    - [ ] sort possible word matches from largest to smallest matches
-    - [ ] iterate word match list marking up for tooltip, hi-lighting, phonetics under display, simple english under display
+    - [ ] split on space, iterate array pushing all possible word matches from site dictionary ☐
+    - [ ] sort possible word matches from largest to smallest matches ☐
+    - [ ] iterate word match list marking up for tooltip, hi-lighting, phonetics under display, simple english under display ☐
 
 # Useful Readings
 - [ ] Beautify forms http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-forms.php ☐ 
