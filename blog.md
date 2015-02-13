@@ -7,6 +7,7 @@ title: Blog
   <p class="lead blog-description">Random collection of materials &amp; musings.</p>
 </div>
 
+hi
 <ul>
 {% assign posts = site.posts | where: "category","blog" %}
 {% for post in posts %}
