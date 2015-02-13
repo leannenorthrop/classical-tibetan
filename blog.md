@@ -3,8 +3,8 @@ layout: plain_no_cache
 title: Blog
 ---
 <div class="blog-header">
-  <h1 class="blog-title">Miscellaneous Materials <small>For the Curious</small></h1>
-  <p class="lead blog-description">Random collection of materials &amp; musings.</p>
+  <h1 class="blog-title">Miscellaneous Materials &amp; Musings <small>For the Curious</small></h1>
+  <p class="lead blog-description">Random collection of materials &amp; musings on Uchen, Classical Tibetan, coding and thoughts about ths site.</p>
 </div>
 
 <div class="list-group">
