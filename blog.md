@@ -7,6 +7,12 @@ title: Blog
   <p class="lead blog-description">Random collection of materials &amp; musings.</p>
 </div>
 
+
+{% assign posts = site.posts | where: "category","blog" %}
+{% for post in posts %}
+ - {{ post.title }} <small>{{ post.url }}</small>
+{% endfor %}
+
 <div class="list-group">
 {% assign posts = site.posts | where: "category","blog" %}
 {% for post in posts %}
