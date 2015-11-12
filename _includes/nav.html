@@ -105,3 +105,49 @@
       <li class="active">{{page.title}}</li>
     </ol>
   {% endif %}
+
+  {% if page.resourcesarchive %}
+    <ol class="breadcrumb">
+      <li><a href="http://leannenorthrop.github.io"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+      <li><a href="{{ site.base-url }}/index.html">Tibetan Blog</a></li>
+      <li><a href="{{ site.base-url }}/resources/index.html">Resources</a></li>
+      <li class="active">Archive</li>
+    </ol>
+  {% endif %}
+
+  {% if page.resourceshome %}
+    <ol class="breadcrumb">
+      <li><a href="http://leannenorthrop.github.io"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+      <li><a href="{{ site.base-url }}/index.html">Tibetan Blog</a></li>
+      <li><a href="{{ site.base-url }}/resources/index.html">Resources</a></li>
+      <li class="active">Home</li>
+    </ol>
+  {% endif %} 
+
+  {% if page.resourcesindex %}
+    <ol class="breadcrumb">
+      <li><a href="http://leannenorthrop.github.io"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+      <li><a href="{{ site.base-url }}/index.html">Tibetan Blog</a></li>
+      <li><a href="{{ site.base-url }}/resources/index.html">Resources</a></li>
+      <li class="active">{{page.heading}}</li>
+    </ol>
+  {% endif %} 
+
+  {% if page.resourcestags %}
+    <ol class="breadcrumb">
+      <li><a href="http://leannenorthrop.github.io"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+      <li><a href="{{ site.base-url }}/index.html">Tibetan Blog</a></li>
+      <li><a href="{{ site.base-url }}/resources/index.html">Resources</a></li>
+      <li>By Tag</li>
+      <li class="active">{{page.tag}}</li>
+    </ol>
+  {% endif %}   
+
+  {% if page.resourcespost %}
+    <ol class="breadcrumb">
+      <li><a href="http://leannenorthrop.github.io"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+      <li><a href="{{ site.base-url }}/index.html">Tibetan Blog</a></li>
+      <li><a href="{{ site.base-url }}/resources/index.html">Resources</a></li>
+      <li class="active">{{page.title}}</li>
+    </ol>
+  {% endif %}

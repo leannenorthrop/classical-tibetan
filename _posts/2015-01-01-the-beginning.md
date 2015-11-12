@@ -2,7 +2,7 @@
 layout: post
 title: New Year Ideas ~ Classical Tibetan CodePen Style Editor?
 category: blog
-tags: wylie editor tibetan uchen
+tags: [wylie, uchen]
 heading: hi
 blogpost: true
 ---

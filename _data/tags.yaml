@@ -4,3 +4,7 @@
   name: Letters
 - slug: alphabet
   name: Alphabet
+- slug: wylie
+  name: Wylie
+- slug: uchen
+  name: Uchen  
