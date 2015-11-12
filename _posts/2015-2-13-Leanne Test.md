@@ -1,12 +1,13 @@
 ---
 layout: post
 category: lesson
-tags: [words, alphabet, sounds, stage0]
+tags: [words, alphabet, sounds]
 title: Leanne Test
 description: ""
 format: md
 stage: stage0
-lessonpost: true
+catheading: Lessons
+heading: Leanne Test
 ---
 
 

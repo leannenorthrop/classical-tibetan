@@ -2,7 +2,7 @@
 layout: post
 category: resource
 tag: book
-tags: []
+tags: [modern]
 title: XXX Book Review
 description: ""
 format: md

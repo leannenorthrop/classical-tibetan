@@ -6,8 +6,14 @@
 
   <body>
   {% include nav.html %}
-  {% include lessons_tags.html %}
-    <div class="col-xs-12">
+    <div class="container">
+      <div class="page-header">
+        <h1>Tibetan Blog <small>{{page.heading}} With {{ page.tag }} Tag</small></h1>
+        <p class="lead">Thoughts, Gists, and Guides on Programming</p>
+      </div>    
+      <div class="row">
+
+        <div class="col-xs-12">
       {% if site.tags[page.tag] %}
           {% for post in site.tags[page.tag] %}
           {% unless post.next %}
@@ -24,8 +30,8 @@
       {% else %}
           <p>There are no lessons with this tag.</p>
       {% endif %}
-    </div><!-- /.blog-main --> 
-  {% include foot.html %}
+    </div><!-- /.tags --> 
+  {% include foot.html %}<!-- /.container -->
   {% include footer.html %}
   </body>
 </html>

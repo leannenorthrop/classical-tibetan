@@ -6,7 +6,8 @@ title: Test Wylie
 description: Wylie test
 format: md
 stage: stage0
-lessonpost: true
+catheading: Lessons
+heading: Test Wylie
 ---
 
 

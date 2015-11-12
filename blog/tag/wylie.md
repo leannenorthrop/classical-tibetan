@@ -2,5 +2,7 @@
 layout: tag
 tag: wylie
 permalink: /blog/tag/wylie/
-blogtags: true
+heading: Posts
+tagpage: true
+category: blog
 ---

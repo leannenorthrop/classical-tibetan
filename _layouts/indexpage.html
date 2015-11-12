@@ -6,31 +6,22 @@
 
   <body>
   {% include nav.html %}
-
-  {% if page.lessonsarchive %}
-  {%   include lesson_archive_header.html %}
-  {% elsif page.lessonshome %}
-  {%   include lesson_home_header.html %}
-  {% elsif page.lessonsindex %}
-  {%   include lesson_index_header.html %}  
-  {% elsif page.plain %}
-  {%   include page_header.html %}
-  {% elsif page.justnav %}
-  {% else %}
-  {%   include header.html %}
-  {% endif %}  
-
+  {% include page_header.html %}
       <div class="row">
         <div class="col-xs-12">
-          <a href="{{ site.base-url }}{{ archive-path }}">{{archive-name}}</a>
+          <a href="{{ site.base-url }}{{ page.archive-path }}">{{page.archive-name}}</a>
         </div>
       </div>
       
         <div class="col-xs-12">
         {% if page.stage %}
           {% assign posts = site.posts | where: "category", page.category %}
+        {% elsif page.index %}
+          {% assign posts = site.posts | where: "category", page.category %}
         {% elsif page.tag %}
           {% assign posts = site.posts | where: "tag", page.tag %}
+        {% elsif page.category %}
+          {% assign posts = site.posts | where: "category", page.category %}          
         {% endif %}
 
           {% for post in posts %}
@@ -55,7 +46,6 @@
   {% else %}
   {%   include foot.html %}
   {% endif %}
-
   {% include footer.html %}
   </body>
 </html>

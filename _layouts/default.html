@@ -6,25 +6,17 @@
 
   <body>
   {% include nav.html %}
-
-  {% if page.lessonsarchive %}
-  {%   include lesson_archive_header.html %}
-  {% elsif page.lessonshome %}
-  {%   include lesson_home_header.html %}
+  {% if page.justnav %}
   {% elsif page.plain %}
-  {%   include page_header.html %}
-  {% elsif page.justnav %}
-  {% else %}
   {%   include header.html %}
+  {% else %}
+  {%   include page_header.html %}  
   {% endif %}  
-
   {{ content }}
-
   {% if page.justnav %}
   {% else %}
   {%   include foot.html %}
   {% endif %}
-
   {% include footer.html %}
   </body>
 </html>
