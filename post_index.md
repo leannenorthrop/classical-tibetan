@@ -1,44 +1,33 @@
 ---
-layout: plain_no_cache
-title: Posts
+layout: default
+title: All Posts
+no_cache: true
+heading: All Posts
+sitemap: true
 ---
 
 <div class="row">
-  <ol class="breadcrumb">
-    <li><a href="{{site.url}}">Home</a></li>
-    <li class="active">Site Resources</li>
-  </ol>
-</div>
-
-<div class="blog-header">
-  <h1 class="blog-title">Resources <small>For the Curious</small></h1>
-  <p class="lead blog-description">Collection of materials.</p>
-</div>
-
-<div class="row">
-
-<div class="list-group">
-{% assign posts = site.posts %}
-{% for post in posts %}
-    <a href="{{site.baseurl}}{{ post.url }}" class="list-group-item">
-      <h4 class="list-group-item-heading">{{ post.title }}</h4>
-      <p class="list-group-item-text">{{ post.tags }}</p>
-    </a>
-{% endfor %}
-</div>
+  <div class="list-group">
+  {% assign posts = site.posts %}
+  {% for post in posts %}
+      <a href="{{site.base-url}}{{ post.url }}" class="list-group-item">
+        <h4 class="list-group-item-heading">{{ post.title }}</h4>
+        <p class="list-group-item-text">{{ post.excerpt }}</p>
+      </a>
+  {% endfor %}
+  </div>
 </div>
 
 <div class="row notfound" style="display:none">
-<div class="jumbotron">
-  <h1>Sorry!</h1>
-  <h2>The material you were searching for can not be found.</h2>
-</div>
-</div>
+  <div class="jumbotron">
+    <h1>Sorry!</h1>
+    <h2>The material you were searching for can not be found.</h2>
+  </div>
 </div>
 
-<script src="{{site.baseurl}}/js/lib/jquery-1.11.2.js"></script>
+<script src="{{site.base-url}}/js/lib/jquery-1.11.2.js"></script>
 <script>
-var baseurl = {{site.baseurl}};
+var base-url = {{site.base-url}};
 function GetURLParameter(sParam)
 {
     var sPageURL = window.location.search.substring(1);
@@ -63,7 +52,7 @@ function capitalize(text) {
 $.getJSON( "post_index.json", function( data ) {
   var items = [];
   $.each( data, function( key, val ) {
-    items.push('<div class="' + val.category + ' ' + val.tags.join(" ") + ' style="display:none"><a href="' + baseurl + val.file + '" class="list-group-item"><h4 class="list-group-item-heading">' + val.title + '</h4><p class="list-group-item-text">' + val.description + '</p></a></div>');
+    items.push('<div class="' + val.category + ' ' + val.tags.join(" ") + ' style="display:none"><a href="' + base-url + val.file + '" class="list-group-item"><h4 class="list-group-item-heading">' + val.title + '</h4><p class="list-group-item-text">' + val.description + '</p></a></div>');
   });
 
   $(".list-group").html(items.join(""));

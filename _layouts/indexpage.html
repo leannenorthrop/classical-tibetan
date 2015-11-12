@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include head.html %}
+  </head>
+
+  <body>
+  {% include nav.html %}
+
+  {% if page.lessonsarchive %}
+  {%   include lesson_archive_header.html %}
+  {% elsif page.lessonshome %}
+  {%   include lesson_home_header.html %}
+  {% elsif page.lessonsindex %}
+  {%   include lesson_index_header.html %}  
+  {% elsif page.blog %}
+  {%   include blog_header.html %}
+  {% elsif page.justnav %}
+  {% else %}
+  {%   include header.html %}
+  {% endif %}  
+
+      <div class="row">
+        <div class="col-xs-12">
+          <a href="{{ site.base-url }}{{ archive-path }}">{{archive-name}}</a>
+        </div>
+      </div>
+      
+        <div class="col-xs-12">
+          {% assign posts = site.posts | where: "category", page.category %}
+          {% for post in posts %}
+
+          {%   if post.stage == page.stage %}
+          {%     cycle '<div class="row">', '', '' %}
+            <div class="col-xs-12 col-sm-4">
+              <h2><a href="{{site.base-url}}{{ post.url }}">{{ post.title }}</a> <small>{{post.date | date_to_long_string}}</small></h2>
+              {{ post.excerpt }}                
+            </div>
+          {%     cycle '', '', '</div>' %}
+          {%     if forloop.index == forloop.last %}
+            </div>
+          {%     endif %}          
+          {%   endif %}
+
+          {% endfor %}
+          </div>
+        </div><!-- /lessons -->
+
+  {% if page.justnav %}
+  {% else %}
+  {%   include foot.html %}
+  {% endif %}
+
+  {% include footer.html %}
+  </body>
+</html>

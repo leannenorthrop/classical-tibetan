@@ -1,6 +1,6 @@
 ---
 title: Getting Started
-layout: blog
+layout: default
 category: help
 permalink: /help/getting-started.html
 ---

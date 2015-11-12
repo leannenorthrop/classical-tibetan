@@ -1,10 +1,30 @@
-{% include header.md %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include head.html %}
+  </head>
 
-<div class="row">
-  <div class="col-sm-8">
-    {{ content }}
-  </div>
-  <div class="col-sm-3 col-sm-offset-1">
-  </div>
-</div>
-{% include footer.md %}
+  <body>
+  {% include nav.html %}
+
+  {% if page.lessonsarchive %}
+  {%   include lesson_archive_header.html %}
+  {% elsif page.lessonshome %}
+  {%   include lesson_home_header.html %}
+  {% elsif page.blog %}
+  {%   include blog_header.html %}
+  {% elsif page.justnav %}
+  {% else %}
+  {%   include header.html %}
+  {% endif %}  
+
+  {{ content }}
+
+  {% if page.justnav %}
+  {% else %}
+  {%   include foot.html %}
+  {% endif %}
+
+  {% include footer.html %}
+  </body>
+</html>

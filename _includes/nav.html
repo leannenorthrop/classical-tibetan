@@ -1,0 +1,107 @@
+    <h1 class="label" style="position: absolute; top: 40px;margin:0;padding:0 0 0 10px;color:black;">Gathering Understanding</h1>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-toolbar">
+            <span class="sr-only">View Menu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="https://avatars0.githubusercontent.com/u/521090?v=3&s=460" width="30px" height="30px" class="img-circle" alt="Picture of Me, Leanne Northrop"></a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="main-toolbar">
+          <ul class="nav navbar-nav">
+            <li><a href="http://leannenorthrop.github.io">Home</a></li>
+            <li><a href="http://leannenorthrop.github.io/blog/">Development Blog</a></li>
+            <li class="active"><a href="{{ site.base-url }}/index.html">Tibetan Blog<span class="sr-only">(current)</span></a></li>
+            <li><a href="http://leannenorthrop.github.io/css-playground">CSS Stuff</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  {% if page.category == 'help' %}
+    <ol class="breadcrumb">
+      <li><a href="http://leannenorthrop.github.io"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+      <li class="active">Tibetan Blog Help</li>
+    </ol>
+  {% endif %}
+
+  {% if page.blogindex %}
+    <ol class="breadcrumb">
+      <li><a href="http://leannenorthrop.github.io"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+      <li class="active">Tibetan Blog Posts</li>
+    </ol>
+  {% endif %}  
+
+  {% if page.blogpost %}
+    <ol class="breadcrumb">
+      <li><a href="http://leannenorthrop.github.io"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+      <li><a href="{{ site.base-url }}/blog/index.html">Tibetan Blog Posts</a></li>
+      <li class="active">{{page.title}}</li>
+    </ol>
+  {% endif %}    
+
+  {% if page.sitehome %}
+    <ol class="breadcrumb">
+      <li><a href="http://leannenorthrop.github.io"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+      <li class="active">Tibetan Blog</li>
+    </ol>
+  {% endif %}
+
+  {% if page.sitemap %}
+    <ol class="breadcrumb">
+      <li><a href="http://leannenorthrop.github.io"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+      <li><a href="{{ site.base-url }}/index.html">Tibetan Blog</a></li>
+      <li class="active">All Posts</li>
+    </ol>
+  {% endif %}  
+
+  {% if page.lessonsarchive %}
+    <ol class="breadcrumb">
+      <li><a href="http://leannenorthrop.github.io"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+      <li><a href="{{ site.base-url }}/index.html">Tibetan Blog</a></li>
+      <li><a href="{{ site.base-url }}/lessons/index.html">Lessons</a></li>
+      <li class="active">Archive</li>
+    </ol>
+  {% endif %}
+
+  {% if page.lessonshome %}
+    <ol class="breadcrumb">
+      <li><a href="http://leannenorthrop.github.io"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+      <li><a href="{{ site.base-url }}/index.html">Tibetan Blog</a></li>
+      <li><a href="{{ site.base-url }}/lessons/index.html">Lessons</a></li>
+      <li class="active">Home</li>
+    </ol>
+  {% endif %} 
+
+  {% if page.lessonsindex %}
+    <ol class="breadcrumb">
+      <li><a href="http://leannenorthrop.github.io"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+      <li><a href="{{ site.base-url }}/index.html">Tibetan Blog</a></li>
+      <li><a href="{{ site.base-url }}/lessons/index.html">Lessons</a></li>
+      <li class="active">{{page.heading}}</li>
+    </ol>
+  {% endif %} 
+
+  {% if page.lessonstags %}
+    <ol class="breadcrumb">
+      <li><a href="http://leannenorthrop.github.io"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+      <li><a href="{{ site.base-url }}/index.html">Tibetan Blog</a></li>
+      <li><a href="{{ site.base-url }}/lessons/index.html">Lessons</a></li>
+      <li>By Tag</li>
+      <li class="active">{{page.tag}}</li>
+    </ol>
+  {% endif %}   
+
+  {% if page.lessonpost %}
+    <ol class="breadcrumb">
+      <li><a href="http://leannenorthrop.github.io"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+      <li><a href="{{ site.base-url }}/index.html">Tibetan Blog</a></li>
+      <li><a href="{{ site.base-url }}/lessons/index.html">Lessons</a></li>
+      <li><a href="{{ site.base-url }}/lessons/{{page.stage}}//index.html">Stage  {{ page.stage | replace:'stage','' }}</a></li>
+      <li class="active">{{page.title}}</li>
+    </ol>
+  {% endif %}

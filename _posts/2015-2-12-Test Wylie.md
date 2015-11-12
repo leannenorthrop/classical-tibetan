@@ -1,9 +1,12 @@
 ---
-layout: lesson
+layout: post
 category: lesson
-tags: s t a g e 0
-title: New
+tags:
+title: Test Wylie
 description: Wylie test
+format: md
+stage: stage0
+lessonpost: true
 ---
 
 
