@@ -6,4 +6,5 @@ blogtags: true
 heading: Posts
 tagpage: true
 category: blog
+catheading: Recent Posts
 ---
