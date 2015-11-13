@@ -1,9 +1,34 @@
+# Ideas & Stuff to Do
+- [ ] Restest contribute mode re json ☐
+
+## Games
+- [ ] Guess the colour in wylie/uchen input  ☐
+- [ ] Sodoku in uchen numerals ☐
+- [ ] Simple maths in uchen numbers ☐
+- [ ] Guess the word variation on hangman ☐
+- [ ] Match picture to word: easy mode to offer choices hard to type in wylie uchen ☐
+- [ ] Text based adventure game for reading practice. Stage 0 seeing colours of rainbow and family and friends ☐
+- [ ] Find it treasure game. Same as battleship but using objects ☐
+- [ ] Match word pairs ☐
+- [ ] Spelling ☐
+- [ ] Vocab flash cards ☐
+
+## Resources
+- [ ] Readings with vocab list and links to grammer with optional transliteration/phonetics/simple english/full translation ☐
+- [ ] Grammar specific posts? ☐
+- [ ] Dictionary search and spliting ☐
+- [ ] Dictionary images for games ☐
+- [ ] Word of the day: Create word of the day page with button to tweet ☐
+- [ ] Help ☐
+
 # Site
+- [ ] Fix index last div on indexpage layout etc. ☐
+- [ ] Create branch of site for base of other projects ☐
 - [ ] update page trolling vocab lists and post files to create json indexes update editor to ping that in hidden iframe rather than depend on editor ☐
 - [ ] remove footer ☐ 
-- [ ] update css ☐ 
-- [ ] add blog ☐ 
-- [ ] add resources ☐ 
+- [x] update css ☐ 
+- [x] add blog ☐ 
+- [x] add resources ☐ 
 - [ ] do tag links to index page ☐ 
 - [ ] update welcome page content and images ☐ 
 - [ ] domain name ☐ 
