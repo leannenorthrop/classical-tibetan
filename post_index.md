@@ -10,7 +10,7 @@ sitemap: true
   <div class="list-group">
   {% assign posts = site.posts %}
   {% for post in posts %}
-      <a href="{{site.base-url}}{{ post.url }}" class="list-group-item">
+      <a href="{{site.baseurl}}{{ post.url }}" class="list-group-item">
         <h4 class="list-group-item-heading">{{ post.title }}</h4>
         <p class="list-group-item-text">{{ post.excerpt }}</p>
       </a>
@@ -25,9 +25,9 @@ sitemap: true
   </div>
 </div>
 
-<script src="{{site.base-url}}/js/lib/jquery-1.11.2.js"></script>
+<script src="{{site.baseurl}}/js/lib/jquery-1.11.2.js"></script>
 <script>
-var base-url = {{site.base-url}};
+var base-url = {{site.baseurl}};
 function GetURLParameter(sParam)
 {
     var sPageURL = window.location.search.substring(1);

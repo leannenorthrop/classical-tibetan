@@ -16,14 +16,14 @@
 
     <title>{% if page.title %}{{page.title}} – {% endif %}{{ site.github.project_title }} – {{ site.github.project_tagline }}</title>
 
-    <link rel="stylesheet" type="text/css" href="{{ site.base-url }}/css/bootstrap-themed.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="{{ site.base-url }}/css/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/css/bootstrap-themed.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/css/stylesheet.css" media="screen">
     {% if page.tag == 'vocab' %}
-    <link rel="stylesheet" type="text/css" href="{{ site.base-url }}/css/vocabprint.css" media="print">
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/css/vocabprint.css" media="print">
     {% else %}
-    <link rel="stylesheet" type="text/css" href="{{ site.base-url }}/css/print.css" media="print">
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/css/print.css" media="print">
     {% endif %}
-    <link rel="stylesheet" type="text/css" href="{{ site.base-url }}/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/css/font-awesome.min.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

@@ -34,20 +34,20 @@ sitehome: true
     <img class="img-circle" src="https://lh4.googleusercontent.com/-OQ8sgwKenUs/VH0vm0H_1aI/AAAAAAAAC4Y/oJ7a0G4TG3g/s426/2014%2B-%2B1" alt="Generic placeholder image" style="width: 140px; height: 140px;">
     <h2>Learn</h2>
     <p>Blog posts and staged lessons.</p>
-    <p><a class="btn btn-default" href="{{site.base-url}}/lesson/index.html" role="button">View details &raquo;</a></p>
+    <p><a class="btn btn-default" href="{{site.baseurl}}/lesson/index.html" role="button">View details &raquo;</a></p>
   </div><!-- /.col-lg-4 -->
   <div class="col-xs-4">
     <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 140px; height: 140px;">
     <h2>Resources</h2>
     <p>A collection of resources that you may find helpful when learning Tibetan.</p>
-    <p><a class="btn btn-default" href="{{site.base-url}}/resource/index.html" role="button">View details &raquo;</a></p>
+    <p><a class="btn btn-default" href="{{site.baseurl}}/resource/index.html" role="button">View details &raquo;</a></p>
   </div><!-- /.col-lg-4 -->
   <div class="col-xs-4">
     <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 140px; height: 140px;">
     <h2>Write</h2>
     <p>Topics about writing.</p>
-    <p><a class="btn btn-default" href="{{site.base-url}}/write/index.html" role="button">View details &raquo;</a></p>
-    <p><a class="btn btn-default" href="{{site.base-url}}/write/editor.html?layout=private" role="button">Wylie Editor &raquo;</a></p>
+    <p><a class="btn btn-default" href="{{site.baseurl}}/write/index.html" role="button">View details &raquo;</a></p>
+    <p><a class="btn btn-default" href="{{site.baseurl}}/write/editor.html?layout=private" role="button">Wylie Editor &raquo;</a></p>
     </p>
   </div><!-- /.col-lg-4 -->
 </div><!-- /.row -->
@@ -58,13 +58,13 @@ sitehome: true
     <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 140px; height: 140px;">
     <h2>Blog</h2>
     <p>Thoughts on learning tibetan, about creating this site and news.</p>
-    <p><a class="btn btn-default" href="{{site.base-url}}/blog/index.html" role="button">View details &raquo;</a></p>
+    <p><a class="btn btn-default" href="{{site.baseurl}}/blog/index.html" role="button">View details &raquo;</a></p>
   </div><!-- /.col-lg-4 -->
   <div class="col-xs-4">
     <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 140px; height: 140px;">
     <h2>Games</h2>
     <p>Coming one day soon - I hope.</p>
-    <p><a class="btn btn-default" href="{{site.base-url}}/game/index.html" role="button">View details &raquo;</a></p>
+    <p><a class="btn btn-default" href="{{site.baseurl}}/game/index.html" role="button">View details &raquo;</a></p>
   </div><!-- /.col-lg-4 -->    
 </div>
 

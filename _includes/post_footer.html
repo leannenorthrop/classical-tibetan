@@ -9,7 +9,7 @@
               {% for t in page.tags limit:4 %}
                 <h5>With {{t| replace: '_', ' ' }} Tag</h5>
                 {% for apost in site.tags[t] limit:8 %}
-                  <small><a href="{{ site.base-url }}{{ apost.url }}">{{ apost.title }}</a> <small>{{apost.date | date_to_long_string}}</small></small>
+                  <small><a href="{{ site.baseurl }}{{ apost.url }}">{{ apost.title }}</a> <small>{{apost.date | date_to_long_string}}</small></small>
                 {% endfor %}
               {% endfor %}
             {% else %}
@@ -21,7 +21,7 @@
               <h2>{{ category[0] }}</h2>
               <ul class="posts">
                 {% for post in category[1] %}
-                  <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ site.base-url }}{{ post.url }}">{{ post.title }}</a></li>
+                  <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
                 {% endfor %}
               </ul>
               {% endif %}

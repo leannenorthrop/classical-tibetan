@@ -25,7 +25,7 @@
               <h3>{{ post.date | date: '%Y %b' }}</h3>
             {% endif %}
           {% endunless %}
-              <h4><a href="{{site.base-url}}{{ post.url }}">{{ post.title }}</a> <small>{{post.date | date_to_long_string}}</small></h4>        
+              <h4><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a> <small>{{post.date | date_to_long_string}}</small></h4>        
           {% endfor %}
       {% else %}
           <p>There are no lessons with this tag.</p>

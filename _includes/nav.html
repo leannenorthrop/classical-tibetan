@@ -15,7 +15,7 @@
           <ul class="nav navbar-nav">
             <li><a href="http://leannenorthrop.github.io">Home</a></li>
             <li><a href="http://leannenorthrop.github.io/blog/">Development Blog</a></li>
-            <li class="active"><a href="{{ site.base-url }}/index.html">Tibetan Blog<span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="{{ site.baseurl }}/index.html">Tibetan Blog<span class="sr-only">(current)</span></a></li>
             <li><a href="http://leannenorthrop.github.io/css-playground">CSS Stuff</a></li>
           </ul>
         </div>
@@ -33,44 +33,44 @@
       <li class="active">Tibetan Blog</li>
   {% else %}
       <li>
-        <a href="{{ site.base-url }}/index.html">Tibetan Blog</a>
+        <a href="{{ site.baseurl }}/index.html">Tibetan Blog</a>
       </li>
   {% endif %}
 
   {% if page.archive %}    
-      <li><a href="{{ site.base-url }}/{{ page.category }}/index.html">{{ page.catheading}}</a></li>
+      <li><a href="{{ site.baseurl }}/{{ page.category }}/index.html">{{ page.catheading}}</a></li>
       <li class="active">Archive</li>
   {% elsif page.tag == 'vocab' %}
     {% if page.index %}
-      <li><a href="{{ site.base-url }}/{{ page.category }}/index.html">{{ page.catheading }}</a></li>
-      <li><a href="{{ site.base-url }}/{{ page.category }}/vocab/index.html">Vocabulary Lists</a></li>
+      <li><a href="{{ site.baseurl }}/{{ page.category }}/index.html">{{ page.catheading }}</a></li>
+      <li><a href="{{ site.baseurl }}/{{ page.category }}/vocab/index.html">Vocabulary Lists</a></li>
       <li class="active">Stage {{ page.stage | replace: 'stage', '' }}</li>
     {% else %}
-      <li><a href="{{ site.base-url }}/{{ page.category }}/index.html">{{ page.catheading }}</a></li>
-      <li><a href="{{ site.base-url }}/{{ page.category }}/vocab/index.html">Vocabulary Lists</a></li>
-      <li><a href="{{ site.base-url }}/{{ page.category }}/vocab/{{ page.stage }}.html">Stage {{ page.stage | replace: 'stage', '' }}</a></li>
+      <li><a href="{{ site.baseurl }}/{{ page.category }}/index.html">{{ page.catheading }}</a></li>
+      <li><a href="{{ site.baseurl }}/{{ page.category }}/vocab/index.html">Vocabulary Lists</a></li>
+      <li><a href="{{ site.baseurl }}/{{ page.category }}/vocab/{{ page.stage }}.html">Stage {{ page.stage | replace: 'stage', '' }}</a></li>
       <li class="active">{{ page.heading }}</li> 
     {% endif %}
   {% elsif page.index %}
     {% if page.stage %}
-      <li><a href="{{ site.base-url }}/{{ page.category }}/index.html">{{ page.catheading }}</a></li>
+      <li><a href="{{ site.baseurl }}/{{ page.category }}/index.html">{{ page.catheading }}</a></li>
       <li class="active">Stage {{ page.stage | replace: 'stage', '' }}</li>  
     {% else %}
       <li class="active">{{ page.heading }}</li>
     {% endif %}
   {% elsif page.stage %}
-      <li><a href="{{ site.base-url }}/{{ page.category }}/index.html">{{ page.catheading }}</a></li>
-      <li><a href="{{ site.base-url }}/{{ page.category }}/{{ page.stage }}/index.html">Stage {{ page.stage | replace: 'stage', '' }}</a></li>
+      <li><a href="{{ site.baseurl }}/{{ page.category }}/index.html">{{ page.catheading }}</a></li>
+      <li><a href="{{ site.baseurl }}/{{ page.category }}/{{ page.stage }}/index.html">Stage {{ page.stage | replace: 'stage', '' }}</a></li>
       <li class="active">{{ page.heading }}</li>
   {% elsif page.post %}
-      <li><a href="{{ site.base-url }}/{{ page.category }}/index.html">{{ page.catheading }}</a></li>
+      <li><a href="{{ site.baseurl }}/{{ page.category }}/index.html">{{ page.catheading }}</a></li>
       <li class="active">{{ page.heading }}</li>
   {% elsif page.tagpage %}
-      <li><a href="{{ site.base-url }}/{{ page.category }}/index.html">{{page.catheading}}</a></li>
+      <li><a href="{{ site.baseurl }}/{{ page.category }}/index.html">{{page.catheading}}</a></li>
       <li>By Tag</li>
       <li class="active">{{page.tag}}</li>
   {% elsif page.category %}
-      <li><a href="{{ site.base-url }}/{{ page.category }}/index.html">{{ page.catheading }}</a></li>
+      <li><a href="{{ site.baseurl }}/{{ page.category }}/index.html">{{ page.catheading }}</a></li>
       <li class="active">{{ page.heading }}</li>
   {% elsif page.sitemap %}
       <li class="active">All Posts</li>
