@@ -68,6 +68,13 @@ function($, Backbone, Marionette, Bootstrap, Template, ModesTemplate) {
       },
       onRender: function() {
         $('.dropdown-toggle').dropdown();
+        if (this.__style === "contrib") {
+          $("#editor-open").show();
+          $("#editor-save").show();          
+        } else {
+          $("#editor-open").hide();
+          $("#editor-save").hide();
+        }
       },
       currentMode: function() {
         var selectedMode = this.$el.find('#currentModeLabel').attr("data-value");
@@ -83,6 +90,7 @@ function($, Backbone, Marionette, Bootstrap, Template, ModesTemplate) {
       },
       setStyle: function(style) {
         this.__style = style;
+        this.render();
       },
       events: {
         "click .dropdown-menu-item": function(e){

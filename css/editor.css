@@ -4,10 +4,20 @@
 body {
   padding-top:50px;
 }
-#preview-toolbar,#editor-toolbar {
-  padding: 5px 15px;
-  padding-left:0px;
+#editor-toolbar {
+    border-right-width: 0px;
 }
+#preview-toolbar {
+    border-left-width: 0px;
+}
+#preview-toolbar,#editor-toolbar {
+  padding: 0px;
+}
+
+.layout {
+    padding: 0px;
+}
+
 ul.nav li a {
     position: relative !important;
     overflow: hidden;
@@ -45,8 +55,7 @@ ul.nav li a input[type=file] {
 .navbar-brand
 {
     position: absolute;
-    width: 100%;
     left: 0;
-    text-align: center;
-    margin: auto;
+    margin: 0;
+    padding-left: 2px;
 }

@@ -32,6 +32,8 @@ define(["jquery",
         //$("body").css("padding-top","0");
         //$("ol.breadcrumb").css("margin-bottom","0");
         $("#editorapp .editor-app .navbar").css("margin-bottom", "0");
+      } else {
+        $("body").css("padding-top","0");
       }
 
       var preview = new PreviewView({});

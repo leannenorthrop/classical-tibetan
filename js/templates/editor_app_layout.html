@@ -1,20 +1,20 @@
 <div>
-<nav class="navbar navbar-fixed-top navbar-inverse">
-  <div id="toolbar" class="container-fluid">
-    <div class="navbar-header">
-      <i class="fa fa-pencil-square-o fa-2x pull-left" style="color:white;padding:12px 0px;"></i>
-    </div>
-    <a class="navbar-brand"><i class="fa fa-spinner fa-pulse"></i></a>
-    <div>
-      <div id="editor-toolbar" class="navbar-left"></div>
-      <div id="preview-toolbar" class="navbar-right"></div>
+  <div class="container-fluid">
+    <div class="row no-gutter">
+      <div class="layout col-xs-12 col-sm-6 no-gutter left-side">
+        <nav class="navbar navbar-inverse" style="border-right-width:0px;">
+          <a class="navbar-brand"><i class="fa fa-spinner fa-pulse"></i></a>
+          <div id="editor-toolbar" class="navbar-left"></div>
+        </nav>    
+        <div id="left-col"></div>
+      </div>
+      <div class="layout col-xs-12 col-sm-6 no-gutter right-side">
+        <nav class="navbar navbar-inverse" style="border-left-width:0px;">
+          <a class="navbar-brand"><i class="fa fa-spinner fa-pulse"></i></a>
+          <div id="preview-toolbar" class="navbar-left"></div>
+        </nav>
+        <div id="right-col"></div>
+      </div>
     </div>
   </div>
-</nav>
-<div class="container-fluid">
-  <div class="layout row no-gutter">
-    <div id="left-col" class="col-xs-6 col-sm-6 col-md-6"></div>
-    <div id="right-col" class="col-xs-6 col-sm-6 col-md-6"></div>
-  </div>
-</div>
 </div>

@@ -46,7 +46,7 @@ function($, Backbone, Marionette, Bootstrap, Template) {
         Backbone.Wreqr.radio.commands.execute( 'editor', 'export-preview');
       },
       "click @ui.screenBtn": function() {
-        if ($("#left-col").width() === 0) {
+        if ($(".left-side").width() === 0) {
           Backbone.Wreqr.radio.commands.execute( 'editor', 'preview-normalsize');
         } else {
           Backbone.Wreqr.radio.commands.execute( 'editor', 'preview-fullsize');
