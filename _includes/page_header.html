@@ -1,6 +1,6 @@
     <div class="container">
         <div class="page-header">
-            <h1>Tibetan Blog <small>{{page.heading}}</small></h1>
+            <h1>Tibetan Blog <small>{{page.heading}} {% if page.stage %}<small>Stage {{page.stage | replace: 'stage', ''}}</small>{% endif%}</small></h1>
             <p class="lead">Thoughts, Gists, and Guides on Programming</p>
         </div>
       <div class="row">

@@ -7,7 +7,11 @@ archive-name: All Resources
 category: resource
 catheading: Resources
 ---
-# Dictionary ~ to do!!!!
 
-* Item one
-* Item two
+<dl class="dl-horizontal">
+{% for entry in site.data.dictionary.all %}
+  <dt lang="bo">{{ entry.uchen }}</dt>
+  <dd>({{ entry.phonetics}}) {{ entry.english }}</dd>
+{% endfor %}
+</dl>
+

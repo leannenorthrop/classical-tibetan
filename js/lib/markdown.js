@@ -1962,7 +1962,7 @@
     UChenMap["s"] = "\u0F66";
     UChenMap["h"] = "\u0F67";
     UChenMap["a"] = "\u0F68";
-    UChenMap["'"] = "\u0F68";
+    UChenMap["'"] = "\u0F60";
 
     UChenMap[".k"] = "\u0F40";
     UChenMap[".kh"] = "\u0F41";

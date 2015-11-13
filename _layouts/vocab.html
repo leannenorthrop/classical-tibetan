@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include head.html %}
+  </head>
+
+  <body>
+  {% include nav.html %}
+  {% include page_header.html %}
+  <div class="col-xs-12 col-sm-9">
+    <dl class="dl-horizontal">
+    {% for entry in site.data.dictionary.all %}
+      {% if page.tags contains 'vocab' %}
+        {% if page.voclistname == entry.vocabList %}
+          <dt lang="bo">{{ entry.uchen }}</dt>
+          <dd>({{ entry.phonetics}}) {{ entry.english }}</dd>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    </dl>
+  </div>
+  {% include vocab_footer.html %}
+  {% include footer.html %}
+  </body>
+</html>

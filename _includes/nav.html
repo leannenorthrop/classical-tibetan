@@ -40,6 +40,17 @@
   {% if page.archive %}    
       <li><a href="{{ site.base-url }}/{{ page.category }}/index.html">{{ page.catheading}}</a></li>
       <li class="active">Archive</li>
+  {% elsif page.tag == 'vocab' %}
+    {% if page.index %}
+      <li><a href="{{ site.base-url }}/{{ page.category }}/index.html">{{ page.catheading }}</a></li>
+      <li><a href="{{ site.base-url }}/{{ page.category }}/vocab/index.html">Vocabulary Lists</a></li>
+      <li class="active">Stage {{ page.stage | replace: 'stage', '' }}</li>
+    {% else %}
+      <li><a href="{{ site.base-url }}/{{ page.category }}/index.html">{{ page.catheading }}</a></li>
+      <li><a href="{{ site.base-url }}/{{ page.category }}/vocab/index.html">Vocabulary Lists</a></li>
+      <li><a href="{{ site.base-url }}/{{ page.category }}/vocab/{{ page.stage }}.html">Stage {{ page.stage | replace: 'stage', '' }}</a></li>
+      <li class="active">{{ page.heading }}</li> 
+    {% endif %}
   {% elsif page.index %}
     {% if page.stage %}
       <li><a href="{{ site.base-url }}/{{ page.category }}/index.html">{{ page.catheading }}</a></li>
