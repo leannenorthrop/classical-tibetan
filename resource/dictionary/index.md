@@ -10,7 +10,7 @@ catheading: Resources
 
 <dl class="dl-horizontal">
 {% for entry in site.data.dictionary.all %}
-  <dt lang="bo">{{ entry.uchen }}</dt>
+  <dt lang="bo"><a name="{{entry.wylie| append: '.'}}">{{ entry.uchen }}</a></dt>
   <dd>({{ entry.phonetics}}) {{ entry.english }}</dd>
 {% endfor %}
 </dl>

@@ -12,7 +12,7 @@
     {% for entry in site.data.dictionary.all %}
       {% if page.tags contains 'vocab' %}
         {% if page.voclistname == entry.vocabList %}
-          <dt lang="bo">{{ entry.uchen }}</dt>
+          <dt lang="bo"><a href="{{site.baseurl}}/resource/dictionary/index.html#{{ entry.wylie | append: '.'}}">{{ entry.uchen }}</a></dt>
           <dd>({{ entry.phonetics}}) {{ entry.english }}</dd>
         {% endif %}
       {% endif %}
