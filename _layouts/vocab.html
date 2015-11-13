@@ -8,6 +8,8 @@
   {% include nav.html %}
   {% include page_header.html %}
   <div class="col-xs-12 col-sm-9">
+    {{content}}
+
     <dl class="dl-horizontal">
     {% for entry in site.data.dictionary.all %}
       {% if page.tags contains 'vocab' %}

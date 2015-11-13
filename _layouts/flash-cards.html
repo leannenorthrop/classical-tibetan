@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include head.html %}
+  </head>
+
+  <body>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <tbody>
+      {% for entry in site.data.dictionary.all %}
+        {% if page.tags contains 'vocab' %}
+          {% if page.voclistname == entry.vocabList %}
+          <tr style="height: 230px;">
+            <td style="vertical-align:middle;text-align:center;font-size:52px;">
+            {{ entry.uchen }}
+            </td>
+            <td style="vertical-align:middle;text-align:center;font-size:42px;">
+            ({{ entry.phonetics}}) {{ entry.english }}
+            </td>
+          </tr>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+        </tbody>
+      <table>
+    </table>
+  </body>
+</html>
