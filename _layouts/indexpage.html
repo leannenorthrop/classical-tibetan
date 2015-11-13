@@ -18,8 +18,8 @@
           {% assign posts = site.posts | where: "category", page.category %}
         {% elsif page.index %}
           {% assign posts = site.posts | where: "category", page.category %}
-        {% elsif page.tag %}
-          {% assign posts = site.posts | where: "tag", page.tag %}
+        {% elsif page.hastag %}
+          {% assign posts = site.posts | where: "tag", page.hastag %}
         {% elsif page.category %}
           {% assign posts = site.posts | where: "category", page.category %}          
         {% endif %}

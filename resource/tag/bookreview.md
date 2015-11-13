@@ -1,7 +1,7 @@
 ---
 layout: tag
-tag: modern
-permalink: /resource/tag/modern/
+tag: bookreview
+permalink: /resource/tag/bookreview/
 blogtags: true
 heading: Resources
 tagpage: true

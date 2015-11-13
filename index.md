@@ -45,8 +45,10 @@ sitehome: true
   <div class="col-xs-4">
     <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 140px; height: 140px;">
     <h2>Write</h2>
-    <p>A simple online Wylie editor where you can load and save files.</p>
+    <p>Topics about writing.</p>
     <p><a class="btn btn-default" href="{{site.base-url}}/editor/?layout=private" role="button">View details &raquo;</a></p>
+    <p><a class="btn btn-default" href="{{site.base-url}}/editor/?layout=private" role="button">Wylie Editor &raquo;</a></p>
+    </p>
   </div><!-- /.col-lg-4 -->
 </div><!-- /.row -->
 
@@ -62,7 +64,7 @@ sitehome: true
     <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 140px; height: 140px;">
     <h2>Games</h2>
     <p>Coming one day soon - I hope.</p>
-    <!--p><a class="btn btn-default" href="{{site.base-url}}/game/index.html" role="button">View details &raquo;</a></p-->
+    <p><a class="btn btn-default" href="{{site.base-url}}/game/index.html" role="button">View details &raquo;</a></p>
   </div><!-- /.col-lg-4 -->    
 </div>
 

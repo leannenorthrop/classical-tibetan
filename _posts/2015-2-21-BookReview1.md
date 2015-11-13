@@ -1,8 +1,8 @@
 ---
 layout: post
 category: resource
-tag: book
-tags: [modern]
+tags: [bookreview, tibetan]
+hastag: bookreview
 title: XXX Book Review
 description: ""
 format: md
