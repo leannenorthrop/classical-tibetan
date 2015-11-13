@@ -3,6 +3,7 @@ require(["editor/app"], function(App) {
 
   $(function(){
     var options = {
+      embed: $("title").html().indexOf("Tibetan Blog") > -1
     };
 
     App.start(options);

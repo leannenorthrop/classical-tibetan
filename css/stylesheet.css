@@ -6913,6 +6913,39 @@ address {
   margin: 0px;
 }
 
+body {
+  padding-top: 63px;
+}
+
 .row-footer div.nav.navbar-nav {
   padding-top: 0;
+}
+
+.navbar-fixed-top {
+  background-color: #f9f9f9 !important;
+}
+
+.breadcrumb-fixed-top {
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 63px;
+  z-index: 1030;  
+}
+
+#editorapp {
+  min-height: 500px;
+  margin-top: 50px;
+}
+
+body > h1:first-child {
+  position: fixed;
+  top: 40px;
+  margin: 0;
+  padding: 0 0 40px 10px;
+  color: black;
+  width: 100%;
+  text-align: left;
+  background-color: #f9f9f9;
+  z-index: 1029; 
 }

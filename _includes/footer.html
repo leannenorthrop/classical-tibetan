@@ -34,7 +34,8 @@
         </div>
     </footer>
   
-
+{% if page.nojs %}
+{% else %}
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -47,6 +48,8 @@ $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
     </script>  
+{% endif %}
+
 {% if site.google_analytics %}
   <!-- Google Analytics -->
   <script>

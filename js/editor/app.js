@@ -24,7 +24,15 @@ define(["jquery",
       var layout = new Layout();
       EditorApp.layout = layout;
       var layoutRender = EditorApp.layout.render();
-      $("body").append(EditorApp.layout.el);
+      $("#editorapp").append(EditorApp.layout.el);
+
+      if (options.embed) {
+        //$("#editor").css("min-height", "500px");
+        $("#editorapp .navbar-fixed-top").removeClass("navbar-fixed-top");
+        //$("body").css("padding-top","0");
+        //$("ol.breadcrumb").css("margin-bottom","0");
+        $("#editorapp .editor-app .navbar").css("margin-bottom", "0");
+      }
 
       var preview = new PreviewView({});
       var editor = new EditorView({});

@@ -72,6 +72,7 @@ function($, Backbone, Marionette, BootStrap, BooostrapSelect, Template) {
       }
       finally {
         $('#editorConfigModal').modal('hide');
+        $('.modal-backdrop').remove();
         $("body").removeClass("modal-open");
         this.destroy();
       }
