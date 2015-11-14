@@ -13,27 +13,31 @@ catheading: Resources
   <li data-scheduled-date="{{entry.wordOfTheDayOn}}">
     <dt lang="bo"><a name="{{entry.wordOfTheDayOn}}" href="{{site.baseurl}}/resource/dictionary/index.html#{{ entry.wylie | append: '.'}}">{{ entry.uchen }}</a></dt>
     <dd>({{ entry.phonetics}}) {{ entry.english }}</dd>
-    <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{ entry.uchen }} {{ entry.phonetics}} {{ entry.english }}&amp;url=http://{{site.baseurl}}{{page.url}}&amp;hashtags=wotd,tibetan&amp;via=flowerdew" data-count="horizontal" data-size="large"  data-counturl="{{site.baseurl}}/resource/dictionary/index.html#{{ entry.wylie | append: '.'}}">
-Tweet</a>
+    <span class="tb" style="display:none;">Schedule date: {{entry.wordOfTheDayOn}}<br><a href="https://twitter.com/share" class="twitter-share-button" data-url="javascript:encodeURIComponent({{site.baseurl}}resource/dictionary/index.html#{{ entry.wylie | append: '.'}})" data-text="Tibetan Word of the Day {{ entry.uchen }} ({{ entry.phonetics}}) {{ entry.english }} {{site.baseurl}}/resource/dictionary/index.html#{{ entry.wylie | append: '.'}}" data-size="large" data-hashtags="wotd,tibetan">Tweet</a></span>
   </li>
 {% endif %}
 {% endfor %}
 </ul>
 
-<!-- https://dev.twitter.com/web/javascript/loading -->
-<script>window.twttr = (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-  if (d.getElementById(id)) return t;
-  js = d.createElement(s);
-  js.id = id;
-  js.src = "https://platform.twitter.com/widgets.js";
-  fjs.parentNode.insertBefore(js, fjs);
- 
-  t._e = [];
-  t.ready = function(f) {
-    t._e.push(f);
-  };
- 
-  return t;
-}(document, "script", "twitter-wjs"));</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<script src="{{site.baseurl}}/js/lib/jquery-1.11.2.js"></script>
+<script>
+function GetURLParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++)
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam)
+        {
+            return sParameterName[1];
+        }
+    }
+}
+var isme = GetURLParameter("leanne");
+if (isme) {
+  $("li span.tb").show();
+}
+</script>
