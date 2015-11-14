@@ -10,7 +10,7 @@ sitehome: true
 </div>
 <div class="container">
 <div class="row featurette">
-  <div class="col-xs-7">
+  <div class="col-xs-12 col-sm-7">
     <h2 class="featurette-heading">Tibetan Blog <small><span class="text-muted">Learning Standard Modern and How to Read Classical Tibetan</span></small></h2>
     <p class="lead">Bemused by the loss of the Tibetan for Language Students website this little site has been set up as a place to collate materials for learning to read Classical Tibetan.
     </p>
@@ -22,7 +22,7 @@ sitehome: true
      <p>Being a novice I can't make any guarantees that the material on this site is correct. If you notice any errors or omissions than I offer humble apologies.
      </p>
   </div>
-  <div class="col-xs-5">
+  <div class="col-sm-5 hidden-xs">
     <img class="featurette-image img-responsive" src="./images/tibetantext.jpg" data-src="300x300/auto" alt="Old Tibetan Writing">
   </div>
 </div>
@@ -31,43 +31,38 @@ sitehome: true
 
 <div class="row">
   <div class="col-xs-4">
-    <img class="img-circle" src="https://lh4.googleusercontent.com/-OQ8sgwKenUs/VH0vm0H_1aI/AAAAAAAAC4Y/oJ7a0G4TG3g/s426/2014%2B-%2B1" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-    <h2>Learn</h2>
-    <p>Blog posts and staged lessons.</p>
-    <p><a class="btn btn-default" href="{{site.baseurl}}/lesson/index.html" role="button">View details &raquo;</a></p>
+    <img class="img-circle center-block img-responsive" src="https://lh4.googleusercontent.com/-OQ8sgwKenUs/VH0vm0H_1aI/AAAAAAAAC4Y/oJ7a0G4TG3g/s426/2014%2B-%2B1" alt="Generic placeholder image" data-src="140x140/auto" style="width:180px;height:auto;">
+    <h2 class="text-center">Learn</h2>
+    <p class="text-center">Blog posts and staged lessons.</p>
+    <p class="text-center"><a class="btn btn-default" href="{{site.baseurl}}/lesson/index.html" role="button">View details &raquo;</a></p>
   </div><!-- /.col-lg-4 -->
   <div class="col-xs-4">
-    <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-    <h2>Resources</h2>
-    <p>A collection of resources that you may find helpful when learning Tibetan.</p>
-    <p><a class="btn btn-default" href="{{site.baseurl}}/resource/index.html" role="button">View details &raquo;</a></p>
+    <img class="img-circle center-block img-responsive" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" data-src="140x140/auto" style="width:180px;height:auto;">
+    <h2 class="text-center">Resources</h2>
+    <p class="text-center">A collection of resources that you may find helpful when learning Tibetan.</p>
+    <p class="text-center"><a class="btn btn-default" href="{{site.baseurl}}/resource/index.html" role="button">View details &raquo;</a></p>
   </div><!-- /.col-lg-4 -->
   <div class="col-xs-4">
-    <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-    <h2>Write</h2>
-    <p>Topics about writing.</p>
-    <p><a class="btn btn-default" href="{{site.baseurl}}/write/index.html" role="button">View details &raquo;</a></p>
-    <p><a class="btn btn-default" href="{{site.baseurl}}/write/editor.html?layout=private" role="button">Wylie Editor &raquo;</a></p>
-    </p>
+    <img class="img-circle center-block img-responsive" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" data-src="140x140/auto" style="width:180px;height:auto;">
+    <h2 class="text-center">Write</h2>
+    <p class="text-center">Topics about writing.</p>
+    <p class="text-center"><a class="btn btn-default" href="{{site.baseurl}}/write/index.html" role="button">View details &raquo;</a></p>
+    <p class="text-center"><a class="btn btn-default" href="{{site.baseurl}}/write/editor.html?layout=private" role="button">Wylie Editor &raquo;</a></p>
   </div><!-- /.col-lg-4 -->
 </div><!-- /.row -->
 
 <div class="row">
 </div><!-- /.row -->
   <div class="col-xs-4">
-    <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-    <h2>Blog</h2>
-    <p>Thoughts on learning tibetan, about creating this site and news.</p>
-    <p><a class="btn btn-default" href="{{site.baseurl}}/blog/index.html" role="button">View details &raquo;</a></p>
+    <img class="img-circle center-block img-responsive" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" data-src="140x140/auto" style="width:180px;height:auto;">
+    <h2 class="text-center">Musings</h2>
+    <p class="text-center">Thoughts on learning tibetan, about creating this site and news.</p>
+    <p class="text-center"><a class="btn btn-default" href="{{site.baseurl}}/blog/index.html" role="button">View details &raquo;</a></p>
   </div><!-- /.col-lg-4 -->
   <div class="col-xs-4">
-    <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-    <h2>Games</h2>
-    <p>Coming one day soon - I hope.</p>
-    <p><a class="btn btn-default" href="{{site.baseurl}}/game/index.html" role="button">View details &raquo;</a></p>
+    <img class="img-circle center-block img-responsive" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" data-src="140x140/auto" style="width:180px;height:auto;">
+    <h2 class="text-center">Games</h2>
+    <p class="text-center">Coming one day soon - I hope.</p>
+    <p class="text-center"><a class="btn btn-default" href="{{site.baseurl}}/game/index.html" role="button">View details &raquo;</a></p>
   </div><!-- /.col-lg-4 -->    
-</div>
-
-<div class="row">
-  <div class="col-xs-12"><p style="padding-top:20px;"></p></div>
 </div>

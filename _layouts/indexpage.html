@@ -27,6 +27,8 @@
           {% for post in posts %}
 
           {%   if post.stage == page.stage %}
+            {%   if post.indexignore %}
+            {%   else %}
           {%     cycle '<div class="row">', '', '' %}
             <div class="col-xs-12 col-sm-4">
               <h2><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a> <small>{{post.date | date_to_long_string}}</small></h2>
@@ -35,7 +37,8 @@
           {%     cycle '', '', '</div>' %}
           {%     if forloop.index == forloop.last %}
             </div>
-          {%     endif %}          
+          {%     endif %}
+          {%    endif %}  
           {%   endif %}
 
           {% endfor %}
