@@ -13,7 +13,11 @@ catheading: Resources
   <li data-scheduled-date="{{entry.wordOfTheDayOn}}">
     <dt lang="bo"><a name="{{entry.wordOfTheDayOn}}" href="{{site.baseurl}}/resource/dictionary/index.html#{{ entry.wylie | append: '.'}}">{{ entry.uchen }}</a></dt>
     <dd>({{ entry.phonetics}}) {{ entry.english }}</dd>
-    <span class="tb" style="display:none;">Schedule date: {{entry.wordOfTheDayOn}}<br><a href="https://twitter.com/share" class="twitter-share-button" data-url="javascript:encodeURIComponent({{site.baseurl}}resource/dictionary/index.html#{{ entry.wylie | append: '.'}})" data-text="Tibetan Word of the Day {{ entry.uchen }} ({{ entry.phonetics}}) {{ entry.english }} {{site.baseurl}}/resource/dictionary/index.html#{{ entry.wylie | append: '.'}}" data-size="large" data-hashtags="wotd,tibetan">Tweet</a></span>
+    <span class="tb" style="display:none;">Schedule date: {{entry.wordOfTheDayOn}}<br>
+      {% assign h = entry.wylie | append: '.' %}      
+      {% assign posts = site.posts | where: "category", page.category %}
+      <a href="https://twitter.com/share" class="twitter-share-button" data-url="{{site.baseurl}}resource/dictionary/index.html#{{h | uri_escape}}" data-text="Tibetan Word of the Day {{ entry.uchen }} ({{ entry.phonetics}}) {{ entry.english }} {{site.baseurl}}resource/dictionary/index.html#{{h | uri_escape}}" data-size="large" data-hashtags="wotd,tibetan">Tweet</a>
+    </span>
   </li>
 {% endif %}
 {% endfor %}
