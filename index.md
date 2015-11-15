@@ -62,7 +62,7 @@ sitehome: true
   <div class="col-xs-4">
     <img class="img-circle center-block img-responsive" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" data-src="140x140/auto" style="width:180px;height:auto;">
     <h2 class="text-center">Games</h2>
-    <p class="text-center">Coming one day soon - I hope.</p>
+    <p class="text-center">Simple games to help learn new words and hopefully later reading simple stories.</p>
     <p class="text-center"><a class="btn btn-default" href="{{site.baseurl}}/game/index.html" role="button">View details &raquo;</a></p>
   </div><!-- /.col-lg-4 -->    
 </div>

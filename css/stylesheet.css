@@ -258,6 +258,10 @@ and (orientation : landscape) {
     margin-top: 50px;
   }
 
+  body > div:first-child.container {
+    padding-top:33px;
+  }
+
   body > h1:first-child {
     position: fixed;
     top: 40px;

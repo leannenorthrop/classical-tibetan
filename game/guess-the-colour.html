@@ -1,0 +1,65 @@
+---
+layout: default
+title: Games - Guess the Colour
+heading: Guess the Colour
+catheading: Games
+justnav: true
+nojs: true
+category: game
+---
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-10">
+                <div id="color-game" style="height: 500px;">
+                    <h3>Guess the Colour</h3>
+                    <p>I'm thinking of one of the colours in the side list. Can you guess which one?</p>
+                    <form>
+                      <div class="alert alert alert-danger" role="alert">
+                          
+                      </div>  
+                      <div class="alert alert alert-success" role="alert">
+                          
+                      </div>                        
+                      <div class="form-group">
+                        <label for="colourguess">Colour is:</label>
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Uchen <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                  <li><a href="#">Wylie</a></li>
+                                  <li><a href="#">Uchen</a></li>
+                                </ul>
+                              </div><!-- /btn-group -->
+                            <input lang="bo" type="text" class="form-control" id="colourguess" placeholder="Guess a colour from the list on the right.">
+                        </div>
+                        <small>Please include the final tsheg in your answer.</small>
+                      </div>
+                    </form>
+                    <a class="btn btn-lg btn-primary" href="#" role="button">Go &raquo;</a>
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <h3>Possible Colours</h3>
+                <ul>
+            {% for entry in site.data.dictionary.all %}
+                {% if 'colours' == entry.vocabList %}
+                  <li>{{ entry.english }}</li>
+                {% endif %}
+            {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript">
+        window.colours = [{% for entry in site.data.dictionary.all %}{% if 'colours' == entry.vocabList %}"{{ entry.english }}",{% endif %}{% endfor %}].sort();
+        window.answersInWylie = { {% for entry in site.data.dictionary.all %}{% if 'colours' == entry.vocabList %}"{{ entry.wylie }}":"{{ entry.english }}",{% endif %}{% endfor %} };
+        window.answersInUchen = { {% for entry in site.data.dictionary.all %}{% if 'colours' == entry.vocabList %}"{{ entry.uchen }}":"{{ entry.english }}",{% endif %}{% endfor %} };
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="{{ site.baseurl }}/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{{ site.baseurl }}/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="{{ site.baseurl }}/js/games/colours/main.js"></script>
