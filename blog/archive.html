@@ -18,6 +18,9 @@ catheading: Blog
             <h3>{{ post.date | date: '%Y %b' }}</h3>
           {% endif %}
         {% endunless %}
+            {%   if post.indexignore %}
+            {%   else %}        
             <h4><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a> <small>{{post.date | date_to_long_string}}</small></h4>
+            {% endif %}
         {% endfor %}
         </div><!-- /.blog-main -->       
