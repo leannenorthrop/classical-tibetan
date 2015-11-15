@@ -52,6 +52,10 @@ and (orientation : landscape) {
   a.btn {
     font-size: 10px;
   }
+
+  #editor-upload, #editor-download, #preview-export {
+    display: none;
+  }
 }
 
 
@@ -91,6 +95,10 @@ and (orientation : landscape) {
 
   a.btn {
     font-size: 10px;
+  }
+
+  #editor-upload, #editor-download, #preview-export {
+    display: none;
   }
 }
 
@@ -132,6 +140,10 @@ and (orientation : landscape) {
   a.btn {
     font-size: 10px;
   }
+
+  #editor-upload, #editor-download, #preview-export {
+    display: none;
+  }
 }
 
 
@@ -171,6 +183,10 @@ and (orientation : landscape) {
 
   a.btn {
     font-size: 10px;
+  }
+
+  #editor-upload, #editor-download, #preview-export {
+    display: none;
   }
 }
 
