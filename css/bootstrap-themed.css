@@ -6861,72 +6861,8 @@ h6,
 }
 @media screen and (max-width: 480px) {
   h1,
-  .h1,
-  h2,
-  .h2,
-  h3,
-  .h3,
-  h4,
-  .h4,
-  h5,
-  .h5,
-  h6,
-  .h6 {
-    word-wrap: break-word;
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    -ms-hyphens: auto;
-    -o-hyphens: auto;
-    hyphens: auto;
-  }
-  h1,
   .h1 {
-    font-size: 32px;
-  }
-  h2,
-  .h2 {
-    font-size: 26px;
-  }
-  h3,
-  .h3 {
-    font-size: 22px;
-  }
-  h4,
-  .h4 {
-    font-size: 19px;
-  }
-  h5,
-  .h5 {
-    font-size: 15px;
-  }
-  h6,
-  .h6 {
-    font-size: 13px;
-  }
-}
-@media screen and (max-width: 320px) {
-  h1,
-  .h1,
-  h2,
-  .h2,
-  h3,
-  .h3,
-  h4,
-  .h4,
-  h5,
-  .h5,
-  h6,
-  .h6 {
-    word-wrap: break-word;
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    -ms-hyphens: auto;
-    -o-hyphens: auto;
-    hyphens: auto;
-  }
-  h1,
-  .h1 {
-    font-size: 26px;
+    font-size: 24px;
   }
   h2,
   .h2 {
@@ -6938,11 +6874,37 @@ h6,
   }
   h4,
   .h4 {
-    font-size: 17px;
+    font-size: 18px;
   }
   h5,
   .h5 {
+    font-size: 16px;
+  }
+  h6,
+  .h6 {
     font-size: 15px;
+  }
+}
+@media screen and (max-width: 320px) {
+  h1,
+  .h1 {
+    font-size: 20px;
+  }
+  h2,
+  .h2 {
+    font-size: 18px;
+  }
+  h3,
+  .h3 {
+    font-size: 16px;
+  }
+  h4,
+  .h4 {
+    font-size: 15px;
+  }
+  h5,
+  .h5 {
+    font-size: 14px;
   }
   h6,
   .h6 {
