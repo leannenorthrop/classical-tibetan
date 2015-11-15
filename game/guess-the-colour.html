@@ -9,10 +9,17 @@ category: game
 ---
     <div class="container">
         <div class="row">
-            <div class="col-xs-10">
-                <div id="color-game" style="height: 500px;">
+            <div class="col-xs-12 col-sm-9">
+                <div id="color-game" style="height: 250px;">
                     <h3>Guess the Colour</h3>
-                    <p>I'm thinking of one of the colours in the side list. Can you guess which one?</p>
+                    <p>I'm thinking of one of the colours in the list. Can you guess which one?</p>
+                    <ul class="list-inline">
+                {% for entry in site.data.dictionary.all %}
+                    {% if 'colours' == entry.vocabList %}
+                      <li>{{ entry.english }}</li>
+                    {% endif %}
+                {% endfor %}
+                    </ul>
                     <form>
                       <div class="alert alert alert-danger" role="alert">
                           
@@ -30,23 +37,15 @@ category: game
                                   <li><a href="#">Uchen</a></li>
                                 </ul>
                               </div><!-- /btn-group -->
-                            <input lang="bo" type="text" class="form-control" id="colourguess" placeholder="Guess a colour from the list on the right.">
+                            <input lang="bo" type="text" class="form-control" id="colourguess" placeholder="Guess a colour from the list above.">
                         </div>
                         <small>Please include the final tsheg in your answer.</small>
                       </div>
                     </form>
-                    <a class="btn btn-lg btn-primary" href="#" role="button">Go &raquo;</a>
+                    <a class="btn btn-sm btn-primary" href="#" role="button">Correct?</a>
                 </div>
             </div>
-            <div class="col-xs-2">
-                <h3>Possible Colours</h3>
-                <ul>
-            {% for entry in site.data.dictionary.all %}
-                {% if 'colours' == entry.vocabList %}
-                  <li>{{ entry.english }}</li>
-                {% endif %}
-            {% endfor %}
-                </ul>
+            <div class="col-xs-12 col-sm-3">
             </div>
         </div>
     </div>

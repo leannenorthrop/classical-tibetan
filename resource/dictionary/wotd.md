@@ -1,13 +1,15 @@
 ---
 layout: default
 title: Gathering Understanding| Tibetan Blog ~ Word of the Day
-heading: Word of the Day Index
+heading: Word of the Day
 archive-path: /resources/archive.html
 archive-name: All Resources
 category: resource
 catheading: Resources
 ---
-<ul>
+
+<h2>Other Words <small>Past &amp; Future</small></h2>
+<dl style="list-style-type: none;" class="dl-horizontal">
 {% for entry in site.data.dictionary.all %}
 {% if entry.wordOfTheDayOn %}
   <li data-scheduled-date="{{entry.wordOfTheDayOn}}">
@@ -21,7 +23,7 @@ catheading: Resources
   </li>
 {% endif %}
 {% endfor %}
-</ul>
+</dl>
 
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
@@ -40,8 +42,14 @@ function GetURLParameter(sParam)
         }
     }
 }
-var isme = GetURLParameter("leanne");
-if (isme) {
-  $("li span.tb").show();
+
+var now = new Date();
+var date = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
+if ($("[name='" + date + "']").length != 0) {
+  $(".row").prepend('<div class="jumbotron"><h1>Word of the Day</h1><p>The word of today is: ' + $("li[data-scheduled-date='" + date + "']").html() + '</p></div>');
+  var isme = GetURLParameter("leanne");
+  if (isme) {
+    $(".jumbotron span.tb").show();
+  }
 }
 </script>
