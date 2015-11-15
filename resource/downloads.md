@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Gathering Understanding| Tibetan Blog ~ Downloadable Resources
+title: Learning Tibetan Journey ~ Downloadable Resources
 heading: Downloadable
 archive-path: /resource/archive.html
 archive-name: All Resources

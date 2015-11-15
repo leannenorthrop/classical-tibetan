@@ -3,7 +3,7 @@
             <h1>Tibetan 
                 <small>{{page.heading}} 
                     {% if page.stage %}
-                    <small>Stage {{page.stage | replace: 'stage', ''}}</small>
+                    <small>{{ site.data.stages[page.stage].name }}</small>
                     {% endif%}
                 </small> 
                 {% if page.tag == 'vocab'%}

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Gathering Understanding| Tibetan Blog ~ Word of the Day
+title: Learning Tibetan Journey ~ Word of the Day
 heading: Downloadable
 archive-path: /resources/archive.html
 archive-name: All Resources

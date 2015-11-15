@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Gathering Understanding| Tibetan Blog ~ Practice Readings
+title: Learning Tibetan Journey ~ Practice Readings
 heading: Practice Readings
 archive-path: /resources/archive.html
 archive-name: All Resources

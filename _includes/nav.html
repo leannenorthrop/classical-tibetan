@@ -44,11 +44,11 @@
     {% if page.index %}
       <li><a href="{{ site.baseurl }}/resource/index.html">Resources</a></li>
       <li><a href="{{ site.baseurl }}/{{ page.category }}/vocab/index.html">Vocabulary Lists</a></li>
-      <li class="active">Stage {{ page.stage | replace: 'stage', '' }}</li>
+      <li class="active">{{ site.data.stages[page.stage].name }}</li>
     {% else %}
       <li><a href="{{ site.baseurl }}/resource/index.html">Resources</a></li>
       <li><a href="{{ site.baseurl }}/{{ page.category }}/vocab/index.html">Vocabulary Lists</a></li>
-      <li><a href="{{ site.baseurl }}/{{ page.category }}/vocab/{{ page.stage }}.html">Stage {{ page.stage | replace: 'stage', '' }}</a></li>
+      <li><a href="{{ site.baseurl }}/{{ page.category }}/vocab/{{ page.stage }}.html">{{ site.data.stages[page.stage].name }}</a></li>
       <li class="active">{{ page.heading }}</li> 
     {% endif %}
   {% elsif page.index %}
@@ -60,7 +60,7 @@
     {% endif %}
   {% elsif page.stage %}
       <li><a href="{{ site.baseurl }}/{{ page.category }}/index.html">{{ page.catheading }}</a></li>
-      <li><a href="{{ site.baseurl }}/{{ page.category }}/{{ page.stage }}/index.html">Stage {{ page.stage | replace: 'stage', '' }}</a></li>
+      <li><a href="{{ site.baseurl }}/{{ page.category }}/{{ page.stage }}/index.html">{{ site.data.stages[page.stage].name }}</a></li>
       <li class="active">{{ page.heading }}</li>
   {% elsif page.post %}
       <li><a href="{{ site.baseurl }}/{{ page.category }}/index.html">{{ page.catheading }}</a></li>

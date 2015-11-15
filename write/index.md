@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Gathering Understanding| Tibetan Blog ~ Writing
+title: Learning Tibetan Journey ~ Writing
 heading: Writing
 archive-path: /resources/archive.html
 archive-name: All Resources

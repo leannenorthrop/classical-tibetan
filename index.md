@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Welcome to Gathering Understanding ~ Tibetan Blog Home
+title: Welcome to Gathering Understanding ~ Learning Tibetan Journey
 justnav: true
 sitehome: true
 ---
@@ -32,7 +32,7 @@ sitehome: true
 <div class="row">
   <div class="col-xs-4">
     <img class="img-circle center-block img-responsive" src="https://lh4.googleusercontent.com/-OQ8sgwKenUs/VH0vm0H_1aI/AAAAAAAAC4Y/oJ7a0G4TG3g/s426/2014%2B-%2B1" alt="Generic placeholder image" data-src="140x140/auto" style="width:180px;height:auto;">
-    <h2 class="text-center">Learn</h2>
+    <h2 class="text-center">Learning Tibetan Journey</h2>
     <p class="text-center">Blog posts and staged lessons.</p>
     <p class="text-center"><a class="btn btn-default" href="{{site.baseurl}}/lesson/index.html" role="button">View details &raquo;</a></p>
   </div><!-- /.col-lg-4 -->
