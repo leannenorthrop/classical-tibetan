@@ -2,7 +2,7 @@
 - [ ] Restest contribute mode re json ☐
 
 ## Games
-- [ ] Guess the colour in wylie/uchen input  ☐
+- [x] Guess the colour in wylie/uchen input  ✔
 - [ ] Sodoku in uchen numerals ☐
 - [ ] Simple maths in uchen numbers ☐
 - [ ] Guess the word variation on hangman ☐
@@ -18,23 +18,19 @@
 - [ ] Grammar specific posts? ☐
 - [ ] Dictionary search and spliting ☐
 - [ ] Dictionary images for games ☐
-- [ ] Word of the day: Create word of the day page with button to tweet ☐
+- [x] Word of the day: Create word of the day page with button to tweet ☐
 - [ ] Help ☐
 
 # Site
 - [ ] Fix index last div on indexpage layout etc. ☐
 - [ ] Create branch of site for base of other projects ☐
 - [ ] update page trolling vocab lists and post files to create json indexes update editor to ping that in hidden iframe rather than depend on editor ☐
-- [ ] remove footer ☐ 
-- [x] update css ☐ 
-- [x] add blog ☐ 
-- [x] add resources ☐ 
+- [x] update css ✔  
+- [x] add blog ✔  
+- [x] add resources ✔ 
 - [ ] do tag links to index page ☐ 
 - [ ] update welcome page content and images ☐ 
 - [ ] domain name ☐ 
-- [ ] word finder puzzle ☐ 
-- [ ] suduku ☐ 
-- [ ] flash card app ☐ 
 
 # Editor
 
