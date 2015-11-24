@@ -255,7 +255,11 @@ and (orientation : landscape) {
 
   #editorapp {
     min-height: 500px;
-    margin-top: 50px;
+    margin-top: 97px;
+  }
+
+  #editorapp nav {
+    margin: 0;
   }
 
   body > div:first-child.container {
@@ -294,4 +298,8 @@ address {
 
 .row-footer div.nav.navbar-nav {
   padding-top: 0;
+}
+
+main {
+  min-height: 50em;
 }

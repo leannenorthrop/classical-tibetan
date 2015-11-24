@@ -6,6 +6,7 @@
 
   <body>
   {% include nav.html %}
+  <main>
   {% if page.justnav %}
   {% elsif page.plain %}
   {%   include header.html %}
@@ -17,6 +18,7 @@
   {% else %}
   {%   include foot.html %}
   {% endif %}
+  </main>
   {% include footer.html %}
   </body>
 </html>

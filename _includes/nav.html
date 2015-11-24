@@ -14,9 +14,9 @@
         <div class="collapse navbar-collapse" id="main-toolbar">
           <ul class="nav navbar-nav">
             <li><a href="http://leannenorthrop.github.io">Home</a></li>
-            <li><a href="http://leannenorthrop.github.io/blog/">Development</a></li>
+            <li><a href="http://leannenorthrop.github.io/blog/">Dev Musings</a></li>
             <li class="active"><a href="{{ site.baseurl }}/index.html">Tibetan <span class="sr-only">(current)</span></a></li>
-            <li><a href="http://leannenorthrop.github.io/css-playground">CSS Stuff</a></li>
+            <li><a href="http://leannenorthrop.github.io/css-playground">Graphics</a></li>
           </ul>
         </div>
       </div>
@@ -63,8 +63,18 @@
       <li><a href="{{ site.baseurl }}/{{ page.category }}/{{ page.stage }}/index.html">{{ site.data.stages[page.stage].name }}</a></li>
       <li class="active">{{ page.heading }}</li>
   {% elsif page.post %}
+    {% if page.title %}
+      <li><a href="{{ site.baseurl }}/{{ page.category }}/index.html">{{ page.catheading }}</a></li>
+      <li>{{ page.heading }}</li>
+      <li class="active">{{ page.title }}</li>
+    {% else %}
       <li><a href="{{ site.baseurl }}/{{ page.category }}/index.html">{{ page.catheading }}</a></li>
       <li class="active">{{ page.heading }}</li>
+    {% endif %}
+  {% elsif page.hastag %}
+      <li><a href="{{ site.baseurl }}/{{ page.category }}/index.html">{{ page.catheading }}</a></li>
+      <li>{{ page.heading }}</li>
+      <li class="active">{{ page.title }}</li>
   {% elsif page.tagpage %}
       <li><a href="{{ site.baseurl }}/{{ page.category }}/index.html">{{page.catheading}}</a></li>
       <li>By Tag</li>

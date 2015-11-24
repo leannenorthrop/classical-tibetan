@@ -2,7 +2,7 @@
           <h4>Tools &amp; Games</h4>
           <ul class="list-unstyled">
             <li><a href="#">Learn this List <i class="fa fa-clone fa-fw pull-left"></i></a></li>
-            <li><a href="#">Flash Cards <i class="fa fa-print fa-fw pull-left"></i></a></li>
+            <li><a target="_blank" href="{{site.baseurl}}{{page.url || replace: '.html', 'p.html'}}">Flash Cards <i class="fa fa-print fa-fw pull-left"></i></a></li>
             {% for game in page.games %}
               {% if site.data.games[game] %}
                 <li><a href="{{site.baseurl}}{{site.data.games[game].url}}">{{site.data.games[game].name}} <i class="fa fa-trophy fa-fw pull-left"></i></a></li>

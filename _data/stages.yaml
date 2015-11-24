@@ -1,3 +1,5 @@
+all:
+  name: All Stages
 stage0:
   name: Getting Started
 stage1:
