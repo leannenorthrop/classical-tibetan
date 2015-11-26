@@ -255,7 +255,7 @@ and (orientation : landscape) {
 
   #editorapp {
     min-height: 500px;
-    margin-top: 97px;
+    margin-top: 55px;
   }
 
   #editorapp nav {
@@ -302,4 +302,49 @@ address {
 
 main {
   min-height: 50em;
+}
+
+/** Editor Uchen output **/
+@font-face {
+  font-family: 'DDC Uchen';
+  src: url('../fonts/DDC_Uchen.ttf');
+}
+.uchen {
+  font-family: 'DDC Uchen', 'Kokonor', 'Microsoft Himalaya';
+  font-size: 3em;
+}
+.uchen a {
+  text-decoration: none;
+}
+.syllables {
+  display: inline-block;
+}
+.syllables > span {
+  display: none;
+}
+.syllables > span.uchen {
+  display: block;
+}
+.wylie,
+.english,
+.phonetics {
+  font-size: smaller;
+  height: 1em;
+  text-align: center;
+}
+span.english {
+  white-space: pre-wrap;
+}
+.stage0 span.english,
+.stage0 span.phonetics {
+  display: block;
+}
+.stage0 span.word .uchen {
+  margin: 0 0.5em 0 0.5em;
+}
+.stage1 span.word .uchen {
+  margin: 0 0.25em 0 0.25em;
+}
+.stage1 span.english {
+  display: block;
 }

@@ -5,7 +5,7 @@
  * Copyright (c) 2009-2010 Ash Berlin
  * Copyright (c) 2011 Christoph Dorn <christoph@christophdorn.com> (http://www.christophdorn.com)
  * Version: 0.6.0-beta1
- * Date: 2015-01-29T15:23Z
+ * Date: 2015-11-26T17:39Z
  */
 
 (function(expose) {
@@ -469,8 +469,6 @@
     // be careful about adding whitespace here for inline elements
     if ( tag === "img" || tag === "br" || tag === "hr" )
       return "<"+ tag + tag_attrs + "/>";
-    else if (tag === "")
-      return content.join( "" );
     else
       return "<"+ tag + tag_attrs + ">" + content.join( "" ) + "</" + tag + ">";
   }
@@ -515,10 +513,7 @@
       jsonml[ 0 ] = "li";
       break;
     case "para":
-      if (options.skipParas)
-        jsonml[ 0 ] = "";
-      else
-        jsonml[ 0 ] = "p";
+      jsonml[ 0 ] = "p";
       break;
     case "markdown":
       jsonml[ 0 ] = "html";
@@ -533,11 +528,24 @@
       jsonml[ i ] = code;
       break;
     case "uchen_block":
-      jsonml[ 0 ] = options.skipParas ? "span" : "p";
+      jsonml[ 0 ] = "p";
       i = attrs ? 2 : 1;
-      var uchen = [ "uchen" ];
-      uchen.push.apply( uchen, jsonml.splice( i, jsonml.length - i ) );
-      jsonml[ i ] = uchen;
+      var syllables = jsonml.splice( i, jsonml.length - i )[0];
+      for (var j = 0; j < syllables.length; j++) {
+        jsonml.push(syllables[j]);
+      }
+      break;
+    case "uchen_syllable":
+      jsonml[ 0 ] = "span";
+      break;
+    case "uchen_wylie":
+      jsonml[ 0 ] = "span";
+      break;
+    case "uchen_english":
+      jsonml[ 0 ] = "span";
+      break;
+    case "uchen_phonetics":
+      jsonml[ 0 ] = "span";
       break;
     case "uchen":
       jsonml[ 0 ] = "span";
@@ -1412,7 +1420,7 @@
       "`": function inlineCode( text ) {
         // Inline code block. as many backticks as you like to start it
         // Always skip over the opening ticks.
-        var m = text.match( /(`{1,2})(([\s\S]*?)\1)/ );
+        var m = text.match( /(`+)(([\s\S]*?)\1)/ );
 
         if ( m && m[2] )
           return [ m[1].length + m[2].length, [ "inlinecode", m[3] ] ];
@@ -1930,6 +1938,9 @@
     // - Rule 4: support sanskrit characters
     // - Rules 8 onwards
     // - Check ~ is not affected
+    // Implementation of http://www.thlib.org/reference/transliteration/#!essay=/thl/ewts/intro/
+    // Rules http://www.thlib.org/reference/transliteration/#!essay=/thl/ewts/rules/
+    //
     var UChenMap = {};
     // Consonants
     UChenMap["k"] = "\u0F40";
@@ -2196,22 +2207,24 @@
     UChenMap["9"] = "\u0F29";
 
     //Punctuation
+    UChenMap["\n"] = "";
+    UChenMap["\t"] = "";
     UChenMap["_"] = " ";
     UChenMap[" "] = "\u0F0B";
     UChenMap["*"] = "\u0F0C";
-    UChenMap["/"] = "\u0F0D";
     UChenMap["//"] = "\u0F0E";
+    UChenMap["/"] = "\u0F0D";
     UChenMap[";"] = "\u0F0F";
     UChenMap["|"] = "\u0F11";
     UChenMap["!"] = "\u0F08";
     UChenMap[":"] = "\u0F14";
     UChenMap["£"] = "\u0F10";
-    UChenMap["¬"] = "\u0F12";
+    UChenMap["=="] = "\u0F12";
     UChenMap["="] = "\u0F34";
     UChenMap["x"] = "\u0FBE";
     UChenMap["x."] = "\u0FBF";
-    UChenMap["...."] = "\u0F36";
     UChenMap["o...."] = "\u0F13";
+    UChenMap["...."] = "\u0F36";
     UChenMap["H1"] = "\u0F01";
     UChenMap["H2"] = "\u0F02";
     UChenMap["H3"] = "\u0F03";
@@ -2225,8 +2238,8 @@
     UChenMap["H7"] = "\u0FD1";
     UChenMap["<"] = "\u0F3A";
     UChenMap[">"] = "\u0F3B";
-    UChenMap["("] = "\u0F3C";
-    UChenMap[")"] = "\u0F3D";
+    UChenMap["{"] = "\u0F3C";
+    UChenMap["}"] = "\u0F3D";
 
     // Ligatures & Special Character or Character COmbinations
     UChenMap.Ligatures = {};
@@ -2435,12 +2448,219 @@
           }(text));
       };
 
+  var Dictionary = new Map();
+
+  Dictionary.addAll = function(obj) {
+    for (var p in obj) {
+      if (obj.hasOwnProperty(p)) {
+        var syllables = p.split(" ");
+        if (syllables.length > 0) {
+          var hash = Dictionary;
+          for (var i in syllables) {
+            var syllable = syllables[i];
+            if (!hash.has(syllable)) {
+              hash.set(syllable,new Map());
+            }
+            hash = hash.get(syllable);
+          }
+          hash.set(p, obj[p]);
+        }
+      }
+    }
+  };
+
+  Dictionary.findWord = function(word) {
+    if (word !== undefined) {
+      if (word[word.length-1] === " ") {
+        word = word.substring(0, word.length-1);
+      }
+      var syllables = word.split(" ");
+      var hash = Dictionary;
+      for (var i in syllables) {
+        var syllable = syllables[i];
+        if (!hash.has(syllable)) {
+          hash = undefined;
+          break;
+        }
+        hash = hash.get(syllable);
+      }
+      if (hash === undefined) {
+        return undefined;
+      } else {
+        return hash.has(word) ? hash.get(word) : hash;
+      }
+    }
+  };
+
+  Dictionary.validUntilSyllableIndex = function(word) {
+    if (word !== undefined) {
+      var syllables = word.split(" ");
+      var found = false;
+      var syllable = "";
+      var count = 0;
+      for (var i in syllables) {
+        syllable += syllables[i] + " ";
+        if (Dictionary.findWord(syllable) !== undefined) {
+          found = true;
+          count++;
+          if (count === syllables.length) {
+            break;
+          }
+        } else {
+          break;
+        }
+      }
+      if (found) {
+        return count;
+      } else {
+        return -1;
+      }
+    }
+  };
+
+  var ExtendedWylie = DialectHelpers.subclassDialect( ExtendedGruber );
+  var inline_until_char = DialectHelpers.inline_until_char;
+  var mk_block = MarkdownHelpers.mk_block;
+  var uChenMap = UChenMap;
+
+  ExtendedWylie.isMarkUp = false;
+  ExtendedWylie.dictionary = Dictionary;
+  ExtendedWylie.dictionaryURL = "http://leannenorthrop.github.io/classical-tibetan/resource/dictionary/index.html#";
+  
+  ExtendedWylie.inline[ "::" ] = function inlineWylie( text ) {
+        // Inline wylie block.
+        var m = text.match( /(::)((\s|\S|\W|\w)*?)(\1)/ );
+
+        if ( m && m[2] ) {
+          var txt = uChenMap.toUnicode(m[2]);
+          return [ (m[1].length*2) + m[2].length, [ "uchen", { "class": "uchen", "wylie": m[2]}, txt ] ];
+        }
+        else {
+          // TODO: No matching end code found - warn!
+          return [ 2, "::" ];
+        }
+      };
+
+  function escapeRegExp(str) {
+    return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+  }
+
+  function replaceAll(str, find, replace) {
+    return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+  }
+
+  function removePunctuation(str) {
+    return str.replace(/(_|\*|\/|(\/\/)|;|\||\!|\:|£|==|=|x|(x\.)|(\.\.\.\.)|(o\.\.\.\.)|(H1)|(H2)|(H3)|@|#|\$|%|(H4)|(H5)|(H6)|(H7)|<|>|\{|\}|_)/g, "");
+  }
+
+  function endsWithPunctuation(str) {
+    return str.trim().match(/(_|\*|\/|(\/\/)|;|\||\!|\:|£|==|=|x|(x\.)|(\.\.\.\.)|(o\.\.\.\.)|(H1)|(H2)|(H3)|@|#|\$|%|(H4)|(H5)|(H6)|(H7)|<|>|\{|\}|_)$/g, "");
+  }
+
+  ExtendedWylie.markup = function(wylie) {
+    var nodes = [];
+    var syllables = wylie.split(" ");
+    var i = 0;
+    for (; i < syllables.length; i++) {
+      var syllable = syllables[i];
+      if (syllable === " " || syllable === "") {
+        continue;
+      }
+      var possibleWord = "";
+      for (var j = 0; j < 9; j++) {
+        if ((i+j) < syllables.length) {
+          possibleWord += syllables[i+j] + " ";
+        }
+      }
+      var lookupWord = removePunctuation(possibleWord);
+      var validUntil = ExtendedWylie.dictionary.validUntilSyllableIndex(lookupWord);
+      var added = false;
+      if (validUntil !== -1) {
+        var validPart = lookupWord.split(" ").splice(0, validUntil);
+        i += validUntil === validPart.length ? (validUntil-1) : validUntil;
+        var word = validPart.join(" ") + " ";
+
+        var validPart2 = possibleWord.split(" ").splice(0, validUntil);
+        validPart2 = validPart2.join(" ");
+        var wordWithPunc = endsWithPunctuation(validPart2) ? validPart2 : (validPart2 + " ");
+
+        var foundWord = ExtendedWylie.dictionary.findWord(word);
+        if (foundWord !== undefined) {
+          if (foundWord.hasOwnProperty("en")) {
+            var node = ["uchen_syllable", {"class":"syllables word"}];
+            node.push(["uchen", {"class":"uchen"}, ["a", {"href":ExtendedWylie.dictionaryURL + encodeURIComponent(validPart.join(" ")+".")}, uChenMap.toUnicode(wordWithPunc)]]);
+            /*node.push(["uchen_phonetics", {"class":"wylie"}, foundWord.ph]);
+            node.push(["uchen_class", {"class":"wylie"}, foundWord.type]);
+            node.push(["uchen_root_letter", {"class":"wylie"}, foundWord.rl]);*/
+            node.push(["uchen_wylie", {"class":"wylie"}, word]);
+            node.push(["uchen_english", {"class":"english"}, foundWord.en]);
+            nodes.push(node);
+            added = true;
+          }
+        }
+      }
+      if (!added) {
+        syllable = endsWithPunctuation(syllable) ? syllable : (syllable + " ");
+        var node = ["uchen_syllable", {"class":"syllables"}];
+        node.push(["uchen", {"class":"uchen"}, uChenMap.toUnicode(syllable)]);
+        /*node.push(["uchen_phonetics", {"class":"wylie"}, foundWord.ph]);
+        node.push(["uchen_class", {"class":"wylie"}, foundWord.type]);
+        node.push(["uchen_root_letter", {"class":"wylie"}, foundWord.rl]);*/
+        node.push(["uchen_wylie", {"class":"wylie"}, syllable]);
+        node.push(["uchen_english", {"class":"english"}, " "]);
+        nodes.push(node);
+      }
+    }
+    return nodes;
+  };
+
+  ExtendedWylie.block.wylie = function(block, next) {
+        var ret = [],
+            re = /^(:::\n*)([\s\S\W\w\n\r]*?)(\1)/,
+            reStartBlock = /^:::\n*/,
+            reEndBlock = /([\s\S\W\w\n\r]*?)(\n*:::)(.*)/;
+
+        if ( !block.match( reStartBlock ) )
+          return undefined;
+
+        var wylie = "";
+        var groups = block.match( re );
+        if ( groups ) {
+          wylie = groups[2];
+        } else {
+          var seen = false;
+          var b = block.replace(":::", "");
+          while ( next.length && !seen) {
+            seen = b.match(reEndBlock);
+            wylie += seen ? seen[1] : b;
+            b = seen ? "" : next.shift();
+          }
+        }
+        wylie = replaceAll(wylie, "\n", "");
+
+        var nodes = [];
+        if (ExtendedWylie.isMarkUp) {
+          nodes = ExtendedWylie.markup(wylie);
+        } else {
+          var node = ["uchen_syllable", {"class":"syllables"}];
+          node.push(["uchen", {"class":"uchen"}, uChenMap.toUnicode(wylie)]);
+          nodes.push(node);
+        }
+
+        return wylie.length > 0 ? [[ "uchen_block", { "class": "uchen_text", "wylie": wylie }, nodes ]] : [];
+      };
+
+  Markdown.dialects.ExtendedWylie = ExtendedWylie;
+  Markdown.buildBlockOrder ( Markdown.dialects.ExtendedWylie.block );
+  Markdown.buildInlinePatterns( Markdown.dialects.ExtendedWylie.inline );
+
   var inline_until_char = DialectHelpers.inline_until_char;
   var mk_block = MarkdownHelpers.mk_block;
   var forEach = MarkdownHelpers.forEach;
   var uChenMap = UChenMap;
 
   var Wylie = {
+    isMarkUp: false,
     block: {
       wylie: function wylie(block, next) {
         var ret = [],
@@ -2464,8 +2684,12 @@
             b = seen ? "" : next.shift();
           }
         }
-
-        return wylie.length > 0 ? [ [ "uchen_block", { "class": "uchen", "wylie": wylie }, uChenMap.toUnicode(wylie) ] ] : [];
+        if (Wylie.isMarkUp) {
+          var nodes = ExtendedWylie.markup(wylie);
+          return wylie.length > 0 ? [[ "uchen_block", { "class": "uchen_text", "wylie": wylie }, nodes ]] : [];
+        } else {
+          return wylie.length > 0 ? [ [ "uchen_block", { "class": "uchen", "wylie": wylie }, uChenMap.toUnicode(wylie) ] ] : [];
+        }
       },
       para: function para( block ) {
         // everything's a para!
@@ -2556,55 +2780,6 @@
   Markdown.dialects.Wylie = Wylie;
   Markdown.buildBlockOrder ( Markdown.dialects.Wylie.block );
   Markdown.buildInlinePatterns( Markdown.dialects.Wylie.inline );
-
-  var ExtendedWylie = DialectHelpers.subclassDialect( ExtendedGruber );
-  var inline_until_char = DialectHelpers.inline_until_char;
-  var mk_block = MarkdownHelpers.mk_block;
-  var uChenMap = UChenMap;
-
-  ExtendedWylie.inline[ "::" ] = function inlineWylie( text ) {
-        // Inline wylie block.
-        var m = text.match( /(::)((\s|\S|\W|\w)*?)(\1)/ );
-
-        if ( m && m[2] ) {
-          var txt = uChenMap.toUnicode(m[2]);
-          return [ (m[1].length*2) + m[2].length, [ "uchen", { "class": "uchen", "wylie": m[2]}, txt ] ];
-        }
-        else {
-          // TODO: No matching end code found - warn!
-          return [ 2, "::" ];
-        }
-      };
-
-  ExtendedWylie.block.wylie = function(block, next) {
-        var ret = [],
-            re = /^(:::\n*)([\s\S\W\w\n\r]*?)(\1)/,
-            reStartBlock = /^:::\n*/,
-            reEndBlock = /([\s\S\W\w\n\r]*?)(\n*:::)(.*)/;
-
-        if ( !block.match( reStartBlock ) )
-          return undefined;
-
-        var wylie = "";
-        var groups = block.match( re );
-        if ( groups ) {
-          wylie = groups[2];
-        } else {
-          var seen = false;
-          var b = block.replace(":::", "");
-          while ( next.length && !seen) {
-            seen = b.match(reEndBlock);
-            wylie += seen ? seen[1] : b;
-            b = seen ? "" : next.shift();
-          }
-        }
-
-        return wylie.length > 0 ? [ [ "uchen_block", { "class": "uchen", "wylie": wylie }, uChenMap.toUnicode(wylie) ] ] : [];
-      };
-
-  Markdown.dialects.ExtendedWylie = ExtendedWylie;
-  Markdown.buildBlockOrder ( Markdown.dialects.ExtendedWylie.block );
-  Markdown.buildInlinePatterns( Markdown.dialects.ExtendedWylie.inline );
 
 // Include all our dependencies and return the resulting library.
 

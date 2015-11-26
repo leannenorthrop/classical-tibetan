@@ -55,7 +55,7 @@ define([
         if (options.isWylieOnly === true) {
           text = ":::\n" + text + ":::";
         }
-
+        markdown.Markdown.dialects.ExtendedWylie.isMarkUp = true;
         var tree = markdown.parse(text, "ExtendedWylie");
         var jsonml = markdown.toHTMLTree( tree );
         var html = markdown.renderJsonML( jsonml );
@@ -75,6 +75,7 @@ define([
       if (!options || options && !options.parse) {
         var text = this.get("text");
         var dialect = "Wylie";
+        markdown.Markdown.dialects.Wylie.isMarkUp = true;
         var tree = markdown.parse(text, dialect);
         var jsonml = markdown.toHTMLTree(tree, dialect, {skipParas:true});
         body = markdown.renderJsonML(jsonml);
@@ -87,6 +88,7 @@ define([
       if (!options || options && !options.parse) {
         var text = this.get("text");
         var dialect = "Wylie";
+        markdown.Markdown.dialects.Wylie.isMarkUp = false;
         var tree = markdown.parse(text, dialect);
         var jsonml = markdown.toHTMLTree(tree, dialect, {skipParas:true});
         body = markdown.renderJsonML(jsonml);
