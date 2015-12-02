@@ -1,54 +1,8 @@
-dt[lang=bo],
-body[lang=bo],
-span[lang=bo],
-div[lang=bo],
-p[lang=bo] {
-  font-size: 24px;
-}
-dt[lang=bo] + dd {
-  font-size: 18px;
-  line-height: 2.2em;
-}
-
-#main-toolbar.navbar-collapse.collapse {
-  /*background: white;*/
-}
-
 /* iphone 6 */
 @media only screen 
 and (min-device-width : 375px) 
 and (max-device-width : 667px) 
 and (orientation : landscape) {
-  body {
-    padding-top: 0px;
-  }
-
-  .navbar-fixed-top {
-    position: relative !important;
-  }
-
-  .breadcrumb-fixed-top {
-    position: relative;
-    margin-top: 30px;
-  }
-
-  #editorapp {
-    min-height: 500px;
-    margin-top: 0px;
-  }
-
-  body > h1:first-child {
-    position: relative;
-    top: 0px;
-    margin: 0;
-    padding: 0 0 10px 10px;
-    color: black;
-    width: 100%;
-    text-align: left;
-    background-color: #f9f9f9;
-    z-index: 900; 
-  }
-
   a.btn {
     font-size: 10px;
   }
@@ -63,36 +17,6 @@ and (orientation : landscape) {
 and (min-device-width : 414px) 
 and (max-device-width : 736px) 
 and (orientation : landscape) {
-  body {
-    padding-top: 0px;
-  }
-
-  .navbar-fixed-top {
-    position: relative !important;
-  }
-
-  .breadcrumb-fixed-top {
-    position: relative;
-    margin-top: 30px;
-  }
-
-  #editorapp {
-    min-height: 500px;
-    margin-top: 0px;
-  }
-
-  body > h1:first-child {
-    position: relative;
-    top: 0px;
-    margin: 0;
-    padding: 0 0 10px 10px;
-    color: black;
-    width: 100%;
-    text-align: left;
-    background-color: #f9f9f9;
-    z-index: 900; 
-  }
-
   a.btn {
     font-size: 10px;
   }
@@ -107,36 +31,6 @@ and (orientation : landscape) {
 and (min-device-width : 320px) 
 and (max-device-width : 568px) 
 and (orientation : landscape) {
-  body {
-    padding-top: 0px;
-  }
-
-  .navbar-fixed-top {
-    position: relative !important;
-  }
-
-  .breadcrumb-fixed-top {
-    position: relative;
-    margin-top: 30px;
-  }
-
-  #editorapp {
-    min-height: 500px;
-    margin-top: 0px;
-  }
-
-  body > h1:first-child {
-    position: relative;
-    top: 0px;
-    margin: 0;
-    padding: 0 0 10px 10px;
-    color: black;
-    width: 100%;
-    text-align: left;
-    background-color: #f9f9f9;
-    z-index: 900; 
-  }
-
   a.btn {
     font-size: 10px;
   }
@@ -151,36 +45,6 @@ and (orientation : landscape) {
 and (min-device-width : 320px) 
 and (max-device-width : 480px) 
 and (orientation : landscape) {
-  body {
-    padding-top: 0px;
-  }
-
-  .navbar-fixed-top {
-    position: relative !important;
-  }
-
-  .breadcrumb-fixed-top {
-    position: relative;
-    margin-top: 30px;
-  }
-
-  #editorapp {
-    min-height: 500px;
-    margin-top: 0px;
-  }
-
-  body > h1:first-child {
-    position: relative;
-    top: 0px;
-    margin: 0;
-    padding: 0 0 10px 10px;
-    color: black;
-    width: 100%;
-    text-align: left;
-    background-color: #f9f9f9;
-    z-index: 900; 
-  }
-
   a.btn {
     font-size: 10px;
   }
@@ -191,92 +55,24 @@ and (orientation : landscape) {
 }
 
 @media (max-width: 768px) {
-  body {
-    padding-top: 0px;
-  }
-
-  .navbar-fixed-top {
-    position: relative !important;
-  }
-
-  .breadcrumb-fixed-top {
-    position: relative;
-    margin-top: 30px;
-  }
-
-  #editorapp {
-    min-height: 500px;
-    margin-top: 0px;
-  }
-
-  body > h1:first-child {
-    position: relative;
-    top: 0px;
-    margin: 0;
-    padding: 0 0 10px 10px;
-    color: black;
-    width: 100%;
-    text-align: left;
-    background-color: #f9f9f9;
-    z-index: 900; 
-  }
-
   a.btn {
     font-size: 10px;
   }
+
+  #editor-upload, #editor-download, #preview-export {
+    display: none;
+  }
 }
 
-@media (min-width: 768px) {
-    .navbar .navbar-nav {
-        display: inline-block;
-        float: none;
-        vertical-align: top;
-    }
-
-    .navbar .navbar-collapse {
-        text-align: center;
-    } 
-
-  body {
-    padding-top: 83px;
-  }
-
-  .navbar-fixed-top {
-    background-color: #f9f9f9 !important;
-  }
-
-  .breadcrumb-fixed-top {
-    position: fixed;
-    right: 0;
-    left: 0;
-    top: 63px;
-    z-index: 900;  
-  }
-
-  #editorapp {
-    min-height: 500px;
-    margin-top: 55px;
-  }
-
-  #editorapp nav {
-    margin: 0;
-  }
-
-  body > div:first-child.container {
-    padding-top:33px;
-  }
-
-  body > h1:first-child {
-    position: fixed;
-    top: 40px;
-    margin: 0;
-    padding: 0 0 10px 10px;
-    color: black;
-    width: 100%;
-    text-align: left;
-    background-color: #f9f9f9;
-    z-index: 900; 
-  }
+body > h1:first-child {
+  position: absolute;
+  top: 3.5em;
+  margin: 0;
+  padding: 0 0 0 10px;
+  color: black;
+  width: 100%;
+  text-align: left;
+  background-color: transparent;
 }
 
 .row-footer {
@@ -305,6 +101,27 @@ main {
 }
 
 /** Editor Uchen output **/
+dt[lang=bo],
+body[lang=bo],
+span[lang=bo],
+div[lang=bo],
+p[lang=bo] {
+  font-size: 24px;
+}
+dt[lang=bo] + dd {
+  font-size: 18px;
+  line-height: 2.2em;
+}
+
+#main-toolbar.navbar-collapse.collapse {
+  /*background: white;*/
+}
+
+#editorapp {
+  min-height: 500px;
+  margin-top: 0px;
+}
+
 @font-face {
   font-family: 'DDC Uchen';
   src: url('../fonts/DDC_Uchen.ttf');
@@ -348,3 +165,31 @@ span.english {
 .stage1 span.english {
   display: block;
 }
+
+.navbar-default {
+  border-width: 0;
+  font-family: @font-family-sans-serif;
+  font-style: normal;
+  font-weight: 400;  
+}
+
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-nav > li > a {
+  border-bottom: 3px solid transparent;
+  transition: border-bottom 1s ease-out,
+              color 1s ease-out;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  border-bottom: 3px solid @gray-light;
+}
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+} 

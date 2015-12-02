@@ -63,12 +63,15 @@ define([
         return html;
     },
     toArticle: function(options) {
-      var header = "---\n" + JsYaml.dump({"layout": this.get("category"),
+      var header = "---\n" + JsYaml.dump({"layout": "post",
         "category": this.get("category"),
         "tags": this.get("tags") ? this.get("tags").join(" ") : "",
         "title": this.get("name"),
         "description": this.get("description"),
-        "format": "md"
+        "format": "md",
+        "stage": "stage0",
+        "catheading": "Lessons",
+        "heading": "Stage 1"
       }) + "---\n\n\n";
 
       var body = this.get("text");

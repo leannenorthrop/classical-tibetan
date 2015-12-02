@@ -24,18 +24,18 @@ define(["jquery",
       var layout = new Layout();
       EditorApp.layout = layout;
       var layoutRender = EditorApp.layout.render();
+      $("#editorapp").css("opacity","0");
       $("#editorapp").append(EditorApp.layout.el);
 
       if (options.embed) {
         //$("#editor").css("min-height", "500px");
-        $("#editorapp .navbar-fixed-top").removeClass("navbar-fixed-top");
-        //$("body").css("padding-top","0");
-        //$("ol.breadcrumb").css("margin-bottom","0");
+        $("body").css("padding-top","0");
+        $("ol.breadcrumb").css("margin-bottom","0");
         $("#editorapp .editor-app .navbar").css("margin-bottom", "0");
       } else {
         $("body").css("padding-top","0");
       }
-
+      $("#editorapp").css("opacity","1");
       var preview = new PreviewView({});
       var editor = new EditorView({});
       EditorApp.preview = preview;
