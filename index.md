@@ -48,6 +48,7 @@ sitehome: true
     <p class="text-center">Topics about writing.</p>
     <p class="text-center"><a class="btn btn-default" href="{{site.baseurl}}/write/index.html" role="button">View details &raquo;</a></p>
     <p class="text-center"><a class="btn btn-default" href="{{site.baseurl}}/write/editor.html?layout=private" role="button">Wylie Editor &raquo;</a></p>
+    <p class="text-center"><a class="btn btn-default" target="_blank" href="{{site.baseurl}}/write/full-page-editor.html?layout=private" role="button">Full Page Editor &raquo;</a></p>
   </div><!-- /.col-lg-4 -->
 </div><!-- /.row -->
 
