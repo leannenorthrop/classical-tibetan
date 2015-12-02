@@ -5,7 +5,7 @@
  * Copyright (c) 2009-2010 Ash Berlin
  * Copyright (c) 2011 Christoph Dorn <christoph@christophdorn.com> (http://www.christophdorn.com)
  * Version: 0.6.0-beta1
- * Date: 2015-11-26T17:39Z
+ * Date: 2015-12-02T10:09Z
  */
 
 (function(expose) {
@@ -550,6 +550,13 @@
     case "uchen":
       jsonml[ 0 ] = "span";
       break;
+    case "html_void":
+      jsonml[0] = jsonml[2];
+      break;
+    case "html_element":
+      jsonml[0] = jsonml[1].element;
+      delete jsonml[1].element;
+      break;
     case "inlinecode":
       jsonml[ 0 ] = "code";
       break;
@@ -562,6 +569,12 @@
       break;
     case "link":
       jsonml[ 0 ] = "a";
+      break;
+    case "strikeout":
+      jsonml[0] = "del";
+      break;
+    case "mark":
+      jsonml[0] = "mark";
       break;
     case "link_ref":
       jsonml[ 0 ] = "a";
@@ -1889,7 +1902,7 @@
       return undefined;
     }
 
-    var table = [ "table", [ "thead", [ "tr" ] ], [ "tbody" ] ];
+    var table = [ "table",{"class":"table"}, [ "thead", [ "tr" ] ], [ "tbody" ] ];
 
     // remove trailing pipes, then split on pipes
     // (no escaped pipes are allowed in horizontal rule)
@@ -1911,7 +1924,7 @@
     // now for the header, avoid escaped pipes
     m[1] = _split_on_unescaped(m[1].replace(/\|\s*$/, ''), '|');
     for (i = 0; i < m[1].length; i++) {
-      table[1][1].push(['th', html_attrs[i] || {}].concat(
+      table[2][1].push(['th', html_attrs[i] || {}].concat(
         this.processInline(m[1][i].trim())));
     }
 
@@ -1921,14 +1934,75 @@
       row = _split_on_unescaped(row, '|');
       for (i = 0; i < row.length; i++)
         html_row.push(['td', html_attrs[i] || {}].concat(this.processInline(row[i].trim())));
-      table[2].push(html_row);
+      table[3].push(html_row);
     }, this);
 
     return [table];
   };
 
+  ExtendedGruber.inline[ "~~" ] = function inlineStrikeout(text) {
+    var m = text.match(/^~~([^~]*)~~/i);
+    if (m) {
+      return [m[0].length, [ "strikeout", m[1]]];
+    } else {
+      return [2,""];
+    }
+  };
+
+  ExtendedGruber.inline[ "\/" ] = function inlineMark(text) {
+    var m = text.match(/^\/([^\/]*)\//i);
+    if (m) {
+      return [m[0].length, [ "mark", m[1]]];
+    } else {
+      return [1,""];
+    }
+  };
+
+  ExtendedGruber.inline[ "<" ] = function inlineHtmlVoid( text ) {
+        // Inline void html block.
+        var m = text.match( /^<(?:(br|wbr)\s*\/?)>/i );
+
+        if ( m ) {
+          console.log(m);
+          return [m[0].length, ["html_void", { }, m[1]]];
+        } else {
+          m = text.match(/^<a name=('|")([^'"]*)\1\/?>/i);
+          if (m) {
+            return [m[0].length, ["html_element", {'name':m[2], 'element':'a'}, ""]];
+          }
+          else {
+            m = text.match(/^<(article|aside|audio|bdi|details|figure|figcaption|footer|header|main|mark|nav|output|rp|rt|ruby|section|summary|time|abbr|address|bdo|cite|code|dd|del|dfn|div|dl|dd|dt|h1|h2|h3|h4|h5|h6|iframe|ins|kbd|pre|q|s|samp|span|strong|sub|sup|var)(\s*[^='"]*=('[^']*'|"[^"]*)*)*>((?:.|\n)*?)<\s*\/\1\s*>/i);
+            if (m) {
+              console.log(m);
+              var name = m[1];
+              var attributes = m[2] ? m[2].trim() : undefined;
+              var attr = {'element':name};
+              if (attributes !== undefined) {
+                attributes = attributes.split(/(?:\s+)/);
+                for (var j = 0; j < attributes.length; j++) {
+                  var parts = attributes[j].split("=");
+                  var val = parts[1].trim();
+                  val = val.substring(1, val.length-1);
+                  attr[parts[0].trim()] = val;
+                }
+              }
+              var txt = m[4];
+              var inner = this.processInline(txt);
+              var node = ["html_element", attr];
+              for (var i = 0; i < inner.length; i++) {
+                node.push(inner[i]);
+              }
+              return [m[0].length, node];
+            } else {
+              return Markdown.dialects.Gruber.inline["<"](text);
+            }
+          }
+        }
+      };
+
   Markdown.dialects.ExtendedGruber = ExtendedGruber;
   Markdown.buildBlockOrder ( Markdown.dialects.ExtendedGruber.block );
+  Markdown.buildInlinePatterns( Markdown.dialects.ExtendedGruber.inline );
 
     // Implementation of http://www.thlib.org/reference/transliteration/#!essay=/thl/ewts/intro/
     // Rules http://www.thlib.org/reference/transliteration/#!essay=/thl/ewts/rules/
