@@ -9,7 +9,7 @@ define([
       return this.__name__ + "(" + (this.attributes ? JSON.stringify(this.attributes) : "") + ")";
     },
     defaults: {
-      theme: "solarized",
+      theme: "neo",
       wrap: true,
       mode: "markdown",
       text: "",
