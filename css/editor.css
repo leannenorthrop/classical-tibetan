@@ -55,3 +55,33 @@ ul.nav li a input[type=file] {
     margin: 0;
     padding-left: 2px;
 }
+@font-face {
+  font-family: 'DDC Uchen';
+  src: url('../fonts/DDC_Uchen.ttf');
+}
+.uchen {
+  font-family: 'DDC Uchen', 'Kokonor', 'Microsoft Himalaya';
+  font-size: 18px;
+}
+.uchen a {
+  text-decoration: none;
+}
+.syllables {
+  display: inline-block;
+}
+.syllables > span {
+  display: none;
+}
+.syllables > span.uchen {
+  display: block;
+}
+.wylie,
+.english,
+.phonetics {
+  font-size: smaller;
+  height: 1em;
+  text-align: center;
+}
+span.english {
+  white-space: pre-wrap;
+}
