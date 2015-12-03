@@ -5,7 +5,7 @@
  * Copyright (c) 2009-2010 Ash Berlin
  * Copyright (c) 2011 Christoph Dorn <christoph@christophdorn.com> (http://www.christophdorn.com)
  * Version: 0.6.0-beta1
- * Date: 2015-12-03T14:20Z
+ * Date: 2015-12-03T15:06Z
  */
 
 (function(expose) {
@@ -2164,6 +2164,14 @@
     UChenMap[".ha"] = "\u0F67";
 
     // Sanskrit & Subjoined Sanskrit
+    UChenMap["f"] = "\u0F55\u0F39";
+    UChenMap["fa"] = "\u0F55\u0F39";
+    UChenMap[".f"] = "\u0F55\u0F39";
+    UChenMap[".fa"] = "\u0F55\u0F39";
+    UChenMap["v"] = "\u0F56\u0F39";
+    UChenMap["va"] = "\u0F56\u0F39";
+    UChenMap[".v"] = "\u0F56\u0F39";
+    UChenMap[".va"] = "\u0F56\u0F39";
     UChenMap["gh"] = "\u0F43";
     UChenMap["g+h"] = "\u0F43";
     UChenMap["dh"] = "\u0F52";
@@ -2185,6 +2193,7 @@
     UChenMap["+W"] = "\u0FBA";
     UChenMap["+Y"] = "\u0FBB";
     UChenMap["+R"] = "\u0FBC";
+    UChenMap["R+"] = "\u0F6A";
     UChenMap["H"] = "\u0F7F";
     UChenMap["M"] = "\u0F7E";
     UChenMap["~M"] = "\u0F83";
@@ -2434,6 +2443,7 @@
     UChenMap.Ligatures["grw"] = "g+r+w";
     UChenMap.Ligatures["drw"] = "d+r+w";
     UChenMap.Ligatures["phyw"] = "ph+y+w";
+
     UChenMap.Ligatures["~om"] = "\u0F00";
     UChenMap.Ligatures["~athung"] = "\u0F01";
     UChenMap.Ligatures["~namcheyma"] = "\u0F02";
@@ -2494,6 +2504,20 @@
     UChenMap.Ligatures["~norbusumkhyi"] = "\u0FCB";
     UChenMap.Ligatures["~norbushikhyi"] = "\u0FCC";
     UChenMap.Ligatures["~denasum"] = "\u0FCF";
+    UChenMap.Ligatures["~X"] = "\u0F35";
+    UChenMap.Ligatures["X"] = "\u0F37";
+    UChenMap.Ligatures["V"] = "\u0F38";
+    UChenMap.Ligatures["^"] = "\u0F39";
+    UChenMap.Ligatures["~v"] = "\u0F88";
+    UChenMap.Ligatures["~:"] = "\u0FD2";
+    UChenMap.Ligatures["~<<"] = "\u0FD3";
+    UChenMap.Ligatures["~<"] = "\u0FD4";
+    UChenMap.Ligatures["~sw1"] = "\u0FD5";
+    UChenMap.Ligatures["~sw2"] = "\u0FD6";
+    UChenMap.Ligatures["~sw3"] = "\u0FD7";
+    UChenMap.Ligatures["~sw4"] = "\u0FD8";
+    UChenMap.Ligatures["~u+"] = "\u0FD9";
+    UChenMap.Ligatures["~u-"] = "\u0FDA";
 
     UChenMap.toUnicode = function(text) {
         function escapeRegEx(str) {
