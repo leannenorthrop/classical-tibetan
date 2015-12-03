@@ -5,7 +5,7 @@
  * Copyright (c) 2009-2010 Ash Berlin
  * Copyright (c) 2011 Christoph Dorn <christoph@christophdorn.com> (http://www.christophdorn.com)
  * Version: 0.6.0-beta1
- * Date: 2015-12-02T10:09Z
+ * Date: 2015-12-03T14:20Z
  */
 
 (function(expose) {
@@ -575,6 +575,12 @@
       break;
     case "mark":
       jsonml[0] = "mark";
+      break;
+    case "superscript":
+      jsonml[0] = "sup";
+      break;
+    case "subscript":
+      jsonml[0] = "sub";
       break;
     case "link_ref":
       jsonml[ 0 ] = "a";
@@ -1949,10 +1955,28 @@
     }
   };
 
-  ExtendedGruber.inline[ "\/" ] = function inlineMark(text) {
-    var m = text.match(/^\/([^\/]*)\//i);
+  ExtendedGruber.inline[ "!!" ] = function inlineMark(text) {
+    var m = text.match(/^!!([^!]*)!!/i);
     if (m) {
       return [m[0].length, [ "mark", m[1]]];
+    } else {
+      return [1,""];
+    }
+  };
+
+  ExtendedGruber.inline[ "^" ] = function inlineSuperscript(text) {
+    var m = text.match(/^\^([^\^\s.?,!?;:'"/\|<>\[\]\(\)\*\&\%\$\£\#\@]*)/i);
+    if (m) {
+      return [m[0].length, [ "superscript", m[1]]];
+    } else {
+      return [1,""];
+    }
+  };
+
+  ExtendedGruber.inline[ "vv" ] = function inlineSubscript(text) {
+    var m = text.match(/^^vv([^v\s.?,!?;:'"/\|<>\[\]\(\)\*\&\%\$\£\#\@]*)/i);
+    if (m) {
+      return [m[0].length, [ "subscript", m[1]]];
     } else {
       return [1,""];
     }
@@ -1971,7 +1995,7 @@
             return [m[0].length, ["html_element", {'name':m[2], 'element':'a'}, ""]];
           }
           else {
-            m = text.match(/^<(article|aside|audio|bdi|details|figure|figcaption|footer|header|main|mark|nav|output|rp|rt|ruby|section|summary|time|abbr|address|bdo|cite|code|dd|del|dfn|div|dl|dd|dt|h1|h2|h3|h4|h5|h6|iframe|ins|kbd|pre|q|s|samp|span|strong|sub|sup|var)(\s*[^='"]*=('[^']*'|"[^"]*)*)*>((?:.|\n)*?)<\s*\/\1\s*>/i);
+            m = text.match(/^<(article|aside|audio|bdi|details|figure|figcaption|footer|header|main|nav|output|rp|rt|ruby|section|summary|time|abbr|address|bdo|cite|code|dd|del|dfn|div|dl|dd|dt|h1|h2|h3|h4|h5|h6|iframe|ins|kbd|pre|q|s|samp|span|strong|sub|sup|var)(\s*[^='"]*=('[^']*'|"[^"]*)*)*>((?:.|\n)*?)<\s*\/\1\s*>/i);
             if (m) {
               console.log(m);
               var name = m[1];
