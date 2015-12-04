@@ -5,7 +5,7 @@
  * Copyright (c) 2009-2010 Ash Berlin
  * Copyright (c) 2011 Christoph Dorn <christoph@christophdorn.com> (http://www.christophdorn.com)
  * Version: 0.6.0-beta1
- * Date: 2015-12-03T15:06Z
+ * Date: 2015-12-04T17:44Z
  */
 
 (function(expose) {
@@ -581,6 +581,15 @@
       break;
     case "subscript":
       jsonml[0] = "sub";
+      break;
+    case "glossary":
+      jsonml[ 0 ] = "dl";
+      break;
+    case "glossary_term":
+      jsonml[ 0 ] = "dt";
+      break;
+    case "glossary_def":
+      jsonml[ 0 ] = "dd";
       break;
     case "link_ref":
       jsonml[ 0 ] = "a";
@@ -2646,6 +2655,7 @@
   var uChenMap = UChenMap;
 
   ExtendedWylie.isMarkUp = false;
+  ExtendedWylie.glossary = {};
   ExtendedWylie.dictionary = Dictionary;
   ExtendedWylie.dictionaryURL = "http://leannenorthrop.github.io/classical-tibetan/resource/dictionary/index.html#";
   
@@ -2717,6 +2727,12 @@
             node.push(["uchen_wylie", {"class":"wylie"}, word]);
             node.push(["uchen_english", {"class":"english"}, foundWord.en]);
             nodes.push(node);
+
+            var rl = foundWord.rl;
+            if (!ExtendedWylie.glossary.hasOwnProperty(rl)) {
+              ExtendedWylie.glossary[rl] = [];
+            }
+            ExtendedWylie.glossary[rl].push({"uchen":uChenMap.toUnicode(validPart2),"english":foundWord.en});
             added = true;
           }
         }
@@ -2758,19 +2774,46 @@
             b = seen ? "" : next.shift();
           }
         }
-        wylie = replaceAll(wylie, "\n", "");
+        var wylieBlocks = wylie.split("\n");
 
         var nodes = [];
         if (ExtendedWylie.isMarkUp) {
-          nodes = ExtendedWylie.markup(wylie);
+          for (var i = 0; i < wylieBlocks.length; i++) {
+            var wylieTxt = wylieBlocks[i];
+            nodes.push(["para", {}, [ "uchen_block", { "class": "uchen_text", "wylie": wylie }, ExtendedWylie.markup(wylieTxt)]]);
+          }
         } else {
-          var node = ["uchen_syllable", {"class":"syllables"}];
-          node.push(["uchen", {"class":"uchen"}, uChenMap.toUnicode(wylie)]);
-          nodes.push(node);
+          for (var i = 0; i < wylieBlocks.length; i++) {
+            var wylieTxt = wylieBlocks[i];
+            var node = ["uchen_syllable", {"class":"syllables"}];
+            node.push(["para", {}, ["uchen", {"class":"uchen"}, uChenMap.toUnicode(wylieTxt)]]);
+            nodes.push(node);
+          }
         }
 
-        return wylie.length > 0 ? [[ "uchen_block", { "class": "uchen_text", "wylie": wylie }, nodes ]] : [];
+        return wylie.length > 0 ? [nodes] : [];
       };
+
+  ExtendedWylie.appendGlossary = function(mdTree) {
+    var nodes = ["glossary",{"class":"dl-horizontal"}];
+    var glossaryEntries = ExtendedWylie.glossary;
+
+    var order = ["k","kh","g","ng","c","ch","j","ny","t","th","d","n","p","ph","b","m","ts","tsh","dz","w","zh","z","'","y","r","l","sh","s","h","a"];
+    for (var i = 0; i < order.length; i++) {
+      if (glossaryEntries.hasOwnProperty(order[i])) {
+        var entries = glossaryEntries[order[i]];
+        for (var j = 0; j < entries.length; j++) {
+          var entry = entries[j];
+          nodes.push(["glossary_term",{},entry["uchen"]]);
+          nodes.push(["glossary_def",{},entry["english"]]);
+        }
+      }
+    }
+    mdTree.push(["header", {"level": 2}, "Glossary"]);
+    mdTree.push(nodes);
+    ExtendedWylie.glossary = [];
+    return mdTree;
+  };
 
   Markdown.dialects.ExtendedWylie = ExtendedWylie;
   Markdown.buildBlockOrder ( Markdown.dialects.ExtendedWylie.block );
@@ -2806,12 +2849,7 @@
             b = seen ? "" : next.shift();
           }
         }
-        if (Wylie.isMarkUp) {
-          var nodes = ExtendedWylie.markup(wylie);
-          return wylie.length > 0 ? [[ "uchen_block", { "class": "uchen_text", "wylie": wylie }, nodes ]] : [];
-        } else {
-          return wylie.length > 0 ? [ [ "uchen_block", { "class": "uchen", "wylie": wylie }, uChenMap.toUnicode(wylie) ] ] : [];
-        }
+        return wylie.length > 0 ? [ [ "uchen_block", { "class": "uchen", "wylie": wylie }, uChenMap.toUnicode(wylie) ] ] : [];
       },
       para: function para( block ) {
         // everything's a para!
